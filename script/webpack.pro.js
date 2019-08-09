@@ -14,7 +14,7 @@ const pro = {
 		app: resolve("src/index.js")
 	},
 	output: {
-		path: resolve("dist"),
+		path: resolve("lib"),
 		filename: "g6lib.min.js",
 		libraryTarget: "umd",
 		library: "g6lib.min.js"

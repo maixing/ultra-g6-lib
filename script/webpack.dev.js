@@ -19,7 +19,7 @@ let dev = {
 		app: resolve("demo/index.js")
 	},
 	output: {
-		path: resolve("dist"),
+		path: resolve("lib"),
 		filename: "app.js",
 		publicPath: ""
 	},
