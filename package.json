@@ -1,0 +1,44 @@
+{
+	"name": "ultra-g6-lib",
+	"version": "1.0.0",
+	"description": "g6 封装",
+	"main": "index.js",
+	"scripts": {
+		"start": "cross-env NODE_ENV=development cross-env PORT=9999 webpack-dev-server --inline --config script/webpack.dev.js",
+		"build": "npm run clean && cross-env NODE_ENV=production webpack --mode production --config ./script/webpack.pro.js  -p",
+		"clean": "rimraf dist/*"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:maixing/ultra-g6-lib.git"
+	},
+	"keywords": [],
+	"author": "maixing",
+	"license": "ISC",
+	"dependencies": {
+		"antd": "^3.21.2",
+		"lodash": "^4.17.15",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.5.5",
+		"@babel/plugin-transform-react-jsx": "^7.3.0",
+		"@babel/preset-env": "^7.5.5",
+		"babel-loader": "^8.0.6",
+		"cross-env": "^5.2.0",
+		"css-loader": "^3.2.0",
+		"html-webpack-plugin": "^4.0.0-alpha",
+		"open-browser-webpack-plugin": "0.0.5",
+		"optimize-css-assets-webpack-plugin": "^5.0.3",
+		"path": "^0.12.7",
+		"rimraf": "^2.6.3",
+		"style-loader": "^1.0.0",
+		"uglifyjs-webpack-plugin": "^2.2.0",
+		"webpack": "^4.39.1",
+		"webpack-cli": "^3.3.6",
+		"webpack-dev-server": "^3.7.2",
+		"webpack-merge": "^4.2.1",
+		"webpackbar": "^4.0.0"
+	}
+}

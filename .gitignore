@@ -1,0 +1,10 @@
+# Mac OS
+.DS_Store
+# npm
+node_modules
+npm-debug.log
+package-lock.json
+# folder
+dist*
+dll
+.history
