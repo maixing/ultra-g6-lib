@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "cross-env NODE_ENV=development cross-env PORT=9999 webpack-dev-server --inline --config script/webpack.dev.js",
 		"build": "npm run clean && cross-env NODE_ENV=production webpack --mode production --config ./script/webpack.pro.js  -p",
-		"clean": "rimraf dist/*"
+		"clean": "rimraf lib/*.js"
 	},
 	"repository": {
 		"type": "git",
@@ -16,6 +16,7 @@
 	"author": "maixing",
 	"license": "ISC",
 	"dependencies": {
+		"@antv/g6": "^3.0.5-beta.7",
 		"antd": "^3.21.2",
 		"lodash": "^4.17.15",
 		"react": "^16.9.0",
