@@ -5,9 +5,11 @@
 */
 
 const modelConsts = {
-    CANVAS_DEFAULT_MODEL:"canvas_default_model",
-    CANVAS_MULTI_MODEL:"canvas_multi_model",
-    CANVAS_SINGLE_MODEL:"canvas_single_model"
+    MODEL_ADD_EDGE:"addEdge",
+    MODEL_ADD_NODE:"addNode",
+    MODEL_EDITE:"edite",
+    MODEL_SHOW:"show",
+    MODEL_MULTI_SELECT:"multiselect"
 }
 
 export default modelConsts;

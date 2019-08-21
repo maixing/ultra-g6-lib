@@ -1,7 +1,7 @@
 /**
  *
  * Created by maixing on 2019/08/14 15:20:11
- *
+ * 节点、连线样式注册
  */
 import G6 from "@antv/g6";
 import modelConsts from "@/consts/ModelConsts";
@@ -17,7 +17,6 @@ class RegisterUtil extends BaseUtil {
 		super.init(graph);
 		this.registerNode();
 	}
-	toolBarUtil = null;
 	registerNode = () => {
 		G6.registerNode("nodeStyle", {
 			draw: (cfg, group) => {
@@ -25,8 +24,9 @@ class RegisterUtil extends BaseUtil {
 				const h = cfg.h;
 				let aw = w * 1;
 				let ah = h * 1;
+				const model = this.graph.getCurrentMode();
 				if (cfg.selected) {
-					if (modelConsts.CANVAS_MULTI_MODEL == this.toolBarUtil.graphModel) {
+					if (modelConsts.MODEL_MULTI_SELECT == model) {
 						group.addShape("image", {
 							attrs: {
 								x: w / 2,
@@ -49,7 +49,7 @@ class RegisterUtil extends BaseUtil {
 						});
 					}
 				} else {
-					if (modelConsts.CANVAS_MULTI_MODEL == this.toolBarUtil.graphModel) {
+					if (modelConsts.MODEL_MULTI_SELECT == model) {
 						group.addShape("image", {
 							attrs: {
 								x: w / 2,
@@ -80,34 +80,35 @@ class RegisterUtil extends BaseUtil {
 						fill: "#000"
 					}
 				});
-				aw = image._attrs.width;
-				ah = image._attrs.height;
-				anchorPoints.forEach((item,index) => {
-					const outerCircle = group.addShape("circle", {
-						attrs: {
-							x: -aw / 2+aw*item[0],
-							y: -ah / 2+ah*item[1],
-							fill: 'blue',
-							r:  7,
-							opacity:0.5,
-							type:"outer",
-							cursor:'pointer',
-							index:index
-						}
-					});
-					const innerCircle = group.addShape("circle", {
-						attrs: {
-							x: -aw / 2+aw*item[0],
-							y: -ah / 2+ah*item[1],
-							fill: '#fff',
-							r:  2,
-							cursor:'pointer',
-							type:"inner",
-							outer:outerCircle,
-							index:index
-						}
-					});
-				});
+				//锚点呈现
+				// aw = image._attrs.width;
+				// ah = image._attrs.height;
+				// anchorPoints.forEach((item,index) => {
+				// 	const outerCircle = group.addShape("circle", {
+				// 		attrs: {
+				// 			x: -aw / 2+aw*item[0],
+				// 			y: -ah / 2+ah*item[1],
+				// 			fill: 'blue',
+				// 			r:  7,
+				// 			opacity:0.5,
+				// 			type:"outer",
+				// 			cursor:'pointer',
+				// 			index:index
+				// 		}
+				// 	});
+				// 	const innerCircle = group.addShape("circle", {
+				// 		attrs: {
+				// 			x: -aw / 2+aw*item[0],
+				// 			y: -ah / 2+ah*item[1],
+				// 			fill: '#fff',
+				// 			r:  2,
+				// 			cursor:'pointer',
+				// 			type:"inner",
+				// 			outer:outerCircle,
+				// 			index:index
+				// 		}
+				// 	});
+				// });
 				return image;
 			},
 			getAnchorPoints(cfg) {

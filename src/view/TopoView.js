@@ -15,6 +15,8 @@ import CacheUtil from "@/util/CacheUtil";
 import ConvertUtil from "@/util/ConvertUtil";
 import EventBusUtil from "@/util/EventBusUtil";
 import ToolbarUtil from "@/util/ToolbarUtil";
+import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/consts/EventConsts";
+import ToolbarView from "./ToolbarView";
 
 export default class TopoView extends React.Component {
 	constructor(props) {
@@ -25,7 +27,7 @@ export default class TopoView extends React.Component {
 		this.toolbarUtil = new ToolbarUtil();
 	}
 	state = {
-		test: "123"
+		...this.props
 	};
 	static defaultProps = {
 		el: "topoEl",
@@ -51,33 +53,49 @@ export default class TopoView extends React.Component {
 			this.graph = new G6.Graph({
 				container: this.props.el,
 				width: rect.width,
-				height: rect.height,
+				height: rect.height-4,
 				fitView: false,
 				modes: {
-					default: [
-						"drag-node"
-					],
-					edit: ["addEdge","drag-node"]
+					addEdge: ["addEdge", "drag-node"],
+					addNode: ["addNode", "drag-node"],
+					edite: ["drag-node"],
+					show: ["drag-canvas", "zoom-canvas"],
+					multiselect: ["drag-node"]
 				}
 			});
 			this.initUtil();
-			this.graph.data(this.props.datas);
+			this.initEvent();
+			this.graph.data(this.state.datas);
 			this.graph.render();
-			this.graph.setMode("edit");
+			this.graph.setMode("edite");
 			this.graph.setAutoPaint(true);
-			const node = this.graph.findById("1");
-			if (node) {
-				node._cfg.model.label = "test";
-				this.graph.updateItem(node, node._cfg.model);
-			}
+			// const node = this.graph.findById("1");
+			// if (node) {
+			// 	node._cfg.model.label = "test";
+			// 	this.graph.updateItem(node, node._cfg.model);
+			// }
 		}
 	}
 	initUtil = () => {
 		this.toolbarUtil.init(this.graph);
-		this.graphEventUtil.toolBarUtil = this.toolbarUtil;
 		this.graphEventUtil.init(this.graph);
-		this.registerUtil.toolBarUtil = this.toolbarUtil;
 		this.registerUtil.init(this.graph);
+	};
+	initEvent() {
+		const { addListener } = this;
+
+		GRAPH_MOUSE_EVENTS.forEach(event => {
+			const eventName = GRAPH_MOUSE_REACT_EVENTS[event];
+			addListener(this.graph, `node:${event}`, this.props[`onNode${eventName}`]);
+			addListener(this.graph, `edge:${event}`, this.props[`onEdge${eventName}`]);
+			addListener(this.graph, `canvas:${event}`, this.props[`onCanvas${eventName}`]);
+		});
+		ITEM_EVENTS.forEach(event => {
+			addListener(this.page, [event], this.props[ITEM_REACT_EVENTS[event]]);
+		});
+	}
+	addListener = (target, eventName, handler) => {
+		if (typeof handler === "function") target.on(eventName, handler);
 	};
 	render() {
 		return (
@@ -88,7 +106,7 @@ export default class TopoView extends React.Component {
 				}}
 			>
 				<div className="topo-content" id={this.props.el} />
-				<div className="topo-bar" />
+				<ToolbarView />
 			</div>
 		);
 	}

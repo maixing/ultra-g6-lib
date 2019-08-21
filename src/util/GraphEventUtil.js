@@ -1,7 +1,7 @@
 /**
  *
  * Created by maixing on 2019/08/14 15:26:29
- *
+ * 事件管理
  */
 import BaseUtil from "@/util/BaseUtil";
 import G6 from "@antv/g6";
@@ -15,7 +15,6 @@ class GraphEventUtil extends BaseUtil {
 	}
 	preSelectNode = null;
 	preSelectNodes = [];
-	toolBarUtil = null;
 	edge = null;
 	addingEdge = false;
 	init(graph) {
@@ -24,6 +23,7 @@ class GraphEventUtil extends BaseUtil {
 			this.initNodeEvent();
 			this.initEdgeEvent();
 			this.initGlobalEvent();
+			this.initBehavior();
 			this.initToolBarEvent();
 		}
 	}
@@ -46,7 +46,8 @@ class GraphEventUtil extends BaseUtil {
 		this.graph.on("node:click", ev => {
 			const model = ev.item._cfg.model;
 			model.selected = !model.selected;
-			if (modelConsts.CANVAS_MULTI_MODEL == this.toolBarUtil.graphModel) {
+			const currentModel = this.graph.getCurrentMode();
+			if (modelConsts.MODEL_MULTI_SELECT == currentModel) {
 				if (model.selected) {
 					this.preSelectNodes.push(model);
 				} else {
@@ -70,58 +71,23 @@ class GraphEventUtil extends BaseUtil {
 			this.graph.updateItem(ev.item, model);
 		});
 		this.graph.on("node:mouseover", ev => {
-			if (!ev.target.isKeyShape) {
-				const attr = ev.target._attrs;
-				attr.cursor = "crosshair";
-				let outer = ev.target._cfg;
-				if (attr.type == "inner") {
-					outer = attr.outer;
-				} else {
-					outer = ev.target;
-				}
-				outer.animate(
-					{
-						r: 10,
-						repeat: false
-					},
-					500,
-					"easeCubic",
-					null,
-					0
-				);
-			}
+			//经过锚点处理
+			this.changeAnchor(ev, true);
 		});
 		this.graph.on("node:mouseout", ev => {
-			if (!ev.target.isKeyShape) {
-				const attr = ev.target._attrs;
-				attr.cursor = "crosshair";
-				let outer = ev.target._cfg;
-				if (attr.type == "inner") {
-					outer = attr.outer;
-				} else {
-					outer = ev.target;
-				}
-				outer.animate(
-					{
-						r: 7,
-						repeat: false
-					},
-					500,
-					"easeCubic",
-					null,
-					0
-				);
-			}
+			//移除锚点处理
+			this.changeAnchor(ev, false);
 		});
 	};
 	initEdgeEvent = () => {};
-	initGlobalEvent = () => {
+	initGlobalEvent = () => {};
+	initBehavior = () => {
 		G6.registerBehavior("addEdge", {
 			getEvents() {
 				return {
 					"node:click": "onClick",
 					mousemove: "onMousemove",
-					"edge:click": "onEdgeClick" // 点击空白处，取消边
+					"edge:click": "onEdgeClick"
 				};
 			},
 			onClick(ev) {
@@ -155,7 +121,6 @@ class GraphEventUtil extends BaseUtil {
 			onEdgeClick(ev) {
 				console.log("onEdgeClick---->>%o", ev);
 				const currentEdge = ev.item;
-				// 拖拽过程中，点击会点击到新增的边上
 				if (this.addingEdge && this.edge == currentEdge) {
 					this.graph.removeItem(this.edge);
 					this.edge = null;
@@ -163,7 +128,34 @@ class GraphEventUtil extends BaseUtil {
 				}
 			}
 		});
-		this.graph.addBehaviors("addEdge");
+		G6.registerBehavior("addNode",{
+
+		})
+		this.graph.addBehaviors("addEdge","addEdge");
+		this.graph.addBehaviors("addNode","addNode");
+	};
+	changeAnchor = (ev, show) => {
+		//没有iskeyShape，说明是锚点
+		if (!ev.target.isKeyShape) {
+			const attr = ev.target._attrs;
+			attr.cursor = "crosshair";
+			let outer = ev.target._cfg;
+			if (attr.type == "inner") {
+				outer = attr.outer;
+			} else {
+				outer = ev.target;
+			}
+			outer.animate(
+				{
+					r: show ? 10 : 7,
+					repeat: false
+				},
+				500,
+				"easeCubic",
+				null,
+				0
+			);
+		}
 	};
 }
 export default GraphEventUtil;

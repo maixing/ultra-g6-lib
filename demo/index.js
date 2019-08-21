@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import TopoLib from "../src";
+import TopoLib from "../lib/g6lib.min";
 const data = {
 	nodes: [
 		{

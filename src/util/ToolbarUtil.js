@@ -4,14 +4,10 @@
  *
  */
 import BaseUtil from "@/util/BaseUtil";
-import modelConsts from "@/consts/ModelConsts";
-
 class ToolbarUtil extends BaseUtil{
 	constructor() {
 		super();
 	}
-	graphModel = modelConsts.CANVAS_MULTI_MODEL;
-
 	changeGlobalModel = type => {};
 }
 export default ToolbarUtil;

@@ -21,7 +21,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: /node_modules/,
+				exclude: [resolve("node_modules"),resolve("node_modules/@antv")],
 				use: "babel-loader"
 			},
 			{
@@ -46,6 +46,17 @@ module.exports = {
 					},
 					{
 						loader: "style-loader"
+					}
+				]
+			},
+			{
+				test: /\.(jpg|png|svg|gif)/,
+				use: [
+					{
+						loader: "file-loader",
+						options: {
+							outputPath: "imgs/"
+						}
 					}
 				]
 			}

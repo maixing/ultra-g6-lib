@@ -1,5 +1,39 @@
-.topowrap{
-    height: 100%;
-    width: 100%;
+.topowrap {
+	height: 100%;
+	width: 100%;
     position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+.toolbar-wrap {
+	position: fixed;
+	left: 1%;
+	top: 1%;
+	width: 200px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	height: 25px;
+	line-height: 25px;
+	display: flex;
+	align-items: center;
+}
+.toolbaricon {
+	display: inline-block;
+	margin: 0px 5px;
+	padding: 0px 5px;
+	height: 100%;
+	border-right: 1px solid #ccc;
+}
+.toolbaricon:last-child {
+	border-right: none;
+}
+.toolbaricon:hover {
+	background: rgba(39, 162, 245, 0.596);
+	cursor: pointer;
+}
+.toolbaricon-select {
+	background: rgba(39, 162, 245, 0.596);
+}
+.toolbaricon-unselect {
+	background: none;
 }
