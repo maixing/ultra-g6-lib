@@ -26,7 +26,8 @@ let dev = {
 	devServer: {
 		clientLogLevel: "warning",
 		historyApiFallback: true,
-		hot: false,
+		hot: true,
+		hotOnly: true,
 		compress: true,
 		host: "0.0.0.0",
 		port: parseInt(process.env.PORT),

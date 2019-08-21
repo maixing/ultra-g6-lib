@@ -4,9 +4,15 @@
 *
 */
 import TopoView from "@/view/TopoView"
+import EventBus from "@/util/EventBusUtil";
+import EventConsts from "@/consts/EventConsts";
+
 const g6lib = {
     version:"1.0",
     author:"maixing",
-    TopoView:TopoView
+    TopoView,
+    EventBus,
+    EventConsts
+
 }
 export default g6lib;
