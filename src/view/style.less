@@ -1,34 +1,39 @@
+@bar-height: 30px;
+@img-height: 16px;
 .topowrap {
 	height: 100%;
 	width: 100%;
-    position: relative;
-    margin: 0px;
-    padding: 0px;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
 }
 .toolbar-wrap {
 	position: fixed;
 	left: 1%;
 	top: 1%;
-	width: 200px;
 	border-radius: 8px;
 	border: 1px solid #ccc;
-	height: 25px;
-	line-height: 25px;
+	height: @bar-height;
+	line-height: @bar-height;
 	display: flex;
 	align-items: center;
 }
 .toolbaricon {
 	display: inline-block;
-	margin: 0px 5px;
+	margin: 0px auto;
+	text-align: center;
 	padding: 0px 5px;
-	height: 100%;
+	height: @bar-height;
+	width: @bar-height;
+	line-height: @bar-height;
+	border: none;
 	border-right: 1px solid #ccc;
 }
 .toolbaricon:last-child {
 	border-right: none;
 }
 .toolbaricon:hover {
-	background: rgba(39, 162, 245, 0.596);
+	// background: rgba(39, 162, 245, 0.596);
 	cursor: pointer;
 }
 .toolbaricon-select {
@@ -36,4 +41,29 @@
 }
 .toolbaricon-unselect {
 	background: none;
+}
+.icon {
+	height: @img-height;
+	width: @img-height;
+	display: inline-block;
+	margin-top: @img-height / 2;
+	border: none;
+}
+.drag {
+	background: url(../../assets/drag.svg) no-repeat;
+}
+.edit {
+	background: url(../../assets/edit.svg) no-repeat;
+}
+.select {
+	background: url(../../assets/select.svg) no-repeat;
+}
+.zoomin {
+	background: url(../../assets/zoomin.svg) no-repeat;
+}
+.zoomout {
+	background: url(../../assets/zoomout.svg) no-repeat;
+}
+.cancel {
+	background: url(../../assets/cancel.svg) no-repeat;
 }

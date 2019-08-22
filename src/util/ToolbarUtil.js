@@ -8,6 +8,31 @@ class ToolbarUtil extends BaseUtil{
 	constructor() {
 		super();
 	}
-	changeGlobalModel = type => {};
+	onDrag = (item)=>{
+		console.log('onDrag---->>%o',this.graph);
+	}
+	onEdit = (item)=>{
+		
+	}
+	onSelect = (item)=>{
+		
+	}
+	onZoomin = (item)=>{
+		console.log('onZoomin---->>%o',item);
+		if(this.graph){
+			const zoom = this.graph.getZoom()
+			this.graph.zoomTo(zoom+0.5);
+		}
+	}
+	onZoomout = (item)=>{
+		console.log('onZoomout---->>%o',item);
+		if(this.graph){
+			const zoom = this.graph.getZoom()
+			this.graph.zoomTo(zoom-0.5);
+		}
+	}
+	onCancel = (item)=>{
+		
+	}
 }
 export default ToolbarUtil;

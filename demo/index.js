@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
-import TopoLib from "../lib/g6lib.min";
+// import TopoLib from "../lib/g6lib.min";
+import TopoLib from "../src/index";
 const data = {
 	nodes: [
 		{
@@ -77,7 +78,7 @@ const data = {
 	]
 };
 
-render(<TopoLib.TopoView datas={data} />, document.getElementById("app"));
+render(<TopoLib.TopoView datas={data} showToolBar={true}/>, document.getElementById("app"));
 
 if (module.hot) {
 	module.hot.accept();
