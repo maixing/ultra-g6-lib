@@ -82,6 +82,29 @@ class GraphEventUtil extends BaseUtil {
 	initEdgeEvent = () => {};
 	initGlobalEvent = () => {};
 	initBehavior = () => {
+		console.log('initBehavior---->>%o');
+		G6.registerBehavior("addNode", {
+			getEvents() {
+				return {
+					"canvas:click": "onClick"
+				};
+			},
+			onClick(ev) {
+				const graph = this.graph;
+				const node = graph.addItem("node", {
+					w: 48,
+					h: 48,
+					type: "default",
+					shape: "nodeStyle",
+					label: "ellipse",
+					img: "../demo/assets/123.svg",
+					selected: false,
+					x: ev.x,
+					y: ev.y,
+					id: G6.Util.uniqueId()
+				});
+			}
+		});
 		G6.registerBehavior("addEdge", {
 			getEvents() {
 				return {
@@ -128,11 +151,8 @@ class GraphEventUtil extends BaseUtil {
 				}
 			}
 		});
-		G6.registerBehavior("addNode",{
-
-		})
-		this.graph.addBehaviors("addEdge","addEdge");
-		this.graph.addBehaviors("addNode","addNode");
+		this.graph.addBehaviors("addEdge", "addEdge");
+		this.graph.addBehaviors("addNode", "addNode");
 	};
 	changeAnchor = (ev, show) => {
 		//没有iskeyShape，说明是锚点

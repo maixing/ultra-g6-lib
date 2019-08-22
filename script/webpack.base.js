@@ -5,13 +5,14 @@
  */
 const path = require("path");
 const WebpackBar = require("webpackbar");
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 function resolve(url) {
 	return path.resolve(__dirname, "../" + url);
 }
 
 module.exports = {
 	resolve: {
+		modules: [path.resolve(__dirname, "../node_modules"),resolve("src")],
 		extensions: [".js", ".less", ".css"],
 		alias: {
 			"@": resolve("src")
@@ -26,12 +27,14 @@ module.exports = {
 			},
 			{
 				test: /\.less$/,
+				include: [resolve("src")],
 				use: [
+					MiniCssExtractPlugin.loader,
 					{
-						loader: "style-loader"
-					},
-					{
-						loader: "css-loader"
+						loader: "css-loader",
+						options: {
+							importLoaders: 1
+						}
 					},
 					{
 						loader: "less-loader"
@@ -41,11 +44,9 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [
+					MiniCssExtractPlugin.loader,
 					{
 						loader: "css-loader"
-					},
-					{
-						loader: "style-loader"
 					}
 				]
 			},

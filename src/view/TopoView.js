@@ -7,7 +7,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import G6 from "@antv/g6";
-import "./style.less";
+import style from '@/view/style.less';
 import RegisterUtil from "@/util/RegisterUtil";
 import GraphEventUtil from "@/util/GraphEventUtil";
 import ToolbarUtil from "@/util/ToolbarUtil";
@@ -29,6 +29,7 @@ export default class TopoView extends React.Component {
 			top: 0,
 			datas: []
 		};
+		console.log('style---->>%o',style);
 	}
 	state = {
 		...this.props
@@ -55,6 +56,7 @@ export default class TopoView extends React.Component {
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
 		if (rect) {
+			console.log('rect---->>%o',rect);
 			this.graph = new G6.Graph({
 				container: this.props.el,
 				width: rect.width,
@@ -79,7 +81,7 @@ export default class TopoView extends React.Component {
 			}
 			this.graph.data(this.state.datas);
 			this.graph.render();
-			this.graph.setMode("edite");
+			this.graph.setMode("addNode");
 			this.graph.setAutoPaint(true);
 		}
 	}

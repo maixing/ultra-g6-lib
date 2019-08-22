@@ -1,7 +1,7 @@
 /**
  *
  * Created by maixing on 2019/08/14 17:23:13
- *
+ * 工具栏事件处理
  */
 import BaseUtil from "@/util/BaseUtil";
 class ToolbarUtil extends BaseUtil{
@@ -9,7 +9,6 @@ class ToolbarUtil extends BaseUtil{
 		super();
 	}
 	onDrag = (item)=>{
-		console.log('onDrag---->>%o',this.graph);
 	}
 	onEdit = (item)=>{
 		
@@ -18,14 +17,12 @@ class ToolbarUtil extends BaseUtil{
 		
 	}
 	onZoomin = (item)=>{
-		console.log('onZoomin---->>%o',item);
 		if(this.graph){
 			const zoom = this.graph.getZoom()
 			this.graph.zoomTo(zoom+0.5);
 		}
 	}
 	onZoomout = (item)=>{
-		console.log('onZoomout---->>%o',item);
 		if(this.graph){
 			const zoom = this.graph.getZoom()
 			this.graph.zoomTo(zoom-0.5);

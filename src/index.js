@@ -13,6 +13,5 @@ const g6lib = {
     TopoView,
     EventBus,
     EventConsts
-
 }
 export default g6lib;
