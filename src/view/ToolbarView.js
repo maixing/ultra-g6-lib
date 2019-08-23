@@ -14,18 +14,21 @@ export default class ToolbarView extends React.Component {
 				name: "拖动",
 				icon: "drag",
 				eventType: "Drag",
+				model:"drag",
 				index: 1
 			},
 			{
 				name: "编辑",
 				icon: "edit",
 				eventType: "Edit",
+				model:"edite",
 				index: 2
 			},
 			{
 				name: "选择",
 				icon: "select",
 				eventType: "Select",
+				model:"select",
 				index: 3
 			},
 			{

@@ -7,12 +7,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import G6 from "@antv/g6";
-import style from '@/view/style.less';
 import RegisterUtil from "@/util/RegisterUtil";
 import GraphEventUtil from "@/util/GraphEventUtil";
 import ToolbarUtil from "@/util/ToolbarUtil";
 import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/consts/EventConsts";
 import ToolbarView from "./ToolbarView";
+require('@/view/style.less');
 
 export default class TopoView extends React.Component {
 	constructor(props) {
@@ -29,7 +29,6 @@ export default class TopoView extends React.Component {
 			top: 0,
 			datas: []
 		};
-		console.log('style---->>%o',style);
 	}
 	state = {
 		...this.props
@@ -56,7 +55,6 @@ export default class TopoView extends React.Component {
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
 		if (rect) {
-			console.log('rect---->>%o',rect);
 			this.graph = new G6.Graph({
 				container: this.props.el,
 				width: rect.width,
@@ -65,9 +63,11 @@ export default class TopoView extends React.Component {
 				modes: {
 					addEdge: ["addEdge", "drag-node"],
 					addNode: ["addNode", "drag-node"],
-					edite: ["drag-node"],
+					edite: ["drag-node",'addEdge','addNode'],
 					show: ["drag-canvas", "zoom-canvas"],
-					multiselect: ["drag-node"]
+					multiselect: ["drag-node"],
+					select:['drag-node'],
+					drag:["drag-canvas"]
 				}
 			});
 			this.sourceRect = {
@@ -79,9 +79,9 @@ export default class TopoView extends React.Component {
 			if (this.toolbar) {
 				this.toolbar.toolbar = this.toolbarUtil;
 			}
+			this.graph.setMode("multiselect");
 			this.graph.data(this.state.datas);
 			this.graph.render();
-			this.graph.setMode("addNode");
 			this.graph.setAutoPaint(true);
 		}
 	}

@@ -9,12 +9,16 @@ class ToolbarUtil extends BaseUtil{
 		super();
 	}
 	onDrag = (item)=>{
+		this.graph.setMode(item.model);
+		this.graph.refresh();
 	}
 	onEdit = (item)=>{
-		
+		this.graph.setMode(item.model);
+		this.graph.refresh();
 	}
 	onSelect = (item)=>{
-		
+		this.graph.setMode(item.model);
+		this.graph.refresh();
 	}
 	onZoomin = (item)=>{
 		if(this.graph){

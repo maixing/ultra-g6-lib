@@ -23,6 +23,39 @@ let dev = {
 		filename: "app.js",
 		publicPath: ""
 	},
+	module: {
+		rules: [
+			{
+				test: /\.less$/,
+				include: [resolve("src")],
+				use: [
+					{
+						loader: "style-loader"
+					},
+					{
+						loader: "css-loader",
+						options: {
+							importLoaders: 1
+						}
+					},
+					{
+						loader: "less-loader"
+					}
+				]
+			},
+			{
+				test: /\.css$/,
+				use: [
+					{
+						loader: "style-loader"
+					},
+					{
+						loader: "css-loader"
+					}
+				]
+			}
+		]
+	},
 	devServer: {
 		clientLogLevel: "warning",
 		historyApiFallback: true,

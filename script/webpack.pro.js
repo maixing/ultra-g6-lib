@@ -14,6 +14,51 @@ const pro = {
 	entry: {
 		app: resolve("src/index.js")
 	},
+	module: {
+		rules: [
+			{
+				test: /\.less$/,
+				include: [resolve("src")],
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: "css-loader",
+						options: {
+							importLoaders: 1
+						}
+					},
+					{
+						loader: "postcss-loader",
+						options: {
+							config: {
+								path: path.resolve(__dirname, "./postcss.config.js")
+							}
+						}
+					},
+					{
+						loader: "less-loader"
+					}
+				]
+			},
+			{
+				test: /\.css$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: "css-loader"
+					},
+					{
+						loader: "postcss-loader",
+						options: {
+							config: {
+								path: path.resolve(__dirname, "./postcss.config.js")
+							}
+						}
+					}
+				]
+			}
+		]
+	},
 	output: {
 		path: resolve("lib"),
 		filename: "g6lib.min.js",

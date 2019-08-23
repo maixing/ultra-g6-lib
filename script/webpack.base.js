@@ -26,31 +26,6 @@ module.exports = {
 				use: "babel-loader"
 			},
 			{
-				test: /\.less$/,
-				include: [resolve("src")],
-				use: [
-					MiniCssExtractPlugin.loader,
-					{
-						loader: "css-loader",
-						options: {
-							importLoaders: 1
-						}
-					},
-					{
-						loader: "less-loader"
-					}
-				]
-			},
-			{
-				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					{
-						loader: "css-loader"
-					}
-				]
-			},
-			{
 				test: /\.(png|jpg|gif|svg)$/i,
 				use: [
 					{
