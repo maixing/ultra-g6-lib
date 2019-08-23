@@ -38,6 +38,7 @@ export default class TopoView extends React.Component {
 	static defaultProps = {
 		el: "topoEl",
 		datas: [],
+		model:"multiselect",
 		nodeMenu: [],
 		edgeMenu: [],
 		showToolBar: true
@@ -62,6 +63,7 @@ export default class TopoView extends React.Component {
 				width: rect.width,
 				height: rect.height - 4,
 				fitView: false,
+				renderer: 'svg',
 				modes: {
 					addEdge: ["addEdge", "drag-node"],
 					addNode: ["addNode", "drag-node"],
@@ -81,7 +83,7 @@ export default class TopoView extends React.Component {
 			if (this.toolbar) {
 				this.toolbar.toolbar = this.toolbarUtil;
 			}
-			this.graph.setMode("select");
+			this.graph.setMode(this.state.model);
 			this.graph.data(this.state.datas);
 			this.graph.render();
 			this.graph.setAutoPaint(true);
