@@ -10,9 +10,10 @@ import G6 from "@antv/g6";
 import RegisterUtil from "@/util/RegisterUtil";
 import GraphEventUtil from "@/util/GraphEventUtil";
 import ToolbarUtil from "@/util/ToolbarUtil";
+import G6Api from "@/util/G6Api";
 import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/consts/EventConsts";
 import ToolbarView from "./ToolbarView";
-require('@/view/style.less');
+require("@/view/style.less");
 
 export default class TopoView extends React.Component {
 	constructor(props) {
@@ -21,6 +22,7 @@ export default class TopoView extends React.Component {
 		this.registerUtil = new RegisterUtil();
 		this.graphEventUtil = new GraphEventUtil();
 		this.toolbarUtil = new ToolbarUtil();
+		this.g6Api = new G6Api();
 		this.resizeTimer = 0;
 		this.sourceRect = {
 			width: 0,
@@ -63,11 +65,11 @@ export default class TopoView extends React.Component {
 				modes: {
 					addEdge: ["addEdge", "drag-node"],
 					addNode: ["addNode", "drag-node"],
-					edite: ["drag-node",'addEdge','addNode'],
+					edite: ["drag-node", "addEdge", "addNode"],
 					show: ["drag-canvas", "zoom-canvas"],
 					multiselect: ["drag-node"],
-					select:['drag-node'],
-					drag:["drag-canvas"]
+					select: ["drag-node"],
+					drag: ["drag-canvas"]
 				}
 			});
 			this.sourceRect = {
@@ -79,7 +81,7 @@ export default class TopoView extends React.Component {
 			if (this.toolbar) {
 				this.toolbar.toolbar = this.toolbarUtil;
 			}
-			this.graph.setMode("multiselect");
+			this.graph.setMode("select");
 			this.graph.data(this.state.datas);
 			this.graph.render();
 			this.graph.setAutoPaint(true);
@@ -89,6 +91,7 @@ export default class TopoView extends React.Component {
 		window.removeEventListener("resize", this.resize);
 	};
 	initUtil = () => {
+		this.g6Api.init(this.graph);
 		this.toolbarUtil.init(this.graph);
 		this.graphEventUtil.init(this.graph);
 		this.registerUtil.init(this.graph);

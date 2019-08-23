@@ -16,7 +16,33 @@ class RegisterUtil extends BaseUtil {
 	init(graph) {
 		super.init(graph);
 		this.registerNode();
+		this.registerEdge();
 	}
+	registerEdge = () => {
+		G6.registerEdge("edgeStyle", {
+			draw: (cfg, group) => {
+				const startPoint = cfg.startPoint;
+				const endPoint = cfg.endPoint;
+				const model = this.graph.getCurrentMode();
+				let color = "#ccc";
+				if(model == modelConsts.MODEL_SELECT){
+					if(cfg.selected){
+						color = "blue";
+					}
+				}
+				const shape = group.addShape("path", {
+					attrs: {
+						stroke: color,
+						lineWidth: 2,
+						cursor: "pointer",
+						endArrow: cfg.endArrow,
+						path: [["M", startPoint.x, startPoint.y], ["L", endPoint.x, endPoint.y]]
+					}
+				});
+				return shape;
+			}
+		});
+	};
 	registerNode = () => {
 		G6.registerNode("nodeStyle", {
 			draw: (cfg, group) => {
@@ -67,8 +93,8 @@ class RegisterUtil extends BaseUtil {
 						y: -h / 2,
 						width: w,
 						height: h,
-						cursor:'pointer',
-						img: "../demo/assets/"+cfg.type+".svg"
+						cursor: "pointer",
+						img: "../demo/assets/" + cfg.type + ".svg"
 					}
 				});
 				group.addShape("text", {

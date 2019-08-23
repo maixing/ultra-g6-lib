@@ -15,6 +15,7 @@ class GraphEventUtil extends BaseUtil {
 	}
 	preSelectNode = null;
 	preSelectNodes = [];
+	preSelectEdge = null;
 	edge = null;
 	addingEdge = false;
 	init(graph) {
@@ -34,7 +35,7 @@ class GraphEventUtil extends BaseUtil {
 					return node.get("model").x;
 				});
 				nodes.forEach(item => {
-					const model = item._cfg.model;
+					const model = item.getModel();
 					model.selected = false;
 					this.graph.updateItem(item, model);
 				});
@@ -44,7 +45,7 @@ class GraphEventUtil extends BaseUtil {
 	};
 	initNodeEvent = () => {
 		this.graph.on("node:click", ev => {
-			const model = ev.item._cfg.model;
+			const model = ev.item.getModel();
 			model.selected = !model.selected;
 			const currentModel = this.graph.getCurrentMode();
 			if (modelConsts.MODEL_MULTI_SELECT == currentModel) {
@@ -62,10 +63,7 @@ class GraphEventUtil extends BaseUtil {
 					}
 				}
 			} else {
-				if (this.preSelectNode) {
-					this.preSelectNode._cfg.model.selected = false;
-					this.graph.updateItem(this.preSelectNode, this.preSelectNode._cfg.model);
-				}
+				this.clearSelect();
 				this.preSelectNode = ev.item;
 			}
 			this.graph.updateItem(ev.item, model);
@@ -79,10 +77,27 @@ class GraphEventUtil extends BaseUtil {
 			this.changeAnchor(ev, false);
 		});
 	};
-	initEdgeEvent = () => {};
-	initGlobalEvent = () => {};
+	initEdgeEvent = () => {
+		this.graph.on("edge:click", ev => {
+			const model = ev.item.getModel();
+			model.selected = !model.selected;
+			const edge = ev.item;
+			this.clearSelect();
+			if (this.preSelectEdge != edge) {
+				this.graph.updateItem(edge, model);
+				this.preSelectEdge = edge;
+			} else {
+				this.preSelectEdge = null;
+			}
+		});
+	};
+	initGlobalEvent = () => {
+		this.graph.on("canvas:click", ev => {
+			this.clearSelect();
+		});
+	};
 	initBehavior = () => {
-		console.log('initBehavior---->>%o');
+		console.log("initBehavior---->>%o");
 		G6.registerBehavior("addNode", {
 			getEvents() {
 				return {
@@ -127,13 +142,15 @@ class GraphEventUtil extends BaseUtil {
 				} else {
 					this.edge = this.graph.addItem("edge", {
 						source: model.id,
-						target: point
+						target: point,
+						shape: "edgeStyle",
+						selected: false,
+						endArrow: true
 					});
 					this.addingEdge = true;
 				}
 			},
 			onMousemove(ev) {
-				console.log("onMousemove---->>%o", ev);
 				const point = { x: ev.x, y: ev.y };
 				if (this.addingEdge && this.edge) {
 					this.graph.updateItem(this.edge, {
@@ -142,7 +159,6 @@ class GraphEventUtil extends BaseUtil {
 				}
 			},
 			onEdgeClick(ev) {
-				console.log("onEdgeClick---->>%o", ev);
 				const currentEdge = ev.item;
 				if (this.addingEdge && this.edge == currentEdge) {
 					this.graph.removeItem(this.edge);
@@ -175,6 +191,20 @@ class GraphEventUtil extends BaseUtil {
 				null,
 				0
 			);
+		}
+	};
+	clearSelect = () => {
+		if (this.preSelectNode) {
+			const preModel = this.preSelectNode.getModel();
+			preModel.selected = false;
+			this.graph.updateItem(this.preSelectNode, preModel);
+			this.preSelectNode = null;
+		}
+		if (this.preSelectEdge) {
+			const preModel = this.preSelectEdge.getModel();
+			preModel.selected = false;
+			this.graph.updateItem(this.preSelectEdge, preModel);
+			this.preSelectEdge = null;
 		}
 	};
 }
