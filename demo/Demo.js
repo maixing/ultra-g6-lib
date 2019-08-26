@@ -82,17 +82,248 @@ const data = {
 		}
 	]
 };
-
+const data2 = {
+	isRoot: true,
+	id: "Root123",
+	imgName: "bb.png",
+	w: 60,
+	h: 70,
+	children: [
+		{
+			id: "SubTreeNode1",
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			children: [
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode1.1"
+				}
+			]
+		},
+		{
+			id: "SubTreeNode2",
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			children: [
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode2.1"
+				}
+			]
+		},
+		{
+			id: "SubTreeNode3",
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			children: [
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode3.1"
+				},
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode3.2"
+				},
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode3.3"
+				}
+			]
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode4"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode5"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode6"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode7"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode8"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode9"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode10"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode11"
+		}
+	]
+};
+const data1 = {
+	isRoot: true,
+	id: "Root",
+	imgName: "bb.png",
+	w: 60,
+	h: 70,
+	children: [
+		{
+			id: "SubTreeNode1",
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			children: [
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode1.1"
+				}
+			]
+		},
+		{
+			id: "SubTreeNode2",
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			children: [
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode2.1"
+				}
+			]
+		},
+		{
+			id: "SubTreeNode3",
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			children: [
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode3.1"
+				},
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode3.2"
+				},
+				{
+					imgName: "bbnode.png",
+					w: 30,
+					h: 30,
+					id: "SubTreeNode3.3"
+				}
+			]
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode4"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode5"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode6"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode7"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode8"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode9"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode10"
+		},
+		{
+			imgName: "bbgroup.png",
+			w: 30,
+			h: 30,
+			id: "SubTreeNode11"
+		}
+	]
+};
 export default class Demo extends React.Component {
 	constructor(props) {
 		super(props);
 	}
+	state = {
+		datas:data1
+	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		setInterval(()=>{
+			this.setState({
+				datas:Math.random()>0.5?data1:data2
+			});
+		},5000);
+	}
 	render() {
+		console.log('this.state---->>%o',this.state.datas);
 		return (
-			<TopoLib.TopoView
-				datas={data}
+			<TopoLib.TreeTopoView
+				datas={this.state.datas}
 				showToolBar={true}
 				ref={component => {
 					this.topo = component;

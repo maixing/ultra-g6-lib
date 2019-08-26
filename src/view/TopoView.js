@@ -38,8 +38,8 @@ export default class TopoView extends React.Component {
 	static defaultProps = {
 		el: "topoEl",
 		datas: [],
-		baseUrl:"../demo/assets/",
-		model:"multiselect",
+		baseUrl: "../demo/assets/",
+		model: "multiselect",
 		nodeMenu: [],
 		edgeMenu: [],
 		showToolBar: true
@@ -48,14 +48,20 @@ export default class TopoView extends React.Component {
 		el: PropTypes.string.isRequired,
 		datas: PropTypes.array.isRequired
 	};
-	static getDerivedStateFromProps(props, state) {
-		if (props.test !== state.test) {
-			return {
-				test: props.test
-			};
-		}
-		return null;
-	}
+	shouldComponentUpdate = (nextProps, nextState) => {
+        let change = false;
+        Object.keys(nextProps).forEach((key)=>{
+            if(this.props.hasOwnProperty(key) && nextProps[key] != this.props[key]){
+                change = true;
+            }
+        });
+        if(this.props.datas != nextProps.datas){
+            if (this.graph) {
+                this.graph.changeData(nextProps.datas);
+            }
+        }
+		return change;
+	};
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
 		if (rect) {
@@ -63,7 +69,7 @@ export default class TopoView extends React.Component {
 				container: this.props.el,
 				width: rect.width,
 				height: rect.height - 4,
-				render:"svg",
+				render: "svg",
 				fitView: false,
 				modes: {
 					addEdge: ["addEdge", "drag-node"],
