@@ -18,6 +18,7 @@ class RegisterUtil extends BaseUtil {
 		this.registerNode();
 		this.registerEdge();
 	}
+	baseUrl = "";
 	registerEdge = () => {
 		G6.registerEdge("edgeStyle", {
 			draw: (cfg, group) => {
@@ -59,7 +60,7 @@ class RegisterUtil extends BaseUtil {
 								y: -h / 1.2,
 								width: 16,
 								height: 16,
-								img: "../demo/assets/ck.svg",
+								img: this.baseUrl+"ck.svg",
 								cursor: "pointer"
 							}
 						});
@@ -82,7 +83,7 @@ class RegisterUtil extends BaseUtil {
 								y: -h / 1.2,
 								width: 16,
 								height: 16,
-								img: "../demo/assets/uck.svg"
+								img: this.baseUrl+"uck.svg"
 							}
 						});
 					}
@@ -94,7 +95,7 @@ class RegisterUtil extends BaseUtil {
 						width: w,
 						height: h,
 						cursor: "pointer",
-						img: "../demo/assets/" + cfg.type + ".svg"
+						img: this.baseUrl + cfg.type + ".svg"
 					}
 				});
 				group.addShape("text", {

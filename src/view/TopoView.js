@@ -38,6 +38,7 @@ export default class TopoView extends React.Component {
 	static defaultProps = {
 		el: "topoEl",
 		datas: [],
+		baseUrl:"../demo/assets/",
 		model:"multiselect",
 		nodeMenu: [],
 		edgeMenu: [],
@@ -62,8 +63,8 @@ export default class TopoView extends React.Component {
 				container: this.props.el,
 				width: rect.width,
 				height: rect.height - 4,
+				render:"svg",
 				fitView: false,
-				renderer: 'svg',
 				modes: {
 					addEdge: ["addEdge", "drag-node"],
 					addNode: ["addNode", "drag-node"],
@@ -97,6 +98,7 @@ export default class TopoView extends React.Component {
 		this.toolbarUtil.init(this.graph);
 		this.graphEventUtil.init(this.graph);
 		this.registerUtil.init(this.graph);
+		this.registerUtil.baseUrl = this.state.baseUrl;
 	};
 	initResizeEvent = () => {
 		window.addEventListener("resize", this.resize);
