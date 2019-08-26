@@ -39,65 +39,29 @@ export default class TreeTopoView extends React.Component {
 		datas: PropTypes.array.isRequired
 	};
 	shouldComponentUpdate = (nextProps, nextState) => {
-        let change = false;
-        Object.keys(nextProps).forEach((key)=>{
-            if(this.props.hasOwnProperty(key) && nextProps[key] != this.props[key]){
-                change = true;
-            }
-        });
-        if(this.props.datas != nextProps.datas){
-            if (this.graph) {
-                this.graph.changeData(nextProps.datas);
-            }
-        }
+		let change = false;
+		Object.keys(nextProps).forEach(key => {
+			if (this.props.hasOwnProperty(key) && nextProps[key] != this.props[key]) {
+				change = true;
+			}
+		});
+		if (this.props.datas != nextProps.datas) {
+			if (this.graph) {
+				this.graph.changeData(nextProps.datas);
+			}
+		}
 		return change;
 	};
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
 		if (rect) {
-			let currentLayout = "dendrogram";
 			const layouts = {
 				dendrogram: {
 					type: "dendrogram",
 					direction: "LR", // H / V / LR / RL / TB / BT
 					nodeSep: 1000,
 					rankSep: 100,
-					radial: true,
-					getId(d) {
-						return d.id;
-					}
-				},
-				compactBox: {
-					type: "compactBox",
-					direction: "LR",
-					getId(d) {
-						return d.id;
-					},
-					getHeight() {
-						return 16;
-					},
-					getWidth() {
-						return 16;
-					},
-					getVGap() {
-						return 50;
-					},
-					getHGap() {
-						return 100;
-					}
-				},
-				mindmap: {
-					type: "mindmap",
-					direction: "H",
-					getHeight() {
-						return 16;
-					},
-					getWidth() {
-						return 16;
-					},
-					getVGap() {
-						return 50;
-					}
+					radial: true
 				}
 			};
 			this.graph = new G6.TreeGraph({
@@ -113,20 +77,24 @@ export default class TreeTopoView extends React.Component {
 			});
 			this.graph.node(node => {
 				return {
-					style: {
-						fill: "#40a9ff",
-						stroke: "#096dd9",
-						cursor: "pointer"
-					},
 					shape: "image",
 					label: node.id,
 					size: [node.w, node.h],
-					img: "../demo/assets/" + node.imgName,
+					img: this.state.baseUrl + node.imgName,
 					labelCfg: {
 						position: "bottom"
 					}
 				};
 			});
+			let i = 0;
+			this.graph.edge(() => {
+				i++;
+				return {
+					color: "#1585BD",
+					label: ""
+				};
+			});
+			this.initEvent();
 			this.graph.data(this.state.datas);
 			this.graph.render();
 		}

@@ -329,10 +329,10 @@ export default class Demo extends React.Component {
 					this.topo = component;
 				}}
 				onNodeClick={evt => {
-					console.log("---->>%o", this.topo.g6Api.getSelectsNode());
+					console.log("onNodeClick---->>%o",evt);
 				}}
 				onEdgeClick={evt => {
-					console.log("---->>%o", this.topo.g6Api.getSelectLine());
+					console.log("onEdgeClick---->>%o",evt);
 				}}
 			/>
 		);
