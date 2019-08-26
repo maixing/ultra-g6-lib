@@ -32,7 +32,9 @@ export default class TreeTopoView extends React.Component {
 		model: "multiselect",
 		nodeMenu: [],
 		edgeMenu: [],
-		showToolBar: true
+		showToolBar: true,
+		nodeSep:1000,
+		rankSep:100,
 	};
 	static propTypes = {
 		el: PropTypes.string.isRequired,
@@ -59,8 +61,8 @@ export default class TreeTopoView extends React.Component {
 				dendrogram: {
 					type: "dendrogram",
 					direction: "LR", // H / V / LR / RL / TB / BT
-					nodeSep: 1000,
-					rankSep: 100,
+					nodeSep: this.state.nodeSep,
+					rankSep: this.state.rankSep,
 					radial: true
 				}
 			};

@@ -83,7 +83,6 @@ const data = {
 	]
 };
 const data2 = {
-	isRoot: true,
 	id: "Root123",
 	imgName: "bb.png",
 	w: 60,
@@ -194,7 +193,6 @@ const data2 = {
 	]
 };
 const data1 = {
-	isRoot: true,
 	id: "Root",
 	imgName: "bb.png",
 	w: 60,
