@@ -6,7 +6,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import G6 from "@antv/g6";
-import hierarchy from "@antv/hierarchy";
+// import hierarchy from "@antv/hierarchy";
 import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/consts/EventConsts";
 require("@/view/style.less");
 
