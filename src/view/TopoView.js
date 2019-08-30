@@ -39,29 +39,51 @@ export default class TopoView extends React.Component {
 		el: "topoEl",
 		datas: [],
 		baseUrl: "../demo/assets/",
-		model: "multiselect",
+		model: "drag",
 		nodeMenu: [],
 		edgeMenu: [],
-		showToolBar: true
+		showToolBar: true,
+		fitView: true,
+		fitGap: 100
 	};
 	static propTypes = {
 		el: PropTypes.string.isRequired,
 		datas: PropTypes.array.isRequired
 	};
+	destroy = () => {
+		if (this.graph) {
+			this.graph.destroy();
+		}
+	};
 	shouldComponentUpdate = (nextProps, nextState) => {
-        let change = false;
-        Object.keys(nextProps).forEach((key)=>{
-            if(this.props.hasOwnProperty(key) && nextProps[key] != this.props[key]){
-                change = true;
-            }
-        });
-        if(this.props.datas != nextProps.datas){
-            if (this.graph) {
-                this.graph.changeData(nextProps.datas);
-            }
-        }
+		let change = false;
+		Object.keys(nextProps).forEach(key => {
+			if (this.props.hasOwnProperty(key) && nextProps[key] != this.props[key]) {
+				change = true;
+			}
+		});
+		if (this.props.datas != nextProps.datas) {
+			if (this.graph) {
+				this.setData(nextProps.datas,true);
+			}
+		}
 		return change;
 	};
+	setData = (datas,clear=false)=>{
+		console.log('setData---->>%o',datas);
+		let maxY = 0;
+		datas.nodes.forEach(item => {
+			const y = parseInt(item.y);
+			if (y > maxY) {
+				maxY = y;
+			}
+		});
+		if(clear){
+			this.graph.clear();
+		}
+		this.graph.changeSize(this.sourceRect.width, maxY > this.sourceRect.height ? maxY*1.05 : this.sourceRect.height);
+		this.graph.changeData(datas);
+	}
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
 		if (rect) {
@@ -70,7 +92,7 @@ export default class TopoView extends React.Component {
 				width: rect.width,
 				height: rect.height - 4,
 				render: "svg",
-				fitView: false,
+				fitView: this.state.fitView,
 				modes: {
 					addEdge: ["addEdge", "drag-node"],
 					addNode: ["addNode", "drag-node"],
@@ -82,7 +104,8 @@ export default class TopoView extends React.Component {
 				}
 			});
 			this.sourceRect = {
-				...rect,
+				width:rect.width,
+				height:rect.height,
 				datas: this.state.datas
 			};
 			this.initUtil();
@@ -91,7 +114,7 @@ export default class TopoView extends React.Component {
 				this.toolbar.toolbar = this.toolbarUtil;
 			}
 			this.graph.setMode(this.state.model);
-			this.graph.data(this.state.datas);
+			this.setData(this.state.datas);
 			this.graph.render();
 			this.graph.setAutoPaint(true);
 		}

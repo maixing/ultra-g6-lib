@@ -99,7 +99,7 @@ const pro = {
 						beautify: false
 					},
 					compress: {
-						drop_console: true,
+						drop_console: false,
 						passes: 2
 					}
 				}

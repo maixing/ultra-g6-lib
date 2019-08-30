@@ -30,6 +30,7 @@ export default class TreeTopoView extends React.Component {
 		datas: [],
 		baseUrl: "../demo/assets/",
 		model: "multiselect",
+		imageType:"png",
 		nodeMenu: [],
 		edgeMenu: [],
 		showToolBar: true,
@@ -40,6 +41,11 @@ export default class TreeTopoView extends React.Component {
 		el: PropTypes.string.isRequired,
 		datas: PropTypes.array.isRequired
 	};
+	destroy = ()=>{
+		if(this.graph){
+			this.graph.destroy();
+		}
+	}
 	shouldComponentUpdate = (nextProps, nextState) => {
 		let change = false;
 		Object.keys(nextProps).forEach(key => {
@@ -48,7 +54,19 @@ export default class TreeTopoView extends React.Component {
 			}
 		});
 		if (this.props.datas != nextProps.datas) {
+			console.log('nextProps.datas---->>%o',nextProps.datas);
 			if (this.graph) {
+				this.graph.clear();
+				if(nextProps.datas.hasOwnProperty('children') && nextProps.datas.children.length>0){
+					this.graph.set('animate', true);
+					this.graph.fitView(true)
+				}else{
+					const rect = this.topoWrap.getBoundingClientRect();
+					this.graph.set('animate', false);
+					if(rect){
+						this.graph.fitView([rect.height*40/100,rect.width*20/100]);
+					}
+				}
 				this.graph.changeData(nextProps.datas);
 			}
 		}
@@ -75,16 +93,24 @@ export default class TreeTopoView extends React.Component {
 					default: ["collapse-expand", "drag-canvas"]
 				},
 				fitView: true,
+				animate:false,
 				layout: layouts.dendrogram
 			});
 			this.graph.node(node => {
 				return {
 					shape: "image",
-					label: node.id,
+					label: node.name,
 					size: [node.w, node.h],
-					img: this.state.baseUrl + node.imgName,
+					img: this.state.baseUrl + node.imageName+"."+this.state.imageType,
+					style:{
+						cursor:"pointer"
+					},
 					labelCfg: {
-						position: "bottom"
+						position: "bottom",
+						style: {
+							fill: '#fcfdfd',
+							fontSize: node.level?(5-node.level)*3:12
+						  }
 					}
 				};
 			});
@@ -92,7 +118,7 @@ export default class TreeTopoView extends React.Component {
 			this.graph.edge(() => {
 				i++;
 				return {
-					color: "#1585BD",
+					color: "#fcfdfd",
 					label: ""
 				};
 			});

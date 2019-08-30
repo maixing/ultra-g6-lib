@@ -47,8 +47,8 @@ class RegisterUtil extends BaseUtil {
 	registerNode = () => {
 		G6.registerNode("nodeStyle", {
 			draw: (cfg, group) => {
-				const w = cfg.w;
-				const h = cfg.h;
+				const w = parseFloat(cfg.w);
+				const h = parseFloat(cfg.h);
 				let aw = w * 1;
 				let ah = h * 1;
 				const model = this.graph.getCurrentMode();
@@ -95,7 +95,7 @@ class RegisterUtil extends BaseUtil {
 						width: w,
 						height: h,
 						cursor: "pointer",
-						img: this.baseUrl + cfg.type + ".svg"
+						img: this.baseUrl + cfg.neType + ".svg"
 					}
 				});
 				group.addShape("text", {
@@ -104,7 +104,7 @@ class RegisterUtil extends BaseUtil {
 						y: h * 1.1,
 						textAlign: "center",
 						text: cfg.label,
-						fill: "#000"
+						fill: "#FFF"
 					}
 				});
 				//锚点呈现
