@@ -17,8 +17,8 @@ const data = {
 			h: 48,
 			shape: "nodeStyle",
 			label: "circle",
-			type: "sr",
-			img: "../demo/assets/123.svg",
+			neType: "sr",
+			img: "../demo/assets/A.svg",
 			selected: false,
 			labelCfg: {
 				position: "bottom"
@@ -30,10 +30,10 @@ const data = {
 			y: 200,
 			w: 48,
 			h: 48,
-			type: "router",
+			neType: "router",
 			shape: "nodeStyle",
 			label: "rect",
-			img: "../demo/assets/123.svg",
+			img: "../demo/assets/A.svg",
 			selected: false
 		},
 		{
@@ -42,10 +42,10 @@ const data = {
 			y: 300,
 			w: 48,
 			h: 48,
-			type: "b",
+			neType: "b",
 			shape: "nodeStyle",
 			label: "ellipse",
-			img: "../demo/assets/123.svg",
+			img: "../demo/assets/A.svg",
 			selected: false
 		},
 		{
@@ -54,9 +54,9 @@ const data = {
 			y: 400,
 			w: 48,
 			h: 48,
-			type: "sdh",
+			neType: "sdh",
 			shape: "nodeStyle",
-			img: "../demo/assets/123.svg",
+			img: "../demo/assets/A.svg",
 			label: "image",
 			selected: false
 		}
@@ -96,7 +96,7 @@ const data3 = {
 			h: null,
 			x: "1032.8",
 			y: "1680",
-			alarm: "0",
+			alarm: "1",
 			groupId: null,
 			groupName: null,
 			shape: null,

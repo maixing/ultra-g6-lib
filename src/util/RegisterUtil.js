@@ -8,6 +8,7 @@ import modelConsts from "@/consts/ModelConsts";
 import BaseUtil from "@/util/BaseUtil";
 
 const anchorPoints = [[0, 0], [0.5, 0], [1, 0], [0, 0.5], [1, 0.5], [0, 1], [0.5, 1], [1, 1]];
+const levelColos = ["0xFF0000","#FF0000","#FFA500","#FFFF00","#0000FF"];
 class RegisterUtil extends BaseUtil {
 	constructor() {
 		super();
@@ -88,6 +89,9 @@ class RegisterUtil extends BaseUtil {
 						});
 					}
 				}
+				if(parseInt(cfg.alarm)>0){
+					console.log('cfg---->>%o,%o',levelColos[parseInt(cfg.alarm)],parseInt(cfg.alarm));
+				}
 				const image = group.addShape("image", {
 					attrs: {
 						x: -w / 2,
@@ -95,13 +99,17 @@ class RegisterUtil extends BaseUtil {
 						width: w,
 						height: h,
 						cursor: "pointer",
-						img: this.baseUrl + cfg.neType + ".svg"
+						img: this.baseUrl + cfg.neType + ".svg",
+						shadowColor:levelColos[parseInt(cfg.alarm)],
+						shadowBlur:parseInt(cfg.alarm)>0?25:0,
+						shadowOffsetX:0,
+						shadowOffsetY:0,
 					}
 				});
 				group.addShape("text", {
 					attrs: {
 						x: 0,
-						y: h * 1.1,
+						y: h,
 						textAlign: "center",
 						text: cfg.label,
 						fill: "#FFF"
