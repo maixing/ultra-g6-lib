@@ -90,8 +90,9 @@ class RegisterUtil extends BaseUtil {
 					}
 				}
 				if(parseInt(cfg.alarm)>0){
-					console.log('cfg---->>%o,%o',levelColos[parseInt(cfg.alarm)],parseInt(cfg.alarm));
+					
 				}
+				console.log('cfg---->>%o,%o',cfg);
 				const image = group.addShape("image", {
 					attrs: {
 						x: -w / 2,
@@ -101,7 +102,7 @@ class RegisterUtil extends BaseUtil {
 						cursor: "pointer",
 						img: this.baseUrl + cfg.neType + ".svg",
 						shadowColor:levelColos[parseInt(cfg.alarm)],
-						shadowBlur:parseInt(cfg.alarm)>0?25:0,
+						shadowBlur:parseInt(cfg.alarm)>0?50:0,
 						shadowOffsetX:0,
 						shadowOffsetY:0,
 					}

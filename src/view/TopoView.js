@@ -70,7 +70,6 @@ export default class TopoView extends React.Component {
 		return change;
 	};
 	setData = (datas,clear=false)=>{
-		console.log('setData---->>%o',datas);
 		let maxY = 0;
 		datas.nodes.forEach(item => {
 			const y = parseInt(item.y);

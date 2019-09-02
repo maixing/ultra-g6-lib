@@ -8,12 +8,14 @@ import PropTypes from "prop-types";
 import G6 from "@antv/g6";
 // import hierarchy from "@antv/hierarchy";
 import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/consts/EventConsts";
+import G6Api from '@/util/G6Api';
 require("@/view/style.less");
 
 export default class TreeTopoView extends React.Component {
 	constructor(props) {
 		super(props);
 		this.graph = null;
+		this.g6Api = new G6Api();
 		this.sourceRect = {
 			width: 0,
 			height: 0,
@@ -101,7 +103,7 @@ export default class TreeTopoView extends React.Component {
 			});
 			this.graph.node(node => {
 				return {
-					shape: "nodeStyle",
+					shape: "treenodeStyle",
 					label: node.name,
 					size: [node.w, node.h],
 					img: this.state.baseUrl + node.imageName+"."+this.state.imageType,
@@ -126,6 +128,7 @@ export default class TreeTopoView extends React.Component {
 				};
 			});
 			this.initEvent();
+			this.g6Api.init(this.graph);
 			this.graph.data(this.state.datas);
 			this.graph.render();
 		}
@@ -156,13 +159,12 @@ export default class TreeTopoView extends React.Component {
 		if (typeof handler === "function") target.on(eventName, handler);
 	};
 	register = ()=>{
-		G6.registerNode("nodeStyle", {
+		G6.registerNode("treenodeStyle", {
 			draw: (cfg, group) => {
 				const w = parseFloat(cfg.w);
 				const h = parseFloat(cfg.h);
-				let aw = w * 1;
-				let ah = h * 1;
 				const model = this.graph.getCurrentMode();
+				console.log('tree node---->>%o',cfg);
 				const image = group.addShape("image", {
 					attrs: {
 						x: -w / 2,
@@ -171,8 +173,8 @@ export default class TreeTopoView extends React.Component {
 						height: h,
 						cursor: "pointer",
 						img: this.state.baseUrl + cfg.imageName+"."+this.state.imageType,
-						shadowColor:this.levelColos[parseInt(cfg.level)],
-						shadowBlur:parseInt(cfg.level)>0?25:0,
+						shadowColor:this.levelColos[parseInt(cfg.alarm)],
+						shadowBlur:parseInt(cfg.alarm)>0?50:0,
 						shadowOffsetX:0,
 						shadowOffsetY:0,
 					}

@@ -35,7 +35,17 @@ class G6Api extends BaseUtil {
 	 * @param level 告警级别
 	 * @param type node|edge 节点|连线
 	 */
-	addAlarm = (id, level, type) => {};
+	addAlarm = (id, level, type) => {
+		console.log('---->>%o,%o',id,level);
+		const item = this.graph.findById(id);
+		if (item) {
+			const model = item.getModel();
+			model.alarm = level.toString();
+			console.log('addAlarm---->>%o',model);
+			this.graph.updateItem(item, model);
+			// this.graph.refreshItem(item);
+		}
+	};
 	/**
 	 * @description 添加多条告警
 	 * @param id 节点id
@@ -101,7 +111,12 @@ class G6Api extends BaseUtil {
 	 * @description 获取节点根据节点id
 	 * @param datas 节点id集合
 	 */
-	getNodeById = id => {};
+	getNodeById = id => {
+		const item = this.graph.findById(id);
+		if (item) {
+			return item.getModel();
+		}
+	};
 	/*-----------------连线api------------------*/
 	getSelectLine = () => {
 		const edges = this.graph.getEdges();
