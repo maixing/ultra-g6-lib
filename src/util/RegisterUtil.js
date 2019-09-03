@@ -8,7 +8,7 @@ import modelConsts from "@/consts/ModelConsts";
 import BaseUtil from "@/util/BaseUtil";
 
 const anchorPoints = [[0, 0], [0.5, 0], [1, 0], [0, 0.5], [1, 0.5], [0, 1], [0.5, 1], [1, 1]];
-const levelColos = ["0xFF0000","#FF0000","#FFA500","#FFFF00","#0000FF"];
+const levelColos = ["0xFF0000", "#FF0000", "#FFA500", "#FFFF00", "#0000FF"];
 class RegisterUtil extends BaseUtil {
 	constructor() {
 		super();
@@ -27,8 +27,8 @@ class RegisterUtil extends BaseUtil {
 				const endPoint = cfg.endPoint;
 				const model = this.graph.getCurrentMode();
 				let color = "#ccc";
-				if(model == modelConsts.MODEL_SELECT){
-					if(cfg.selected){
+				if (model == modelConsts.MODEL_SELECT) {
+					if (cfg.selected) {
 						color = "blue";
 					}
 				}
@@ -47,6 +47,80 @@ class RegisterUtil extends BaseUtil {
 	};
 	registerNode = () => {
 		G6.registerNode("nodeStyle", {
+			afterDraw(cfg, group) {
+				if (parseInt(cfg.alarm) > 0) {
+					const w = parseFloat(cfg.w) * 1.2;
+					const r = w / 2;
+					const radio = 1.5;
+					const back1 = group.addShape("circle", {
+						zIndex: -3,
+						attrs: {
+							x: 0,
+							y: 0,
+							r,
+							fill: levelColos[parseInt(cfg.alarm)],
+							opacity: 0.6
+						}
+					});
+					const back2 = group.addShape("circle", {
+						zIndex: -2,
+						attrs: {
+							x: 0,
+							y: 0,
+							r,
+							fill: levelColos[parseInt(cfg.alarm)],
+							opacity: 0.6
+						}
+					});
+
+					const back3 = group.addShape("circle", {
+						zIndex: -1,
+						attrs: {
+							x: 0,
+							y: 0,
+							r,
+							fill: levelColos[parseInt(cfg.alarm)],
+							opacity: 0.6
+						}
+					});
+					group.sort();
+					back1.animate(
+						{
+							r: r*radio,
+							opacity: 0.1,
+							repeat: true
+						},
+						3000,
+						"easeCubic",
+						null,
+						0
+					);
+
+					back2.animate(
+						{
+							r: r*radio,
+							opacity: 0.1,
+							repeat: true
+						},
+						3000,
+						"easeCubic",
+						null,
+						1000
+					);
+
+					back3.animate(
+						{
+							r: r*radio,
+							opacity: 0.1,
+							repeat: true
+						},
+						3000,
+						"easeCubic",
+						null,
+						2000
+					);
+				}
+			},
 			draw: (cfg, group) => {
 				const w = parseFloat(cfg.w);
 				const h = parseFloat(cfg.h);
@@ -61,7 +135,7 @@ class RegisterUtil extends BaseUtil {
 								y: -h / 1.2,
 								width: 16,
 								height: 16,
-								img: this.baseUrl+"ck.svg",
+								img: this.baseUrl + "ck.svg",
 								cursor: "pointer"
 							}
 						});
@@ -84,15 +158,13 @@ class RegisterUtil extends BaseUtil {
 								y: -h / 1.2,
 								width: 16,
 								height: 16,
-								img: this.baseUrl+"uck.svg"
+								img: this.baseUrl + "uck.svg"
 							}
 						});
 					}
 				}
-				if(parseInt(cfg.alarm)>0){
-					
+				if (parseInt(cfg.alarm) > 0) {
 				}
-				console.log('cfg---->>%o,%o',cfg);
 				const image = group.addShape("image", {
 					attrs: {
 						x: -w / 2,
@@ -101,10 +173,10 @@ class RegisterUtil extends BaseUtil {
 						height: h,
 						cursor: "pointer",
 						img: this.baseUrl + cfg.neType + ".svg",
-						shadowColor:levelColos[parseInt(cfg.alarm)],
-						shadowBlur:parseInt(cfg.alarm)>0?50:0,
-						shadowOffsetX:0,
-						shadowOffsetY:0,
+						shadowColor: levelColos[parseInt(cfg.alarm)],
+						shadowBlur: parseInt(cfg.alarm) > 0 ? 0 : 0,
+						shadowOffsetX: 0,
+						shadowOffsetY: 0
 					}
 				});
 				group.addShape("text", {
