@@ -8,7 +8,7 @@ import modelConsts from "@/consts/ModelConsts";
 import BaseUtil from "@/util/BaseUtil";
 
 const anchorPoints = [[0, 0], [0.5, 0], [1, 0], [0, 0.5], [1, 0.5], [0, 1], [0.5, 1], [1, 1]];
-const levelColos = ["0xFF0000", "#FF0000", "#FFA500", "#FFFF00", "#0000FF"];
+const levelColos = ["#FF0000", "#FF0000", "#FFA500", "#FFFF00", "#0000FF"];
 class RegisterUtil extends BaseUtil {
 	constructor() {
 		super();
@@ -19,7 +19,13 @@ class RegisterUtil extends BaseUtil {
 		this.registerNode();
 		this.registerEdge();
 	}
-	baseUrl = "";
+	initTreeGraph = (graph)=>{
+		super.init(graph);
+		this.registerTreeEdge();
+		this.registerTreeNode();
+	}
+	baseUrl = "./demo/assets/";
+	imageType = "png";
 	registerEdge = () => {
 		G6.registerEdge("edgeStyle", {
 			draw: (cfg, group) => {
@@ -42,6 +48,29 @@ class RegisterUtil extends BaseUtil {
 					}
 				});
 				return shape;
+			},
+			afterDraw(cfg, group) {
+				const shape = group.get('children')[0];
+				const startPoint = shape.getPoint(0);
+				const circle = group.addShape('circle', {
+					attrs: {
+						x: startPoint.x,
+						y: startPoint.y,
+						fill: 'green',
+						r: 3
+					}
+				});
+				circle.animate({
+					onFrame(ratio) {
+						const tmpPoint = shape.getPoint(ratio);
+						return {
+							x: tmpPoint.x,
+							y: tmpPoint.y
+						};
+	
+					},
+					repeat: true
+				}, 3000);
 			}
 		});
 	};
@@ -224,6 +253,156 @@ class RegisterUtil extends BaseUtil {
 			}
 		});
 	};
+	registerTreeNode = ()=>{
+		G6.registerNode("treenodeStyle", {
+			afterDraw:(cfg, group)=>{
+				if (parseInt(cfg.alarm) > 0) {
+					const w = parseFloat(cfg.w) * 1.2;
+					const r = w / 2;
+					const radio = 1.5;
+					const back1 = group.addShape("circle", {
+						zIndex: -3,
+						attrs: {
+							x: 0,
+							y: 0,
+							r,
+							fill: levelColos[parseInt(cfg.alarm)],
+							opacity: 0.6
+						}
+					});
+					const back2 = group.addShape("circle", {
+						zIndex: -2,
+						attrs: {
+							x: 0,
+							y: 0,
+							r,
+							fill: levelColos[parseInt(cfg.alarm)],
+							opacity: 0.6
+						}
+					});
+
+					const back3 = group.addShape("circle", {
+						zIndex: -1,
+						attrs: {
+							x: 0,
+							y: 0,
+							r,
+							fill: levelColos[parseInt(cfg.alarm)],
+							opacity: 0.6
+						}
+					});
+					group.sort();
+					back1.animate(
+						{
+							r: r*radio,
+							opacity: 0.1,
+							repeat: true
+						},
+						3000,
+						"easeCubic",
+						null,
+						0
+					);
+
+					back2.animate(
+						{
+							r: r*radio,
+							opacity: 0.1,
+							repeat: true
+						},
+						3000,
+						"easeCubic",
+						null,
+						1000
+					);
+
+					back3.animate(
+						{
+							r: r*radio,
+							opacity: 0.1,
+							repeat: true
+						},
+						3000,
+						"easeCubic",
+						null,
+						2000
+					);
+				}
+			},
+			draw: (cfg, group) => {
+				console.log('cfg---->>%o',cfg);
+				const w = parseFloat(cfg.w);
+				const h = parseFloat(cfg.h);
+				const model = this.graph.getCurrentMode();
+				const image = group.addShape("image", {
+					attrs: {
+						x: -w / 2,
+						y: -h / 2,
+						width: w,
+						height: h,
+						cursor: "pointer",
+						img: this.baseUrl + cfg.imageName+"."+this.imageType,
+						shadowColor:levelColos[parseInt(cfg.alarm)],
+						shadowBlur:parseInt(cfg.alarm)>0?0:0,
+						shadowOffsetX:0,
+						shadowOffsetY:0,
+					}
+				});
+				group.addShape("text", {
+					attrs: {
+						x: 0,
+						y: cfg.index==1?h*0.6:h,
+						textAlign: "center",
+						text: cfg.label,
+						fill: "#FFF",
+						fontSize: cfg.index?6+2*(4-cfg.index):12
+					}
+				});
+				return image;
+			}
+		});
+	};
+	registerTreeEdge = ()=>{
+		G6.registerEdge("edgeStyle", {
+			draw: (cfg, group) => {
+				const startPoint = cfg.startPoint;
+				const endPoint = cfg.endPoint;
+				const shape = group.addShape("path", {
+					attrs: {
+						stroke: "#ccc",
+						lineWidth: 2,
+						cursor: "pointer",
+						endArrow: cfg.endArrow,
+						path: [["M", startPoint.x, startPoint.y], ["L", endPoint.x, endPoint.y]]
+					}
+				});
+				return shape;
+			},
+			afterDraw(cfg, group) {
+				const shape = group.get('children')[0];
+				const startPoint = shape.getPoint(0);
+				const circle = group.addShape('circle', {
+					attrs: {
+						x: startPoint.x,
+						y: startPoint.y,
+						fill: 'green',
+						r: 3
+					}
+				});
+				circle.animate({
+					onFrame(ratio) {
+						const tmpPoint = shape.getPoint(ratio);
+						return {
+							x: tmpPoint.x,
+							y: tmpPoint.y
+						};
+	
+					},
+					repeat: true
+				}, 3000);
+			}
+		});
+	}
 }
 
 export default RegisterUtil;

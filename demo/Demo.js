@@ -8,12 +8,13 @@ import React from "react";
 // import TopoLib from "../lib/g6lib.min";
 import TopoLib from "../src/index";
 import mockData from "./mock.json";
+import group from "./group.json";
 export default class Demo extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 	state = {
-		datas: mockData.data
+		datas: group.data
 	};
 
 	componentDidMount() {
@@ -24,8 +25,9 @@ export default class Demo extends React.Component {
 		// },5000);
 	}
 	render() {
+		console.log('---->>%o',this.state.datas);
 		return (
-			<TopoLib.TopoView
+			<TopoLib.TreeTopoView
 				datas={this.state.datas}
 				showToolBar={true}
 				ref={component => {

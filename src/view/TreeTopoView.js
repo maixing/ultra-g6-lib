@@ -6,9 +6,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import G6 from "@antv/g6";
-// import hierarchy from "@antv/hierarchy";
 import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/consts/EventConsts";
 import G6Api from '@/util/G6Api';
+import RegisterUtil from "@/util/RegisterUtil";
 require("@/view/style.less");
 
 export default class TreeTopoView extends React.Component {
@@ -16,6 +16,7 @@ export default class TreeTopoView extends React.Component {
 		super(props);
 		this.graph = null;
 		this.g6Api = new G6Api();
+		this.registerUtil = new RegisterUtil();
 		this.sourceRect = {
 			width: 0,
 			height: 0,
@@ -23,7 +24,7 @@ export default class TreeTopoView extends React.Component {
 			top: 0,
 			datas: []
 		};
-		this.levelColos = ["0xFF0000","#FF0000","#FFA500","#FFFF00","#0000FF"];
+		this.levelColos = ["#FF0000","#FF0000","#FFA500","#FFFF00","#0000FF"];
 	}
 	state = {
 		...this.props
@@ -77,7 +78,6 @@ export default class TreeTopoView extends React.Component {
 		return change;
 	};
 	componentDidMount() {
-		this.register();
 		const rect = this.topoWrap.getBoundingClientRect();
 		if (rect) {
 			const layouts = {
@@ -101,6 +101,7 @@ export default class TreeTopoView extends React.Component {
 				animate:false,
 				layout: layouts.dendrogram
 			});
+			this.registerUtil.initTreeGraph(this.graph);
 			this.graph.node(node => {
 				return {
 					shape: "treenodeStyle",
@@ -124,7 +125,8 @@ export default class TreeTopoView extends React.Component {
 				i++;
 				return {
 					color: "#fcfdfd",
-					label: ""
+					label: "",
+					shape:"edgeStyle"
 				};
 			});
 			this.initEvent();
@@ -158,41 +160,6 @@ export default class TreeTopoView extends React.Component {
 	addListener = (target, eventName, handler) => {
 		if (typeof handler === "function") target.on(eventName, handler);
 	};
-	register = ()=>{
-		G6.registerNode("treenodeStyle", {
-			draw: (cfg, group) => {
-				const w = parseFloat(cfg.w);
-				const h = parseFloat(cfg.h);
-				const model = this.graph.getCurrentMode();
-				console.log('tree node---->>%o',cfg);
-				const image = group.addShape("image", {
-					attrs: {
-						x: -w / 2,
-						y: -h / 2,
-						width: w,
-						height: h,
-						cursor: "pointer",
-						img: this.state.baseUrl + cfg.imageName+"."+this.state.imageType,
-						shadowColor:this.levelColos[parseInt(cfg.alarm)],
-						shadowBlur:parseInt(cfg.alarm)>0?50:0,
-						shadowOffsetX:0,
-						shadowOffsetY:0,
-					}
-				});
-				group.addShape("text", {
-					attrs: {
-						x: 0,
-						y: cfg.index==1?h*0.6:h,
-						textAlign: "center",
-						text: cfg.label,
-						fill: "#FFF",
-						fontSize: cfg.index?6+2*(4-cfg.index):12
-					}
-				});
-				return image;
-			}
-		});
-	}
 	render() {
 		return (
 			<div
