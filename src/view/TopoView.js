@@ -84,7 +84,7 @@ export default class TopoView extends React.Component {
 		// 	this.graph.changeSize(this.sourceRect.width, maxY > this.sourceRect.height ? maxY*1.05 : this.sourceRect.height);
 		// }
 		this.graph.changeData(datas);
-		this.graph.fitView(20);
+		this.graph.fitView(this.state.fitGap);
 	}
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
