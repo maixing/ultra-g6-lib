@@ -32,7 +32,7 @@ class RegisterUtil extends BaseUtil {
 				const startPoint = cfg.startPoint;
 				const endPoint = cfg.endPoint;
 				const model = this.graph.getCurrentMode();
-				let color = "#ccc";
+				let color = "#008000";
 				if (model == modelConsts.MODEL_SELECT) {
 					if (cfg.selected) {
 						color = "blue";
@@ -56,7 +56,7 @@ class RegisterUtil extends BaseUtil {
 					attrs: {
 						x: startPoint.x,
 						y: startPoint.y,
-						fill: 'green',
+						fill: '#fff',
 						r: 3
 					}
 				});
@@ -211,10 +211,11 @@ class RegisterUtil extends BaseUtil {
 				group.addShape("text", {
 					attrs: {
 						x: 0,
-						y: h,
+						y: h*0.7,
 						textAlign: "center",
 						text: cfg.label,
-						fill: "#FFF"
+						fontSize:14,
+						fill: "#00FFFF"
 					}
 				});
 				//锚点呈现
@@ -341,21 +342,17 @@ class RegisterUtil extends BaseUtil {
 						width: w,
 						height: h,
 						cursor: "pointer",
-						img: this.baseUrl + cfg.imageName+"."+this.imageType,
-						shadowColor:levelColos[parseInt(cfg.alarm)],
-						shadowBlur:parseInt(cfg.alarm)>0?0:0,
-						shadowOffsetX:0,
-						shadowOffsetY:0,
+						img: this.baseUrl + cfg.imageName+"."+this.imageType
 					}
 				});
 				group.addShape("text", {
 					attrs: {
 						x: 0,
-						y: cfg.index==1?h*0.6:h,
+						y: cfg.index==1?h*0.8:h*0.8,
 						textAlign: "center",
 						text: cfg.label,
-						fill: "#FFF",
-						fontSize: cfg.index?6+2*(4-cfg.index):12
+						fill: "#00FFFF",
+						fontSize: cfg.index?14+2*(4-cfg.index):12
 					}
 				});
 				return image;
@@ -369,11 +366,24 @@ class RegisterUtil extends BaseUtil {
 				const endPoint = cfg.endPoint;
 				const shape = group.addShape("path", {
 					attrs: {
-						stroke: "#ccc",
+						stroke: "#008000",
 						lineWidth: 2,
 						cursor: "pointer",
 						endArrow: cfg.endArrow,
+						sourceAnchor:null,
+						targetAnchor:null,
 						path: [["M", startPoint.x, startPoint.y], ["L", endPoint.x, endPoint.y]]
+					}
+				});
+				const shape1 = group.addShape("path", {
+					attrs: {
+						stroke: "#008000",
+						lineWidth: 2,
+						cursor: "pointer",
+						endArrow: cfg.endArrow,
+						sourceAnchor:null,
+						targetAnchor:null,
+						path: [["M", endPoint.x, endPoint.y], ["L", startPoint.x, startPoint.y]]
 					}
 				});
 				return shape;
@@ -385,7 +395,7 @@ class RegisterUtil extends BaseUtil {
 					attrs: {
 						x: startPoint.x,
 						y: startPoint.y,
-						fill: 'green',
+						fill: '#fff',
 						r: 3
 					}
 				});

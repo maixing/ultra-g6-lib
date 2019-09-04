@@ -7,7 +7,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import G6 from "@antv/g6";
 import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/consts/EventConsts";
-import G6Api from '@/util/G6Api';
+import G6Api from "@/util/G6Api";
 import RegisterUtil from "@/util/RegisterUtil";
 require("@/view/style.less");
 
@@ -24,7 +24,7 @@ export default class TreeTopoView extends React.Component {
 			top: 0,
 			datas: []
 		};
-		this.levelColos = ["#FF0000","#FF0000","#FFA500","#FFFF00","#0000FF"];
+		this.levelColos = ["#FF0000", "#FF0000", "#FFA500", "#FFFF00", "#0000FF"];
 	}
 	state = {
 		...this.props
@@ -32,22 +32,28 @@ export default class TreeTopoView extends React.Component {
 	static defaultProps = {
 		el: "topoEl",
 		datas: [],
-		baseUrl: "../demo/assets/",
+		baseUrl: "./demo/assets/",
 		model: "multiselect",
-		imageType:"png",
+		imageType: "png",
 		nodeMenu: [],
 		edgeMenu: [],
 		showToolBar: true,
-		nodeSep:1000,
-		rankSep:100,
+		nodeSep: 5,
+		rankSep: 400,
+		radial: true
 	};
 	static propTypes = {
 		el: PropTypes.string.isRequired,
 		datas: PropTypes.array.isRequired
 	};
-	destroy = ()=>{
-		if(this.graph){
+	destroy = () => {
+		if (this.graph) {
 			this.graph.destroy();
+		}
+	};
+	clear = ()=>{
+		if (this.graph) {
+			this.graph.clear();
 		}
 	}
 	shouldComponentUpdate = (nextProps, nextState) => {
@@ -58,20 +64,9 @@ export default class TreeTopoView extends React.Component {
 			}
 		});
 		if (this.props.datas != nextProps.datas) {
-			console.log('nextProps.datas---->>%o',nextProps.datas);
 			const rect = this.topoWrap.getBoundingClientRect();
 			if (this.graph) {
 				this.graph.clear();
-				if(nextProps.datas.hasOwnProperty('children') && nextProps.datas.children.length>0){
-					this.graph.set('animate', true);
-					// this.graph.fitView(true);
-					this.graph.fitView([rect.height*30/100,rect.width*20/100]);
-				}else{
-					this.graph.set('animate', false);
-					if(rect){
-						this.graph.fitView([rect.height*40/100,rect.width*20/100]);
-					}
-				}
 				this.graph.changeData(nextProps.datas);
 			}
 		}
@@ -86,7 +81,7 @@ export default class TreeTopoView extends React.Component {
 					direction: "LR", // H / V / LR / RL / TB / BT
 					nodeSep: this.state.nodeSep,
 					rankSep: this.state.rankSep,
-					radial: false
+					radial: this.state.radial
 				}
 			};
 			this.graph = new G6.TreeGraph({
@@ -95,28 +90,42 @@ export default class TreeTopoView extends React.Component {
 				height: rect.height - 4,
 				pixelRatio: 2,
 				modes: {
-					default: ["drag-canvas"]
+					default: ["drag-canvas", "zoom-canvas","collapse-expand"]
 				},
 				fitView: true,
-				animate:false,
+				animate: true,
+				linkCenter: false,
 				layout: layouts.dendrogram
 			});
+			let data = this.state.datas;
+			// if (this.state.radial) {
+			// 	G6.Util.traverseTree(data, node => {
+			// 		node.id = Math.random() * new Date().getTime();
+			// 		node.w = 30;
+			// 		node.h = 30;
+			// 		node.index = 3;
+			// 		node.alarm = 1;
+			// 		node.imageName = "bbnode";
+			// 	});
+			// }
+			this.registerUtil.baseUrl = this.state.baseUrl;
 			this.registerUtil.initTreeGraph(this.graph);
 			this.graph.node(node => {
 				return {
 					shape: "treenodeStyle",
 					label: node.name,
 					size: [node.w, node.h],
-					img: this.state.baseUrl + node.imageName+"."+this.state.imageType,
-					style:{
-						cursor:"pointer"
+					id:node.id,
+					img: this.state.baseUrl + node.imageName + "." + this.state.imageType,
+					style: {
+						cursor: "pointer"
 					},
 					labelCfg: {
 						position: "bottom",
 						style: {
-							fill: '#fcfdfd',
-							fontSize: node.index?6+2*(4-node.index):12
-						  }
+							fill: "#00FFFF",
+							fontSize: 20
+						}
 					}
 				};
 			});
@@ -131,7 +140,7 @@ export default class TreeTopoView extends React.Component {
 			});
 			this.initEvent();
 			this.g6Api.init(this.graph);
-			this.graph.data(this.state.datas);
+			this.graph.data(data);
 			this.graph.render();
 		}
 	}

@@ -1,0 +1,455 @@
+{
+	"code": 0,
+	"msg": "成功",
+	"data": {
+		"imageName": "bb",
+		"levelNum": { "level4": "0", "level1": "8", "level3": "0", "level2": "0" },
+		"children": [
+			{
+				"imageName": "bbgroup",
+				"children": [
+					{
+						"imageName": "bbnode",
+						"groupId": "1",
+						"name": "hw奥体西门-高原街",
+						"alarm": "0",
+						"id": "-474171122373289214,1620441002647646233"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "1",
+						"name": "hwHYMY-TZDHT",
+						"alarm": "0",
+						"id": "266087517228623987,-3607977867651163395"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "1",
+						"name": "hw奥运村",
+						"alarm": "0",
+						"id": "-1215846012428034389,-2174420978443080438"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "1",
+						"name": "hw佰嘉城",
+						"alarm": "0",
+						"id": "4741290365066376505,7993860834595819175"
+					}
+				],
+				"name": "朝阳区",
+				"alarm": "0",
+				"id": "1"
+			},
+			{
+				"imageName": "bbgroup",
+				"children": [
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw朝内危改-银河SOHO",
+						"alarm": "0",
+						"id": "-334259963492033221,1465439463081186985"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw昌平科技园新",
+						"alarm": "0",
+						"id": "-3553206055657180680,188206845175586720"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw德外新机房",
+						"alarm": "0",
+						"id": "-2779188606403583763,8092824076962239552"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw保利花园-密云果园营业厅",
+						"alarm": "0",
+						"id": "-5794925329909818823,2568727395715795459"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw第三置业-静安中心",
+						"alarm": "0",
+						"id": "-1665064142555452465,3646351792232159377"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw富顿中心",
+						"alarm": "0",
+						"id": "842075627417722134,2869761206882599028"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw东坝驹子房-常营新村",
+						"alarm": "0",
+						"id": "2072694896098679201,-6006926076451140749"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw本家润园",
+						"alarm": "0",
+						"id": "-6293001105037106614,-4971884286141587438"
+					}
+				],
+				"name": "东城区",
+				"alarm": "0",
+				"id": "2"
+			},
+			{
+				"imageName": "bbgroup",
+				"children": [
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw静安中心交换机房-第三置业",
+						"alarm": "0",
+						"id": "-1286631220697344516,-2986665686794133278"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw富力爱丁堡",
+						"alarm": "0",
+						"id": "-8400530269696257350,7018012672189734622"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw金桥国际小区-顶秀置业公司",
+						"alarm": "0",
+						"id": "-8142023270731342003,-1177462327588622442"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw昆泰国际-万通中心",
+						"alarm": "0",
+						"id": "-7072601482566040628,8218493227623360025"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw军犬基地",
+						"alarm": "0",
+						"id": "-6785349715200990967,551400352924857315"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw华彩国际-华彩国际公寓",
+						"alarm": "0",
+						"id": "5566084873082455807,-3946339919683353394"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw海淀创意大厦",
+						"alarm": "0",
+						"id": "-4653977182088475853,-5222626487906856128"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw皇安大厦",
+						"alarm": "0",
+						"id": "5319638061979060624,5225073191292614813"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw凯旋城",
+						"alarm": "0",
+						"id": "9223247769128032379,-4019567652936746628"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw吉利大学",
+						"alarm": "0",
+						"id": "-3330978410241787198,-8338635514520840803"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw国英园一号",
+						"alarm": "1",
+						"id": "8856969927191069024,5928351682190484486"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw华杰大厦",
+						"alarm": "0",
+						"id": "-7275258906807242634,1985579641952075794"
+					}
+				],
+				"name": "西城区",
+				"alarm": "1",
+				"id": "3"
+			},
+			{
+				"imageName": "bbgroup",
+				"children": [
+					{
+						"imageName": "bbnode",
+						"groupId": "4",
+						"name": "hw森林警察指挥学院",
+						"alarm": "0",
+						"id": "5694014397724173627,-6715769286745772041"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "4",
+						"name": "hw罗马嘉园",
+						"alarm": "0",
+						"id": "-1802761326750015613,5777217471728898351"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "4",
+						"name": "hw清华科技大厦",
+						"alarm": "0",
+						"id": "-7353935944999144505,-504991605354115517"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "4",
+						"name": "hw通用时代国际中心",
+						"alarm": "0",
+						"id": "-5041915305870420516,-4943203836205911402"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "4",
+						"name": "hw蓝色港湾",
+						"alarm": "0",
+						"id": "-5070399937869350075,769178202342125819"
+					},
+					{ "imageName": "bbnode", "groupId": "4", "name": "hw上地北区", "alarm": "0", "id": "3479156915620377854," },
+					{
+						"imageName": "bbnode",
+						"groupId": "4",
+						"name": "hw水木兰亭",
+						"alarm": "0",
+						"id": "16514594954860320,-7826829062647133270"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "4",
+						"name": "hw万达CBD",
+						"alarm": "0",
+						"id": "-7655894309123529563,748166517785461849"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "4",
+						"name": "hw牛街危改新",
+						"alarm": "0",
+						"id": "-4728174966366253550,3577616063842605412"
+					}
+				],
+				"name": "昌平区",
+				"alarm": "0",
+				"id": "4"
+			},
+			{
+				"imageName": "bbgroup",
+				"children": [
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw延庆大秦-延庆综合机房",
+						"alarm": "0",
+						"id": "1502793539129745601,-7980186451509986252"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw未来科技城综合机房-未来科技城",
+						"alarm": "0",
+						"id": "-4291066200166223262,5737569700339038167"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw远洋奥北B1机房",
+						"alarm": "0",
+						"id": "-3791269759762556278,-4781698453581427486"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw长阳半岛南-阎仙垡",
+						"alarm": "0",
+						"id": "-213151847477037824,-4860467379892970062"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw永丰综合通信局",
+						"alarm": "0",
+						"id": "5792039519664361544,8421504301086160894"
+					},
+					{ "imageName": "bbnode", "groupId": "5", "name": "hw长安兴融", "alarm": "0", "id": "-4252887100644141172," },
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw杨镇",
+						"alarm": "0",
+						"id": "-5870951236404661144,3082515900680460823"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw亚奥金茂悦",
+						"alarm": "0",
+						"id": "-4157198832497557992,5209837469192296805"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw银河SOHO-东四",
+						"alarm": "0",
+						"id": "2862486392696699329,-4416214263988184405"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw张喜庄-康捷空国际货运代理公司",
+						"alarm": "0",
+						"id": "3560473143803917949,-5270130872569823172"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw远洋国际-远洋国际中心",
+						"alarm": "0",
+						"id": "-1535837785034262765,2787674379774597976"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "5",
+						"name": "hw西城晶华苑",
+						"alarm": "0",
+						"id": "-7093933051019036534,197895298442590491"
+					}
+				],
+				"name": "海淀区",
+				"alarm": "0",
+				"id": "5"
+			}
+		],
+		"stream": [
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmId": "15841148444082177",
+				"alarmSource": "test_oc",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15841148444082177alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"alarmSource": "test_oc",
+				"alarmId": "15859081237561358",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "5928351682190484486",
+				"clearFlag": "0",
+				"severity": "1",
+				"alarmDn": "15859081237561358alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"alarmId": "15841298613403650",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmSource": "test_oc",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15841298613403650alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmId": "15841424972906499",
+				"alarmSource": "test_oc",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"clearFlag": "0",
+				"severity": "1",
+				"alarmDn": "15841424972906499alarmDn"
+			},
+			{
+				"ticketNo": "GZ-20190829-00211",
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmSource": "test_oc",
+				"alarmId": "15840903777681410",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15840903777681410alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmSource": "test_oc",
+				"alarmId": "15841031845314560",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15841031845314560alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmId": "15840931683893251",
+				"alarmSource": "test_oc",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15840931683893251alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"alarmSource": "test_oc",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmId": "15858786395357185",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-285955468724656921",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15858786395357185alarmDn"
+			}
+		],
+		"name": "北京",
+		"alarm": "1",
+		"id": "root"
+	}
+}

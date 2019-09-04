@@ -9,12 +9,15 @@ import React from "react";
 import TopoLib from "../src/index";
 import mockData from "./mock.json";
 import group from "./group.json";
+import flare from "./flare.json";
+import flare1 from "./flare1.json";
+import topo1 from "./topo1.json";
 export default class Demo extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 	state = {
-		datas: group.data
+		datas: topo1.data.data
 	};
 
 	componentDidMount() {
@@ -27,7 +30,7 @@ export default class Demo extends React.Component {
 	render() {
 		console.log('---->>%o',this.state.datas);
 		return (
-			<TopoLib.TreeTopoView
+			<TopoLib.TopoView
 				datas={this.state.datas}
 				showToolBar={true}
 				ref={component => {

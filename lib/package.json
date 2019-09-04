@@ -1,6 +1,6 @@
 {
   "name": "g6lib",
-  "version": "1.0.7",
+  "version": "1.1.2",
   "description": "g6lib",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "url": "https://github.com/maixing/ultra-g6-lib/issues"
   },
   "dependencies": {
-    "@antv/g6": "^3.0.5-beta.7",
+    "@antv/g6": "^3.0.5-beta.10",
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0"
   }

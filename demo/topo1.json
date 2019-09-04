@@ -1,0 +1,1582 @@
+{
+	"code": 0,
+	"msg": "成功",
+	"data": {
+		"levelNum": { "level4": "0", "level1": "8", "level3": "0", "level2": "0" },
+		"data": {
+			"nodes": [
+				{
+					"neId": "-6011972513637258640",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 1032.8,
+					"alarm": "0",
+					"y": 1680.0,
+					"id": "-6011972513637258640",
+					"label": "JGLDJ-SWZ-A1-1-ATN950(旧鼓楼大街ATN950B)",
+					"neName": "JGLDJ-SWZ-A1-1-ATN950(旧鼓楼大街ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-5444935360040246459",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 388.2,
+					"alarm": "1",
+					"y": 1560.0,
+					"id": "-5444935360040246459",
+					"label": "MCHBGL-SNZ-A1-2-ATN950(贸促会办公楼室内站ATN950B）",
+					"neName": "MCHBGL-SNZ-A1-2-ATN950(贸促会办公楼室内站ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "-8436067897650408160",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 720.0,
+					"id": "-8436067897650408160",
+					"label": "BJSGAJXFJ-SNZ-A1-1-ATN950（北京市公安局消防局ATN950B）",
+					"neName": "BJSGAJXFJ-SNZ-A1-1-ATN950（北京市公安局消防局ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "-285955468724656921",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "1",
+					"y": 480.0,
+					"id": "-285955468724656921",
+					"label": "MLFJNG-SWZ-A1-2-ATN950(梅兰芳纪念馆 ATN950B)",
+					"neName": "MLFJNG-SWZ-A1-2-ATN950(梅兰芳纪念馆 ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-71725522744298304",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 974.5,
+					"alarm": "0",
+					"y": 1520.0,
+					"id": "-71725522744298304",
+					"label": "HHXFD-SWZ-A1-1-ATN950(后海消防队ATN950B)",
+					"neName": "HHXFD-SWZ-A1-1-ATN950(后海消防队ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-8812587409097306647",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 1129.42,
+					"alarm": "0",
+					"y": 160.0,
+					"id": "-8812587409097306647",
+					"label": "AXDS-SNZ-A1-3-ATN950（安兴大厦ATN950B）",
+					"neName": "AXDS-SNZ-A1-3-ATN950（安兴大厦ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "5928351682190484486",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 1266.0,
+					"alarm": "1",
+					"y": 960.0,
+					"id": "5928351682190484486",
+					"label": "GYYH-A6-2-CX600(国英园一号CX600)",
+					"neName": "GYYH-A6-2-CX600(国英园一号CX600)",
+					"neType": "B"
+				},
+				{
+					"neId": "-8661862337718813106",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 799.6,
+					"alarm": "0",
+					"y": 1760.0,
+					"id": "-8661862337718813106",
+					"label": "XCSQFWZX-SNZ-A1-2-ATN950(西城社区服务中心ATN950B)",
+					"neName": "XCSQFWZX-SNZ-A1-2-ATN950(西城社区服务中心ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "7195902496390651954",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 621.4,
+					"alarm": "0",
+					"y": 1640.0,
+					"id": "7195902496390651954",
+					"label": "HTJDGLD-SNZ-A1-2-ATN950(汉庭酒店鼓楼店室内站ATN950B)",
+					"neName": "HTJDGLD-SNZ-A1-2-ATN950(汉庭酒店鼓楼店室内站ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "6304693230784674597",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 446.5,
+					"alarm": "0",
+					"y": 1480.0,
+					"id": "6304693230784674597",
+					"label": "SCHTX-SWZ-A1-2-ATN950(什刹海体校室外站ATN950B)",
+					"neName": "SCHTX-SWZ-A1-2-ATN950(什刹海体校室外站ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-4460837214280837355",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 391.5,
+					"alarm": "0",
+					"y": 1520.0,
+					"id": "-4460837214280837355",
+					"label": "JYF-SWZ-A1-1-ATN950(蒋养房 ATN950B)",
+					"neName": "JYF-SWZ-A1-1-ATN950(蒋养房 ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "7521944470925561501",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 599.71,
+					"alarm": "0",
+					"y": 160.0,
+					"id": "7521944470925561501",
+					"label": "XJFGWZX-SNZ-A1-2-ATN950(星街坊购物中心ATN950B)",
+					"neName": "XJFGWZX-SNZ-A1-2-ATN950(星街坊购物中心ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-5677895710241462699",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 433.14,
+					"alarm": "0",
+					"y": 160.0,
+					"id": "-5677895710241462699",
+					"label": "GEZBGBL-SNZ-A1-1-ATN950(国二招宾馆北楼ATN950B)",
+					"neName": "GEZBGBL-SNZ-A1-1-ATN950(国二招宾馆北楼ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-7602239276937390325",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 877.34,
+					"alarm": "0",
+					"y": 1440.0,
+					"id": "-7602239276937390325",
+					"label": "RXDS-SNZ-A1-1-ATN950(融祥大厦室内站ATN950B)",
+					"neName": "RXDS-SNZ-A1-1-ATN950(融祥大厦室内站ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-5096717786685409444",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 974.5,
+					"alarm": "0",
+					"y": 240.0,
+					"id": "-5096717786685409444",
+					"label": "BJRJKJJD(XJKDTZD)-SNZ-A1-1-ATN950（北京如家快捷酒店新街口地铁站店室内站ATN950B）",
+					"neName": "BJRJKJJD(XJKDTZD)-SNZ-A1-1-ATN950（北京如家快捷酒店新街口地铁站店室内站ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "-8260850921819347632",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 640.0,
+					"id": "-8260850921819347632",
+					"label": "GuoYY-SNZ-A1-2-ATN950(国英园室内站ATN950B)",
+					"neName": "GuoYY-SNZ-A1-2-ATN950(国英园室内站ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-6975822431340949271",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 488.67,
+					"alarm": "0",
+					"y": 320.0,
+					"id": "-6975822431340949271",
+					"label": "LJHT-WZ-SWZ-ATN905（罗家胡同微站室外站）",
+					"neName": "LJHT-WZ-SWZ-ATN905（罗家胡同微站室外站）",
+					"neType": "A"
+				},
+				{
+					"neId": "-4401467383268196726",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 560.0,
+					"id": "-4401467383268196726",
+					"label": "ZYBG-SNZ-A1-1-ATN950(竹园宾馆室内站ATN950B)",
+					"neName": "ZYBG-SNZ-A1-1-ATN950(竹园宾馆室内站ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "5948716646396892909",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 880.0,
+					"id": "5948716646396892909",
+					"label": "HuoK-SWZ-A1-1-ATN950(豁口ATN950B)",
+					"neName": "HuoK-SWZ-A1-1-ATN950(豁口ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-1449913147545709061",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 1040.0,
+					"id": "-1449913147545709061",
+					"label": "GHDS（5G）-SNZ-A1-1-ATN950(冠华大厦（5G）ATN950B)",
+					"neName": "GHDS（5G）-SNZ-A1-1-ATN950(冠华大厦（5G）ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "4373177153618632004",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 877.34,
+					"alarm": "0",
+					"y": 1360.0,
+					"id": "4373177153618632004",
+					"label": "XJKFD-SWZ-A1-1-ATN950(新街口饭店ATN950B)(重保)",
+					"neName": "XJKFD-SWZ-A1-1-ATN950(新街口饭店ATN950B)(重保)",
+					"neType": "A"
+				},
+				{
+					"neId": "-2812061079779954521",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 488.67,
+					"alarm": "0",
+					"y": 1360.0,
+					"id": "-2812061079779954521",
+					"label": "XCWHZX-SWZ-A1-1-ATN950（西城文化中心ATN950B）(重保)",
+					"neName": "XCWHZX-SWZ-A1-1-ATN950（西城文化中心ATN950B）(重保)",
+					"neType": "A"
+				},
+				{
+					"neId": "-4987943695583726221",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 799.6,
+					"alarm": "0",
+					"y": 1600.0,
+					"id": "-4987943695583726221",
+					"label": "QianH-SWZ-A1-2-ATN950（前海ATN950B）",
+					"neName": "QianH-SWZ-A1-2-ATN950（前海ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "3572453466145241035",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 566.4,
+					"alarm": "0",
+					"y": 1600.0,
+					"id": "3572453466145241035",
+					"label": "XZMNXJ-SWZ-A1-2-ATN950（西直门南小街ATN950B）",
+					"neName": "XZMNXJ-SWZ-A1-2-ATN950（西直门南小街ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "3632004753128310176",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 333.2,
+					"alarm": "0",
+					"y": 1680.0,
+					"id": "3632004753128310176",
+					"label": "HH-SWZ-A1-2-ATN950(后海ATN950B)",
+					"neName": "HH-SWZ-A1-2-ATN950(后海ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "3392402996207632595",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 566.4,
+					"alarm": "0",
+					"y": 1760.0,
+					"id": "3392402996207632595",
+					"label": "BJSMZDPBGL-SNZ-A1-2-ATN950(北京市民主党派办公楼ATN950B)",
+					"neName": "BJSMZDPBGL-SNZ-A1-2-ATN950(北京市民主党派办公楼ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "6366659677584125039",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 1266.0,
+					"alarm": "0",
+					"y": 160.0,
+					"id": "6366659677584125039",
+					"label": "BJ-SD-SR-1.M2.NE40EX16",
+					"neName": "BJ-SD-SR-1.M2.NE40EX16",
+					"neType": "ROUTER"
+				},
+				{
+					"neId": "-5765682516104413725",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 236.57,
+					"alarm": "0",
+					"y": 160.0,
+					"id": "-5765682516104413725",
+					"label": "GYYH-A2-4-ATN950（国英园一号ATN950B）",
+					"neName": "GYYH-A2-4-ATN950（国英园一号ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "6473281227561656083",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 488.67,
+					"alarm": "0",
+					"y": 400.0,
+					"id": "6473281227561656083",
+					"label": "GYY-SWZ-A1-1-ATN950(冠英园ATN950B)",
+					"neName": "GYY-SWZ-A1-1-ATN950(冠英园ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "6028604338184808369",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 877.34,
+					"alarm": "0",
+					"y": 320.0,
+					"id": "6028604338184808369",
+					"label": "JJD-WZ-A1-1-ATN905A（京畿道_微站）",
+					"neName": "JJD-WZ-A1-1-ATN905A（京畿道_微站）",
+					"neType": "A"
+				},
+				{
+					"neId": "-4059714480775068081",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 566.4,
+					"alarm": "0",
+					"y": 1680.0,
+					"id": "-4059714480775068081",
+					"label": "DLDS-SWZ-A1-2-ATN950(东联大厦ATN950B)",
+					"neName": "DLDS-SWZ-A1-2-ATN950(东联大厦ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-1778244285446240104",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 1520.0,
+					"id": "-1778244285446240104",
+					"label": "XCSSJ39HY-SWZ-A1-1-ATN950(西城松树街39号院ATN950B)",
+					"neName": "XCSSJ39HY-SWZ-A1-1-ATN950(西城松树街39号院ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "7395037512680300059",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 799.6,
+					"alarm": "0",
+					"y": 1680.0,
+					"id": "7395037512680300059",
+					"label": "CQ-SWZ-A1-1-ATN950(厂桥ATN950B)",
+					"neName": "CQ-SWZ-A1-1-ATN950(厂桥ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "8107746789682364604",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 303.2,
+					"alarm": "0",
+					"y": 1760.0,
+					"id": "8107746789682364604",
+					"label": "XCGSJ-SNZ-A1-1-ATN950（西城工商局ATN950B）",
+					"neName": "XCGSJ-SNZ-A1-1-ATN950（西城工商局ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "-6931484698298104202",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 240.0,
+					"id": "-6931484698298104202",
+					"label": "RQZX-SNZ-A1-2-ATN950（燃气中心室内站ATN950B）",
+					"neName": "RQZX-SNZ-A1-2-ATN950（燃气中心室内站ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "-3645086054723091900",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 1120.0,
+					"id": "-3645086054723091900",
+					"label": "HETT20002HG-A1-1-ATN905A（横二条T20002号路灯）",
+					"neName": "HETT20002HG-A1-1-ATN905A（横二条T20002号路灯）",
+					"neType": "A"
+				},
+				{
+					"neId": "8856969927191069024",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 100.0,
+					"alarm": "0",
+					"y": 960.0,
+					"id": "8856969927191069024",
+					"label": "GYYH-A6-1-CX600(国英园一号CX600)",
+					"neName": "GYYH-A6-1-CX600(国英园一号CX600)",
+					"neType": "B"
+				},
+				{
+					"neId": "4558156854071709575",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 877.34,
+					"alarm": "0",
+					"y": 400.0,
+					"id": "4558156854071709575",
+					"label": "XZMN-SWZ-A1-1-ATN950(两会重保：西直门内ATN950B)",
+					"neName": "XZMN-SWZ-A1-1-ATN950(两会重保：西直门内ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-3539860006714025863",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 766.28,
+					"alarm": "0",
+					"y": 160.0,
+					"id": "-3539860006714025863",
+					"label": "WMSS-SNZ-A1-1-ATN950(物美商厦ATN950B)",
+					"neName": "WMSS-SNZ-A1-1-ATN950(物美商厦ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "201106401601004786",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 800.0,
+					"id": "201106401601004786",
+					"label": "TianJBG-SNZ-A1-1-ATN950(两会重保：天健宾馆ATN950B)",
+					"neName": "TianJBG-SNZ-A1-1-ATN950(两会重保：天健宾馆ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "8911510826495591686",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 391.5,
+					"alarm": "0",
+					"y": 240.0,
+					"id": "8911510826495591686",
+					"label": "XCLGBHDZXL-SNZ-A1-2-ATN950(西城老干部活动中心楼室内站ATN950B)",
+					"neName": "XCLGBHDZXL-SNZ-A1-2-ATN950(西城老干部活动中心楼室内站ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-5883520866970786860",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 932.85,
+					"alarm": "0",
+					"y": 160.0,
+					"id": "-5883520866970786860",
+					"label": "WTGWZX-SNZ-A1-1-ATN950（万特购物中心ATN950B）",
+					"neName": "WTGWZX-SNZ-A1-1-ATN950（万特购物中心ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "-433318288227876207",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 100.0,
+					"alarm": "0",
+					"y": 160.0,
+					"id": "-433318288227876207",
+					"label": "BJ-XCJHY-SR-1.M2.NE40E",
+					"neName": "BJ-XCJHY-SR-1.M2.NE40E",
+					"neType": "ROUTER"
+				},
+				{
+					"neId": "7384162154335309071",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 1032.8,
+					"alarm": "0",
+					"y": 1600.0,
+					"id": "7384162154335309071",
+					"label": "ZDYL-SWZ-A1-2-ATN950（赵登禹路ATN950B）",
+					"neName": "ZDYL-SWZ-A1-2-ATN950（赵登禹路ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "3904521318079968191",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 1280.0,
+					"id": "3904521318079968191",
+					"label": "HBBHJLYZXBGL-SNZ-A1-1-ATN950（环保部环境履约中心办公楼ATN950B）",
+					"neName": "HBBHJLYZXBGL-SNZ-A1-1-ATN950（环保部环境履约中心办公楼ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "4968580205051162743",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 1062.8,
+					"alarm": "0",
+					"y": 1760.0,
+					"id": "4968580205051162743",
+					"label": "GHDX-SNZ-A1-1-ATN950（冠华大厦ATN950B）",
+					"neName": "GHDX-SNZ-A1-1-ATN950（冠华大厦ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "-229041673292663338",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 333.2,
+					"alarm": "0",
+					"y": 1600.0,
+					"id": "-229041673292663338",
+					"label": "XZMQB-SWZ-A1-1-ATN950(西直门桥北 ATN950B)",
+					"neName": "XZMQB-SWZ-A1-1-ATN950(西直门桥北 ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "-6491706101916135683",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 488.67,
+					"alarm": "0",
+					"y": 1440.0,
+					"id": "-6491706101916135683",
+					"label": "CMDS-SNZ-A1-3-ATN950（成铭大厦室内站ATN950B）",
+					"neName": "CMDS-SNZ-A1-3-ATN950（成铭大厦室内站ATN950B）",
+					"neType": "A"
+				},
+				{
+					"neId": "-4401752577341460808",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 683.0,
+					"alarm": "0",
+					"y": 1200.0,
+					"id": "-4401752577341460808",
+					"label": "XJKYYT-SNZ-A1-1-ATN950（新街口营业厅ATN950B)",
+					"neName": "XJKYYT-SNZ-A1-1-ATN950（新街口营业厅ATN950B)",
+					"neType": "A"
+				},
+				{
+					"neId": "",
+					"shape": "nodeStyle",
+					"w": 60.0,
+					"h": 60.0,
+					"show": 0,
+					"x": 100.0,
+					"alarm": "0",
+					"y": 1820.0,
+					"id": "",
+					"label": "",
+					"neName": "",
+					"neType": ""
+				}
+			],
+			"edges": [
+				{
+					"shape": "edgeStyle",
+					"id": "13e726b9c6d041c7b62542bf878e4875",
+					"source": "8856969927191069024",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "3825005e4eb54646b7da2a2c99d4c08c",
+					"source": "5928351682190484486",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "fd3b63b4ca1746a1b70ad02d3d905aaa",
+					"source": "-8260850921819347632",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "d898da580def4a30a637c29122843ce6",
+					"source": "5928351682190484486",
+					"target": "-8260850921819347632"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "034da5c4c36f476db090e8dd02ce9ed0",
+					"source": "6366659677584125039",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "2347ab00f05040b483f067cbdd8a649a",
+					"source": "5928351682190484486",
+					"target": "6366659677584125039"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "c84a7bba2bb6410b8b7fe93fe79ed355",
+					"source": "8856969927191069024",
+					"target": "-4401467383268196726"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "25b21c9488ea45c0824738dd4f600314",
+					"source": "-4401467383268196726",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "64a73ddb10444f8181281ee85afdcc44",
+					"source": "-5096717786685409444",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "e4e254e6c3ea4c27bf5d4ae7373f8f60",
+					"source": "5928351682190484486",
+					"target": "-5096717786685409444"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "77fe0735d6be450699db31c0a591d241",
+					"source": "-6931484698298104202",
+					"target": "-5096717786685409444"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "a551a5b049c54b169ac2005228e51964",
+					"source": "-5096717786685409444",
+					"target": "-6931484698298104202"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "10271e13d2784ef0888eb8d937810517",
+					"source": "-5677895710241462699",
+					"target": "7521944470925561501"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "4fef7f7846944e87b823d21ab75a9c9a",
+					"source": "7521944470925561501",
+					"target": "-5677895710241462699"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "9f82348536a548648cf733324de784f6",
+					"source": "4558156854071709575",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "cacccfb91e2d42bc880fb0b3b0773015",
+					"source": "5928351682190484486",
+					"target": "4558156854071709575"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "89de01b4494949e0923a373988c57201",
+					"source": "8856969927191069024",
+					"target": "-8436067897650408160"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "d78e63c637654e8280c52c109e460778",
+					"source": "-8436067897650408160",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "65431daf324a4c1caa89d523b7dbd28d",
+					"source": "201106401601004786",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "f45a4150d59e493e8617f5785c93f49f",
+					"source": "5928351682190484486",
+					"target": "201106401601004786"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "45a2598ba6814b92856e87071ba8a267",
+					"source": "-4059714480775068081",
+					"target": "7195902496390651954"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "e1de9756c7ac400d9aa359b8fef529d7",
+					"source": "7195902496390651954",
+					"target": "-4059714480775068081"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "d260d2eb19344f8a922daf32976a9a99",
+					"source": "-4059714480775068081",
+					"target": "7395037512680300059"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "73fb78000a794e80b17aa862c22a5c05",
+					"source": "7395037512680300059",
+					"target": "-4059714480775068081"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "ecb8607d41684f12bee7243fd468ce5e",
+					"source": "3392402996207632595",
+					"target": "-8661862337718813106"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "14068f4794154bf88b7da865de319554",
+					"source": "-8661862337718813106",
+					"target": "3392402996207632595"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "c435e6e9003d4b2b9af31b842fbd2d48",
+					"source": "-3539860006714025863",
+					"target": "-5883520866970786860"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "4e57ddd315234b9ea2a5ca8104f3a218",
+					"source": "-5883520866970786860",
+					"target": "-3539860006714025863"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "6bb3468d9ccd433db1eed8593078da34",
+					"source": "8856969927191069024",
+					"target": "-285955468724656921"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "8334742d40284b4386b2673c022e5967",
+					"source": "-285955468724656921",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "a1ba8db0390a43708d422d3a4a98dd5b",
+					"source": "8856969927191069024",
+					"target": "8911510826495591686"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "6198104d7306436f888afa3aa125d00f",
+					"source": "8911510826495591686",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "7afc24ea2b824d1982fcd30aacdbd7e2",
+					"source": "8856969927191069024",
+					"target": "3904521318079968191"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "977a5673ee004c41a4f64f93c084679d",
+					"source": "3904521318079968191",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "9118680dfdf3483f9e6246e65da5df57",
+					"source": "-5765682516104413725",
+					"target": "-5677895710241462699"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "41d59f6a22bf40a9bd8daa09d1eaca2d",
+					"source": "-5677895710241462699",
+					"target": "-5765682516104413725"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "3a090931dd414ffd9d0199cb0806f1a5",
+					"source": "8107746789682364604",
+					"target": "3392402996207632595"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "233251ab0b644d8986e2aaf80c9d20db",
+					"source": "3392402996207632595",
+					"target": "8107746789682364604"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "9fa8c6c3ca9e4f3888840e39a390ffd0",
+					"source": "-8436067897650408160",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "7d9c0a98268547169a47441f4a78e42e",
+					"source": "5928351682190484486",
+					"target": "-8436067897650408160"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "8b7bab9adc0342819d68eea33af818c2",
+					"source": "8856969927191069024",
+					"target": "5948716646396892909"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "0ab50f63d15742258541997a78482fca",
+					"source": "5948716646396892909",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "f214fa5e726d4972942d7112abc52fa6",
+					"source": "-6011972513637258640",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "57378e42cf924e09b9545926d0327677",
+					"source": "5928351682190484486",
+					"target": "-6011972513637258640"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "7fbef07b6323455b9f14267b92372a10",
+					"source": "8856969927191069024",
+					"target": "8107746789682364604"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "38cc89bb809c4cd5a78de93ca22e629c",
+					"source": "8107746789682364604",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "a1221872f9204d35aaeb491037d286b8",
+					"source": "7521944470925561501",
+					"target": "-3539860006714025863"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "86193a4d10284a1792c44b270fa87fc2",
+					"source": "-3539860006714025863",
+					"target": "7521944470925561501"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "db7e110bf09041c58c019b3a6f125802",
+					"source": "8856969927191069024",
+					"target": "-2812061079779954521"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "045ae73ba0944cba9b1f8f3d39c7862e",
+					"source": "-2812061079779954521",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "dd61b3aca8ab4ad2bbb330752e3981ac",
+					"source": "-4987943695583726221",
+					"target": "7384162154335309071"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "80115333f9d544f5927258ba1b15fb7e",
+					"source": "7384162154335309071",
+					"target": "-4987943695583726221"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "aecdb3e6f4364b9385573bdd07509aa4",
+					"source": "8856969927191069024",
+					"target": "201106401601004786"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "060bda85a76e4368b3629802c14c6b51",
+					"source": "201106401601004786",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "6b767628bab94c8cb9f1ffcad2b25b38",
+					"source": "-285955468724656921",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "e6c95041b6534ca599d19e310e20a35e",
+					"source": "5928351682190484486",
+					"target": "-285955468724656921"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "910751530b404525abb90f06c8b54d6d",
+					"source": "7395037512680300059",
+					"target": "-6011972513637258640"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "adc82677c9e74d50bce776fd6ea2e156",
+					"source": "-6011972513637258640",
+					"target": "7395037512680300059"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "b9e59321c0cb41ccafe5a54eaf40a349",
+					"source": "-433318288227876207",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "92966b756197449bb9d11a033e794948",
+					"source": "8856969927191069024",
+					"target": "-433318288227876207"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "e1dc2896cd8545bc814455813a43aad1",
+					"source": "3632004753128310176",
+					"target": "-4059714480775068081"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "9c022fac0e7a4268a5c5286753408375",
+					"source": "-4059714480775068081",
+					"target": "3632004753128310176"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "f4db6f2f905446c89bfae16f63efefca",
+					"source": "-1449913147545709061",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "cad0d78aa1524cc8a659c5915843e94c",
+					"source": "5928351682190484486",
+					"target": "-1449913147545709061"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "e02d9af51e7a4b4095a373b03b333d94",
+					"source": "7384162154335309071",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "288d0b974c9d443a98fc1be767d909d8",
+					"source": "5928351682190484486",
+					"target": "7384162154335309071"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "9925d2b35f0e474c868a8ed4533100ed",
+					"source": "8856969927191069024",
+					"target": "-8260850921819347632"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "7b108c77701d42719088f7007ce5cc99",
+					"source": "-8260850921819347632",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "cb9c3e9c63954181a416ad0ad1703d13",
+					"source": "-2812061079779954521",
+					"target": "4373177153618632004"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "c88bc9fee1cd41869bccacdd494c4d23",
+					"source": "4373177153618632004",
+					"target": "-2812061079779954521"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "fa096f54651a4872b0b6c8e191d4fd7c",
+					"source": "-4460837214280837355",
+					"target": "6304693230784674597"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "0ebedae632854614a40f1ae79316ae3a",
+					"source": "6304693230784674597",
+					"target": "-4460837214280837355"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "af3307c6a8fe4c1e8d2e1e1dc6359525",
+					"source": "-229041673292663338",
+					"target": "-5444935360040246459"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "79197af53c9548d8bc8cd0447e12f49f",
+					"source": "-5444935360040246459",
+					"target": "-229041673292663338"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "3205ebc6b1134b4b9af7cfa98e177c2b",
+					"source": "8856969927191069024",
+					"target": "6473281227561656083"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "b7aa0ef8ccb446b39e7c50848bbc5ef7",
+					"source": "6473281227561656083",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "3b202f87327d4aa48d1891db9ac8fe8e",
+					"source": "8856969927191069024",
+					"target": "-3645086054723091900"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "f20aa6a8423f4dfeb6790adf21ab0c85",
+					"source": "-3645086054723091900",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "e0b285b2ea304b2f9f70a4eb5ec3b590",
+					"source": "3904521318079968191",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "7184b189901341f68bc001cf7457f12e",
+					"source": "5928351682190484486",
+					"target": "3904521318079968191"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "071a0cc1d6a34d4b9ac4cb011450df8b",
+					"source": "3572453466145241035",
+					"target": "-4987943695583726221"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "6810dad9aae74cc7b72b4eae07d0fcd4",
+					"source": "-4987943695583726221",
+					"target": "3572453466145241035"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "92288b9fbae24673961bcdebd9f4b199",
+					"source": "-6975822431340949271",
+					"target": "6028604338184808369"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "06cf328531c349638c85d2724f5a09af",
+					"source": "6028604338184808369",
+					"target": "-6975822431340949271"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "8e16a4bbd13c4315ac3a286d6bc8b97b",
+					"source": "8856969927191069024",
+					"target": "-1449913147545709061"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "f4bf22f70c0f41d980af1ffed2cff209",
+					"source": "-1449913147545709061",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "0fba99a291374f449f6272eededf7d7e",
+					"source": "6473281227561656083",
+					"target": "4558156854071709575"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "4e5733c97e394f688aaa216a07f6c910",
+					"source": "4558156854071709575",
+					"target": "6473281227561656083"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "4e184a3305d442398313ccf45449285a",
+					"source": "4373177153618632004",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "98d90a424e9940e0b5f524df234dde8c",
+					"source": "5928351682190484486",
+					"target": "4373177153618632004"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "1af81e6c4b044a8d97d327a84fffcf31",
+					"source": "4968580205051162743",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "5e2d24f252604d03b547337687a3326b",
+					"source": "5928351682190484486",
+					"target": "4968580205051162743"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "1ac8c61c11544f62ba471b621ef1e04c",
+					"source": "8856969927191069024",
+					"target": "3632004753128310176"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "0ff668bfcdae4806912c514295598dda",
+					"source": "3632004753128310176",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "2aaa21a65da546b184a42148860f3cd3",
+					"source": "-1778244285446240104",
+					"target": "-71725522744298304"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "0bab80238e5541c59cfc958f5c868a77",
+					"source": "-71725522744298304",
+					"target": "-1778244285446240104"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "00742765668e4f69a16aa56313e4d472",
+					"source": "8856969927191069024",
+					"target": "-4460837214280837355"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "b2d7d09dd4634d3b98560f7b86dd01eb",
+					"source": "-4460837214280837355",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "503a7cc7932f42c28793073dcd5fe5bd",
+					"source": "8911510826495591686",
+					"target": "-6931484698298104202"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "1c6ba24935ee43658c3bc97541723ba1",
+					"source": "-6931484698298104202",
+					"target": "8911510826495591686"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "0d31f11c4f164e1ba75efad8cd448942",
+					"source": "-8661862337718813106",
+					"target": "4968580205051162743"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "03b55ff120d14a5885e62706469aba33",
+					"source": "4968580205051162743",
+					"target": "-8661862337718813106"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "ba9c2664f3cd46819f132afb1fb14c81",
+					"source": "-8812587409097306647",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "f8ef737e3c464c1586bcb5b269b4ab94",
+					"source": "5928351682190484486",
+					"target": "-8812587409097306647"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "f58409709dd64aea8ca8326c804184e9",
+					"source": "8856969927191069024",
+					"target": "-6975822431340949271"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "cfcf7f5dae6c41178447fff7b5be554a",
+					"source": "-6975822431340949271",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "d74f39df5ffb405dbff0ca01400db99d",
+					"source": "8856969927191069024",
+					"target": "-6491706101916135683"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "ca14b82405c14d73bd4609775b2581d6",
+					"source": "-6491706101916135683",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "f73084c10c4d4bca91e02dfecf252509",
+					"source": "-4401752577341460808",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "d91b3326d6224d9cb672ff5c42d7f323",
+					"source": "5928351682190484486",
+					"target": "-4401752577341460808"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "a06af93c409e43818b3f5c530537ec4b",
+					"source": "5948716646396892909",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "7d251304743f4591822a148fc9bc4c4c",
+					"source": "5928351682190484486",
+					"target": "5948716646396892909"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "19fb286dac2549e68260c327610f6c2b",
+					"source": "-5883520866970786860",
+					"target": "-8812587409097306647"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "9dd6e09cc2a74827985006906885920d",
+					"source": "-8812587409097306647",
+					"target": "-5883520866970786860"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "7946fab5797e4198a9c103bba808ad02",
+					"source": "8856969927191069024",
+					"target": "-229041673292663338"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "cdc35e36896647ebb0e5c49f676f95ff",
+					"source": "-229041673292663338",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "36e1713042384738a51cad9810f26923",
+					"source": "6028604338184808369",
+					"target": "5928351682190484486"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "ae6c0e8b003e41cab3cf7880e8c79860",
+					"source": "5928351682190484486",
+					"target": "6028604338184808369"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "e29e21be14d6411d90dd11d9bf8d99a1",
+					"source": "8856969927191069024",
+					"target": "-5765682516104413725"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "2b4ca3b3a7f148feab23b5d703d4688c",
+					"source": "-5765682516104413725",
+					"target": "8856969927191069024"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "f65287eee19e44e899d504a6c73e5e11",
+					"source": "-229041673292663338",
+					"target": "3572453466145241035"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "7b2f1ef22ad140fa8cce23da6e33e299",
+					"source": "3572453466145241035",
+					"target": "-229041673292663338"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "0d396f81f26f4c8a81a409624a85aacb",
+					"source": "-6491706101916135683",
+					"target": "-7602239276937390325"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "1e26ea00556b48bc8d84211ede9fed8c",
+					"source": "-7602239276937390325",
+					"target": "-6491706101916135683"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "5b16d4604eb24c24904a933ed2684115",
+					"source": "-4460837214280837355",
+					"target": "-1778244285446240104"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "e24006285a4042cf91a3b058ea954075",
+					"source": "-1778244285446240104",
+					"target": "-4460837214280837355"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "72a3ded8cbae4568992cdb79b9f0f47f",
+					"source": "8856969927191069024",
+					"target": "-4401752577341460808"
+				},
+				{
+					"shape": "edgeStyle",
+					"id": "91b9574eeca1419d9df176f361e9888b",
+					"source": "-4401752577341460808",
+					"target": "8856969927191069024"
+				},
+				{ "shape": "edgeStyle", "id": "792a242310ca48b8899b9b0f94590641", "source": "", "target": "" },
+				{ "shape": "edgeStyle", "id": "bfd0162faa2b42ee9b515f1e98bbace0", "source": "", "target": "" }
+			]
+		},
+		"stream": [
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmId": "15841148444082177",
+				"alarmSource": "test_oc",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15841148444082177alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"alarmSource": "test_oc",
+				"alarmId": "15859081237561358",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "5928351682190484486",
+				"clearFlag": "0",
+				"severity": "1",
+				"alarmDn": "15859081237561358alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"alarmId": "15841298613403650",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmSource": "test_oc",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15841298613403650alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmId": "15841424972906499",
+				"alarmSource": "test_oc",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"clearFlag": "0",
+				"severity": "1",
+				"alarmDn": "15841424972906499alarmDn"
+			},
+			{
+				"ticketNo": "GZ-20190829-00211",
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmSource": "test_oc",
+				"alarmId": "15840903777681410",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15840903777681410alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmSource": "test_oc",
+				"alarmId": "15841031845314560",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15841031845314560alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmId": "15840931683893251",
+				"alarmSource": "test_oc",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-5444935360040246459",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15840931683893251alarmDn"
+			},
+			{
+				"filterIds": "000001,100004,100005,100001,000011",
+				"alarmSource": "test_oc",
+				"eventTime": "2019-08-29 09:05:02",
+				"alarmId": "15858786395357185",
+				"alarmTitle": "重保测试-设备",
+				"networkType": "华为ASON传输",
+				"objectId": "-285955468724656921",
+				"severity": "1",
+				"clearFlag": "0",
+				"alarmDn": "15858786395357185alarmDn"
+			}
+		]
+	}
+}

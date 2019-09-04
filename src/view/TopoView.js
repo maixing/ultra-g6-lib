@@ -80,8 +80,11 @@ export default class TopoView extends React.Component {
 		if(clear){
 			this.graph.clear();
 		}
-		this.graph.changeSize(this.sourceRect.width, maxY > this.sourceRect.height ? maxY*1.05 : this.sourceRect.height);
+		// if(!this.state.fitView){
+		// 	this.graph.changeSize(this.sourceRect.width, maxY > this.sourceRect.height ? maxY*1.05 : this.sourceRect.height);
+		// }
 		this.graph.changeData(datas);
+		this.graph.fitView(20);
 	}
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
@@ -90,8 +93,7 @@ export default class TopoView extends React.Component {
 				container: this.props.el,
 				width: rect.width,
 				height: rect.height - 4,
-				render: "svg",
-				fitView: this.state.fitView,
+				fitView: true,
 				modes: {
 					addEdge: ["addEdge", "drag-node"],
 					addNode: ["addNode", "drag-node"],
@@ -115,7 +117,6 @@ export default class TopoView extends React.Component {
 			this.graph.setMode(this.state.model);
 			this.setData(this.state.datas);
 			this.graph.render();
-			this.graph.setAutoPaint(true);
 		}
 	}
 	componentWillUnmount = () => {
