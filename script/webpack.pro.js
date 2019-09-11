@@ -2,7 +2,7 @@ const path = require("path");
 const baseWebpack = require("./webpack.base");
 const merge = require("webpack-merge");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 function resolve(url) {
@@ -89,9 +89,9 @@ const pro = {
 	],
 	optimization: {
 		minimizer: [
-			new UglifyJsPlugin({
+			new TerserPlugin({
 				parallel: 10,
-				uglifyOptions: {
+				terserOptions: {
 					ie8: true,
 					warnings: true,
 					output: {
