@@ -5,9 +5,9 @@
  */
 import BaseUtil from "@/util/BaseUtil";
 import G6 from "@antv/g6";
-import modelConsts from "@/consts/ModelConsts";
+import modelConsts from "@/appconsts/ModelConsts";
 import { addAppEventListener } from "@/util/EventBusUtil";
-import toolBarConsts from "@/consts/ToolBarConsts";
+import toolBarConsts from "@/appconsts/ToolBarConsts";
 
 class GraphEventUtil extends BaseUtil {
 	constructor() {
@@ -63,24 +63,24 @@ class GraphEventUtil extends BaseUtil {
 					}
 				}
 			} else {
-				this.clearSelect();
+				this.clearSelect(model);
 				this.preSelectNode = ev.item;
 			}
 			this.graph.updateItem(ev.item, model);
 		});
 		this.graph.on("node:mouseover", ev => {
 			//经过锚点处理
-			this.changeAnchor(ev, true);
+			// this.changeAnchor(ev, true);
 		});
 		this.graph.on("node:mouseout", ev => {
 			//移除锚点处理
-			this.changeAnchor(ev, false);
+			// this.changeAnchor(ev, false);
 		});
 	};
 	initEdgeEvent = () => {
 		this.graph.on("edge:click", ev => {
 			const model = ev.item.getModel();
-			model.selected = !model.selected;
+			model.selected = model.selected?0:1;
 			const edge = ev.item;
 			this.clearSelect();
 			if (this.preSelectEdge != edge) {
@@ -193,10 +193,10 @@ class GraphEventUtil extends BaseUtil {
 			);
 		}
 	};
-	clearSelect = () => {
+	clearSelect = (nodeModel) => {
 		if (this.preSelectNode) {
 			const preModel = this.preSelectNode.getModel();
-			preModel.selected = false;
+			preModel.selected = preModel.id==nodeModel.id?true:false;
 			this.graph.updateItem(this.preSelectNode, preModel);
 			this.preSelectNode = null;
 		}

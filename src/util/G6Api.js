@@ -9,6 +9,7 @@ class G6Api extends BaseUtil {
 	constructor() {
 		super();
 	}
+	cacheMap = new Map();
 	/*-----------------全局api------------------*/
 	/**
 	 * @description 添加单条告警
@@ -18,6 +19,13 @@ class G6Api extends BaseUtil {
 	};
 	getLines = () => {
 		//获取所有连线
+		const edges = this.graph.getEdges();
+		let result = [];
+		edges.forEach(element => {
+			const model = element.getModel();
+			result.push(model);
+		});
+		return result;
 	};
 	updateDatas = data => {
 		//更新数据
@@ -27,6 +35,13 @@ class G6Api extends BaseUtil {
 	};
 	getAllData = () => {
 		//获取所有数据
+		const nodes = this.graph.getNodes();
+		let result = [];
+		nodes.forEach(element => {
+			const model = element.getModel();
+			result.push(model);
+		});
+		return result;
 	};
 	/*-----------------告警api------------------*/
 	/**
@@ -43,7 +58,8 @@ class G6Api extends BaseUtil {
 			model.alarm = level.toString();
 			console.log('addAlarm---->>%o',model);
 			this.graph.updateItem(item, model);
-			// this.graph.refreshItem(item);
+		}else{
+			this.cacheMap.set(id,level);
 		}
 	};
 	/**

@@ -7,6 +7,7 @@
 		"children": [
 			{
 				"imageName": "bbgroup",
+				"collapsed":true,
 				"children": [
 					{
 						"imageName": "bbnode",
@@ -43,6 +44,7 @@
 			},
 			{
 				"imageName": "bbgroup",
+				"collapsed":true,
 				"children": [
 					{
 						"imageName": "bbnode",
@@ -71,6 +73,13 @@
 						"name": "hw保利花园-密云果园营业厅",
 						"alarm": "0",
 						"id": "-5794925329909818823,2568727395715795459"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw昌平科技园新-老万炉业",
+						"alarm": "0",
+						"id": "-3490648141477986060,-5639496442190224982"
 					},
 					{
 						"imageName": "bbnode",
@@ -107,6 +116,7 @@
 			},
 			{
 				"imageName": "bbgroup",
+				"collapsed":true,
 				"children": [
 					{
 						"imageName": "bbnode",
@@ -199,6 +209,7 @@
 			},
 			{
 				"imageName": "bbgroup",
+				"collapsed":true,
 				"children": [
 					{
 						"imageName": "bbnode",
@@ -264,6 +275,7 @@
 			},
 			{
 				"imageName": "bbgroup",
+				"collapsed":true,
 				"children": [
 					{
 						"imageName": "bbnode",

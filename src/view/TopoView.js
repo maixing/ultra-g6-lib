@@ -11,7 +11,7 @@ import RegisterUtil from "@/util/RegisterUtil";
 import GraphEventUtil from "@/util/GraphEventUtil";
 import ToolbarUtil from "@/util/ToolbarUtil";
 import G6Api from "@/util/G6Api";
-import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/consts/EventConsts";
+import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/appconsts/EventConsts";
 import ToolbarView from "./ToolbarView";
 require("@/view/style.less");
 
@@ -24,6 +24,7 @@ export default class TopoView extends React.Component {
 		this.toolbarUtil = new ToolbarUtil();
 		this.g6Api = new G6Api();
 		this.resizeTimer = 0;
+		this.ctrlKey = false;
 		this.sourceRect = {
 			width: 0,
 			height: 0,
@@ -42,8 +43,11 @@ export default class TopoView extends React.Component {
 		model: "drag",
 		nodeMenu: [],
 		edgeMenu: [],
+		multiSelectFilter: [],
 		showToolBar: true,
 		fitView: true,
+		moveCenter:false,
+		userLayout:false,
 		fitGap: 100
 	};
 	static propTypes = {
@@ -52,6 +56,7 @@ export default class TopoView extends React.Component {
 	};
 	destroy = () => {
 		if (this.graph) {
+			this.graph.stopAnimate();
 			this.graph.destroy();
 		}
 	};
@@ -64,12 +69,13 @@ export default class TopoView extends React.Component {
 		});
 		if (this.props.datas != nextProps.datas) {
 			if (this.graph) {
-				this.setData(nextProps.datas,true);
+				this.setData(nextProps.datas, true);
 			}
 		}
 		return change;
 	};
-	setData = (datas,clear=false)=>{
+	setData = (datas, clear = false) => {
+		const rect = this.topoWrap.getBoundingClientRect();
 		let maxY = 0;
 		datas.nodes.forEach(item => {
 			const y = parseInt(item.y);
@@ -77,36 +83,160 @@ export default class TopoView extends React.Component {
 				maxY = y;
 			}
 		});
-		if(clear){
+		if (clear) {
 			this.graph.clear();
 		}
-		// if(!this.state.fitView){
-		// 	this.graph.changeSize(this.sourceRect.width, maxY > this.sourceRect.height ? maxY*1.05 : this.sourceRect.height);
-		// }
+		if(this.state.userLayout){
+			let num = datas.nodes.length;
+			const cGap = 100;
+			const rGap = 100;
+			let rNum = rect.width/(num+1);
+			datas.nodes.forEach((node,index)=>{
+				node.x = rNum*(index+1);
+				node.y = rect.height/3;
+			});
+		}
+		if (!this.state.fitView) {
+			this.graph.changeSize(
+				this.sourceRect.width,
+				maxY > this.sourceRect.height ? maxY * 1.05 : this.sourceRect.height
+			);
+		}
 		this.graph.changeData(datas);
-		this.graph.fitView(this.state.fitGap);
-	}
+		if(this.state.fitView){
+			this.graph.fitView(this.state.fitGap);
+		}
+	};
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
 		if (rect) {
 			this.graph = new G6.Graph({
 				container: this.props.el,
 				width: rect.width,
+				renderer:'canvas',
 				height: rect.height - 4,
-				fitView: true,
+				fitView: this.state.fitView,
+				pixeRatio:100,
 				modes: {
-					addEdge: ["addEdge", "drag-node"],
-					addNode: ["addNode", "drag-node"],
-					edite: ["drag-node", "addEdge", "addNode"],
-					show: ["drag-canvas", "zoom-canvas"],
-					multiselect: ["drag-node"],
-					select: ["drag-node"],
-					drag: ["drag-canvas"]
+					default: [
+						"drag-canvas",
+						"zoom-canvas",
+						"click-select",
+						{
+							type: "tooltip",
+							formatText(model) {
+								return model.label;
+							},
+							shouldUpdate: e => {
+								return true;
+							}
+						}
+					],
+					addEdge: [
+						"addEdge",
+						"drag-node",
+						{
+							type: "tooltip",
+							formatText(model) {
+								return model.label;
+							},
+							shouldUpdate: e => {
+								return true;
+							}
+						}
+					],
+					addNode: [
+						"addNode",
+						"drag-node",
+						{
+							type: "tooltip",
+							formatText(model) {
+								return model.label;
+							},
+							shouldUpdate: e => {
+								return true;
+							}
+						}
+					],
+					edite: [
+						"drag-node",
+						"addEdge",
+						"addNode",
+						{
+							type: "tooltip",
+							formatText(model) {
+								return model.label;
+							},
+							shouldUpdate: e => {
+								return true;
+							}
+						}
+					],
+					show: [
+						"drag-canvas",
+						"zoom-canvas",
+						{
+							type: "tooltip",
+							formatText(model) {
+								return model.label;
+							},
+							shouldUpdate: e => {
+								return true;
+							}
+						}
+					],
+					multiselect: [
+						"drag-node",
+						"drag-canvas",
+						'click-select',
+						"zoom-canvas",
+						{
+							type: "tooltip",
+							formatText(model) {
+								return model.label;
+							},
+							shouldUpdate: e => {
+								if (e.target.type !== "text") {
+									return false;
+								}
+								if(this.ctrlKey){
+									return true;
+								}else{
+									return false;
+								}
+								return true;
+							}
+						}
+					],
+					select: [
+						"drag-node",
+						{
+							type: "tooltip",
+							formatText(model) {
+								return model.label;
+							},
+							shouldUpdate: e => {
+								return true;
+							}
+						}
+					],
+					drag: [
+						"drag-canvas",
+						{
+							type: "tooltip",
+							formatText(model) {
+								return model.label;
+							},
+							shouldUpdate: e => {
+								return true;
+							}
+						}
+					]
 				}
 			});
 			this.sourceRect = {
-				width:rect.width,
-				height:rect.height,
+				width: rect.width,
+				height: rect.height,
 				datas: this.state.datas
 			};
 			this.initUtil();
@@ -117,6 +247,12 @@ export default class TopoView extends React.Component {
 			this.graph.setMode(this.state.model);
 			this.setData(this.state.datas);
 			this.graph.render();
+		}
+		document.onkeydown = (evt)=>{
+			this.ctrlKey = evt.ctrlKey;
+		}
+		document.onkeyup = (evt)=>{
+			this.ctrlKey = evt.ctrlKey;
 		}
 	}
 	componentWillUnmount = () => {

@@ -4,7 +4,7 @@
  * 节点、连线样式注册
  */
 import G6 from "@antv/g6";
-import modelConsts from "@/consts/ModelConsts";
+import modelConsts from "@/appconsts/ModelConsts";
 import BaseUtil from "@/util/BaseUtil";
 
 const anchorPoints = [[0, 0], [0.5, 0], [1, 0], [0, 0.5], [1, 0.5], [0, 1], [0.5, 1], [1, 1]];
@@ -14,6 +14,7 @@ class RegisterUtil extends BaseUtil {
 		super();
 		this.selectGap = 5;
 	}
+	g6Api = null;
 	init(graph) {
 		super.init(graph);
 		this.registerNode();
@@ -26,6 +27,8 @@ class RegisterUtil extends BaseUtil {
 	}
 	baseUrl = "./demo/assets/";
 	imageType = "png";
+	multiSelectFilter = [];
+	collapsed = false;
 	registerEdge = () => {
 		G6.registerEdge("edgeStyle", {
 			draw: (cfg, group) => {
@@ -49,28 +52,31 @@ class RegisterUtil extends BaseUtil {
 				});
 				return shape;
 			},
-			afterDraw(cfg, group) {
-				const shape = group.get('children')[0];
-				const startPoint = shape.getPoint(0);
-				const circle = group.addShape('circle', {
-					attrs: {
-						x: startPoint.x,
-						y: startPoint.y,
-						fill: '#fff',
-						r: 3
-					}
-				});
-				circle.animate({
-					onFrame(ratio) {
-						const tmpPoint = shape.getPoint(ratio);
-						return {
-							x: tmpPoint.x,
-							y: tmpPoint.y
-						};
-	
-					},
-					repeat: true
-				}, 3000);
+			afterDraw:(cfg, group)=>{
+				const model = this.graph.getCurrentMode();
+				if(modelConsts.MODEL_MULTI_SELECT != model ){
+					const shape = group.get('children')[0];
+					const startPoint = shape.getPoint(0);
+					const circle = group.addShape('circle', {
+						attrs: {
+							x: startPoint.x,
+							y: startPoint.y,
+							fill: '#fff',
+							r: 3
+						}
+					});
+					circle.animate({
+						onFrame(ratio) {
+							const tmpPoint = shape.getPoint(ratio);
+							return {
+								x: tmpPoint.x,
+								y: tmpPoint.y
+							};
+		
+						},
+						repeat: true
+					}, 3000);
+				}
 			}
 		});
 	};
@@ -153,8 +159,6 @@ class RegisterUtil extends BaseUtil {
 			draw: (cfg, group) => {
 				const w = parseFloat(cfg.w);
 				const h = parseFloat(cfg.h);
-				let aw = w * 1;
-				let ah = h * 1;
 				const model = this.graph.getCurrentMode();
 				if (cfg.selected) {
 					if (modelConsts.MODEL_MULTI_SELECT == model) {
@@ -162,13 +166,13 @@ class RegisterUtil extends BaseUtil {
 							attrs: {
 								x: w / 2,
 								y: -h / 1.2,
-								width: 16,
-								height: 16,
+								width: 48,
+								height: 48,
 								img: this.baseUrl + "ck.svg",
 								cursor: "pointer"
 							}
 						});
-					} else {
+					} else if(modelConsts.MODEL_SELECT == model || modelConsts.MODEL_SHOW == model){
 						group.addShape("rect", {
 							attrs: {
 								x: -w / 2 - this.selectGap,
@@ -185,8 +189,8 @@ class RegisterUtil extends BaseUtil {
 							attrs: {
 								x: w / 2,
 								y: -h / 1.2,
-								width: 16,
-								height: 16,
+								width: 48,
+								height: 48,
 								img: this.baseUrl + "uck.svg"
 							}
 						});
@@ -211,7 +215,7 @@ class RegisterUtil extends BaseUtil {
 				group.addShape("text", {
 					attrs: {
 						x: 0,
-						y: h*0.7,
+						y: h*1.1,
 						textAlign: "center",
 						text: cfg.label,
 						fontSize:14,
@@ -257,8 +261,12 @@ class RegisterUtil extends BaseUtil {
 	registerTreeNode = ()=>{
 		G6.registerNode("treenodeStyle", {
 			afterDraw:(cfg, group)=>{
-				if (parseInt(cfg.alarm) > 0) {
-					const w = parseFloat(cfg.w) * 1.2;
+				let alarm = cfg.alarm;
+				if(this.g6Api && this.g6Api.cacheMap.has(cfg.id)){
+					alarm = this.g6Api.cacheMap.get(cfg.id);
+				}
+				if (parseInt(alarm) > 0) {
+					const w = parseFloat(cfg.w||30) * 1.2;
 					const r = w / 2;
 					const radio = 1.5;
 					const back1 = group.addShape("circle", {
@@ -331,10 +339,8 @@ class RegisterUtil extends BaseUtil {
 				}
 			},
 			draw: (cfg, group) => {
-				console.log('cfg---->>%o',cfg);
-				const w = parseFloat(cfg.w);
-				const h = parseFloat(cfg.h);
-				const model = this.graph.getCurrentMode();
+				const w = parseFloat(cfg.w||30);
+				const h = parseFloat(cfg.h||30);
 				const image = group.addShape("image", {
 					attrs: {
 						x: -w / 2,
@@ -345,14 +351,22 @@ class RegisterUtil extends BaseUtil {
 						img: this.baseUrl + cfg.imageName+"."+this.imageType
 					}
 				});
+				let levelFont = ["",40,35,25];
+				let levelFont1 = ["",70,60,50];
+				let f = this.collapsed?levelFont1:levelFont;
+				console.log('cfg.index?levelFont[cfg.index]:12---->>%o,%o,%o',cfg,f,this.collapsed);
+				let fontsize = cfg.index?levelFont[cfg.index]:12;
+				if(!fontsize){
+					fontsize = f[3];
+				}
 				group.addShape("text", {
 					attrs: {
 						x: 0,
-						y: cfg.index==1?h*0.8:h*0.8,
+						y: h,
 						textAlign: "center",
 						text: cfg.label,
 						fill: "#00FFFF",
-						fontSize: cfg.index?14+2*(4-cfg.index):12
+						fontSize: fontsize
 					}
 				});
 				return image;

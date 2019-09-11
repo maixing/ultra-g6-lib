@@ -6,7 +6,7 @@
 import TopoView from "@/view/TopoView";
 import TreeTopoView from "@/view/TreeTopoView";
 import EventBus from "@/util/EventBusUtil";
-import EventConsts from "@/consts/EventConsts";
+import EventConsts from "@/appconsts/EventConsts";
 
 const g6lib = {
     version:"1.0",

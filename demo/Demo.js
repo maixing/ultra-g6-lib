@@ -32,7 +32,8 @@ export default class Demo extends React.Component {
 		return (
 			<TopoLib.TopoView
 				datas={this.state.datas}
-				showToolBar={true}
+				showToolBar={false}
+				model={'multiselect'}
 				ref={component => {
 					this.topo = component;
 				}}

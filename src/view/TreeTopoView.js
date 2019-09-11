@@ -6,7 +6,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import G6 from "@antv/g6";
-import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/consts/EventConsts";
+import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/appconsts/EventConsts";
 import G6Api from "@/util/G6Api";
 import RegisterUtil from "@/util/RegisterUtil";
 require("@/view/style.less");
@@ -17,6 +17,7 @@ export default class TreeTopoView extends React.Component {
 		this.graph = null;
 		this.g6Api = new G6Api();
 		this.registerUtil = new RegisterUtil();
+		this.preZoom = 1;
 		this.sourceRect = {
 			width: 0,
 			height: 0,
@@ -48,14 +49,18 @@ export default class TreeTopoView extends React.Component {
 	};
 	destroy = () => {
 		if (this.graph) {
+			this.g6Api.cacheMap.clear();
+			this.graph.stopAnimate();
 			this.graph.destroy();
 		}
 	};
-	clear = ()=>{
+	clear = () => {
 		if (this.graph) {
+			this.g6Api.cacheMap.clear();
+			this.graph.stopAnimate();
 			this.graph.clear();
 		}
-	}
+	};
 	shouldComponentUpdate = (nextProps, nextState) => {
 		let change = false;
 		Object.keys(nextProps).forEach(key => {
@@ -90,7 +95,36 @@ export default class TreeTopoView extends React.Component {
 				height: rect.height - 4,
 				pixelRatio: 2,
 				modes: {
-					default: ["drag-canvas", "zoom-canvas","collapse-expand"]
+					default: [
+						"drag-canvas",
+						"zoom-canvas",
+						{
+							type: "collapse-expand", // 定义收缩/展开行为
+							onChange:(item, collapsed)=>{
+								if(!collapsed){
+									this.preZoom = this.graph.getZoom();
+								}
+								this.graph.refreshLayout(true);
+								this.graph.paint();
+								if(collapsed){
+									const w = this.graph.get('width');
+									const h = this.graph.get('height');
+									this.graph.zoomTo(this.preZoom,{ x: w/2, y: h/2+h*0.01});
+								}
+								this.registerUtil.collapsed = collapsed;
+								return collapsed;
+							}
+						},
+						{
+							type: "tooltip",
+							formatText(model) {
+								return model.label;
+							},
+							shouldUpdate: e => {
+								return true;
+							}
+						}
+					]
 				},
 				fitView: true,
 				animate: true,
@@ -109,13 +143,15 @@ export default class TreeTopoView extends React.Component {
 			// 	});
 			// }
 			this.registerUtil.baseUrl = this.state.baseUrl;
+			this.g6Api.init(this.graph);
 			this.registerUtil.initTreeGraph(this.graph);
+			this.registerUtil.g6Api = this.g6Api;
 			this.graph.node(node => {
 				return {
 					shape: "treenodeStyle",
 					label: node.name,
 					size: [node.w, node.h],
-					id:node.id,
+					id: node.id,
 					img: this.state.baseUrl + node.imageName + "." + this.state.imageType,
 					style: {
 						cursor: "pointer"
@@ -135,11 +171,10 @@ export default class TreeTopoView extends React.Component {
 				return {
 					color: "#fcfdfd",
 					label: "",
-					shape:"edgeStyle"
+					shape: "edgeStyle"
 				};
 			});
 			this.initEvent();
-			this.g6Api.init(this.graph);
 			this.graph.data(data);
 			this.graph.render();
 		}
