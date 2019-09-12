@@ -84,7 +84,7 @@ class RegisterUtil extends BaseUtil {
 		G6.registerNode("nodeStyle", {
 			afterDraw(cfg, group) {
 				if (parseInt(cfg.alarm) > 0) {
-					const w = parseFloat(cfg.w) * 1.2;
+					const w = parseFloat(cfg.w||60) * 1.2;
 					const r = w / 2;
 					const radio = 1.5;
 					const back1 = group.addShape("circle", {
@@ -157,8 +157,8 @@ class RegisterUtil extends BaseUtil {
 				}
 			},
 			draw: (cfg, group) => {
-				const w = parseFloat(cfg.w);
-				const h = parseFloat(cfg.h);
+				const w = parseFloat(cfg.w||60);
+				const h = parseFloat(cfg.w||60);
 				const model = this.graph.getCurrentMode();
 				if (cfg.selected) {
 					if (modelConsts.MODEL_MULTI_SELECT == model) {

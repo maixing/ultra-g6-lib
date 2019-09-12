@@ -80,9 +80,9 @@ class GraphEventUtil extends BaseUtil {
 	initEdgeEvent = () => {
 		this.graph.on("edge:click", ev => {
 			const model = ev.item.getModel();
-			model.selected = model.selected?0:1;
+			model.selected = model.selected ? 0 : 1;
 			const edge = ev.item;
-			this.clearSelect();
+			this.clearSelect(model);
 			if (this.preSelectEdge != edge) {
 				this.graph.updateItem(edge, model);
 				this.preSelectEdge = edge;
@@ -93,7 +93,7 @@ class GraphEventUtil extends BaseUtil {
 	};
 	initGlobalEvent = () => {
 		this.graph.on("canvas:click", ev => {
-			this.clearSelect();
+			this.clearSelect(null);
 		});
 	};
 	initBehavior = () => {
@@ -193,10 +193,14 @@ class GraphEventUtil extends BaseUtil {
 			);
 		}
 	};
-	clearSelect = (nodeModel) => {
+	clearSelect = nodeModel => {
 		if (this.preSelectNode) {
 			const preModel = this.preSelectNode.getModel();
-			preModel.selected = preModel.id==nodeModel.id?true:false;
+			if (nodeModel && nodeModel.hasOwnProperty("id")) {
+				preModel.selected = preModel.id == nodeModel.id ? true : false;
+			}else{
+				preModel.selected = false;
+			}
 			this.graph.updateItem(this.preSelectNode, preModel);
 			this.preSelectNode = null;
 		}

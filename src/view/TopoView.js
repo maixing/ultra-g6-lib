@@ -92,8 +92,9 @@ export default class TopoView extends React.Component {
 			const rGap = 100;
 			let rNum = rect.width/(num+1);
 			datas.nodes.forEach((node,index)=>{
+				let odd = index%2==0?100:0;
 				node.x = rNum*(index+1);
-				node.y = rect.height/3;
+				node.y = rect.height/3+odd;
 			});
 		}
 		if (!this.state.fitView) {
