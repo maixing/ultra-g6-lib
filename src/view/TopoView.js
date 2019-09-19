@@ -169,6 +169,9 @@ export default class TopoView extends React.Component {
 								return model.label;
 							},
 							shouldUpdate: e => {
+								if (e.target.type !== 'text') {
+									return false;
+								}
 								return true;
 							}
 						}
@@ -182,6 +185,9 @@ export default class TopoView extends React.Component {
 								return model.label;
 							},
 							shouldUpdate: e => {
+								if (e.target.type !== 'text') {
+									return false;
+								}
 								return true;
 							}
 						}
@@ -205,7 +211,6 @@ export default class TopoView extends React.Component {
 								}else{
 									return false;
 								}
-								return true;
 							}
 						}
 					],
@@ -229,6 +234,9 @@ export default class TopoView extends React.Component {
 								return model.label;
 							},
 							shouldUpdate: e => {
+								if (e.target.type !== 'text') {
+									return false;
+								}
 								return true;
 							}
 						}

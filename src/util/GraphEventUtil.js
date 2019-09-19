@@ -18,6 +18,8 @@ class GraphEventUtil extends BaseUtil {
 	preSelectEdge = null;
 	edge = null;
 	addingEdge = false;
+	canvasClickTime = 0;
+	nodeClickTime = 0;
 	init(graph) {
 		super.init(graph);
 		if (this.graph) {
@@ -47,6 +49,9 @@ class GraphEventUtil extends BaseUtil {
 		this.graph.on("node:click", ev => {
 			const model = ev.item.getModel();
 			model.selected = !model.selected;
+			if (model.hasOwnProperty("search")) {
+				model.search = 0;
+			}
 			const currentModel = this.graph.getCurrentMode();
 			if (modelConsts.MODEL_MULTI_SELECT == currentModel) {
 				if (model.selected) {
@@ -94,6 +99,15 @@ class GraphEventUtil extends BaseUtil {
 	initGlobalEvent = () => {
 		this.graph.on("canvas:click", ev => {
 			this.clearSelect(null);
+			const nodes = this.graph.getNodes();
+			let result = [];
+			nodes.forEach(element => {
+				const model = element.getModel();
+				if (model.hasOwnProperty("search")) {
+					model.search = 0;
+					this.graph.updateItem(element, model);
+				}
+			});
 		});
 	};
 	initBehavior = () => {
@@ -198,7 +212,7 @@ class GraphEventUtil extends BaseUtil {
 			const preModel = this.preSelectNode.getModel();
 			if (nodeModel && nodeModel.hasOwnProperty("id")) {
 				preModel.selected = preModel.id == nodeModel.id ? true : false;
-			}else{
+			} else {
 				preModel.selected = false;
 			}
 			this.graph.updateItem(this.preSelectNode, preModel);

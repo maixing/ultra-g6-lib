@@ -39,9 +39,9 @@ export default class TreeTopoView extends React.Component {
 		nodeMenu: [],
 		edgeMenu: [],
 		showToolBar: true,
-		nodeSep: 5,
+		nodeSep: 300,
 		rankSep: 400,
-		radial: true
+		radial: false
 	};
 	static propTypes = {
 		el: PropTypes.string.isRequired,
@@ -83,7 +83,7 @@ export default class TreeTopoView extends React.Component {
 			const layouts = {
 				dendrogram: {
 					type: "dendrogram",
-					direction: "LR", // H / V / LR / RL / TB / BT
+					direction: "TB", // H / V / LR / RL / TB / BT
 					nodeSep: this.state.nodeSep,
 					rankSep: this.state.rankSep,
 					radial: this.state.radial
@@ -98,29 +98,32 @@ export default class TreeTopoView extends React.Component {
 					default: [
 						"drag-canvas",
 						"zoom-canvas",
-						{
-							type: "collapse-expand", // 定义收缩/展开行为
-							onChange:(item, collapsed)=>{
-								if(!collapsed){
-									this.preZoom = this.graph.getZoom();
-								}
-								this.graph.refreshLayout(true);
-								this.graph.paint();
-								if(collapsed){
-									const w = this.graph.get('width');
-									const h = this.graph.get('height');
-									this.graph.zoomTo(this.preZoom,{ x: w/2, y: h/2+h*0.01});
-								}
-								this.registerUtil.collapsed = collapsed;
-								return collapsed;
-							}
-						},
+						// {
+						// 	type: "collapse-expand", // 定义收缩/展开行为
+						// 	onChange:(item, collapsed)=>{
+						// 		if(!collapsed){
+						// 			this.preZoom = this.graph.getZoom();
+						// 		}
+						// 		this.graph.refreshLayout(true);
+						// 		this.graph.paint();
+						// 		if(collapsed){
+						// 			const w = this.graph.get('width');
+						// 			const h = this.graph.get('height');
+						// 			this.graph.zoomTo(this.preZoom,{ x: w/2, y: h/2+h*0.01});
+						// 		}
+						// 		this.registerUtil.collapsed = collapsed;
+						// 		return collapsed;
+						// 	}
+						// },
 						{
 							type: "tooltip",
 							formatText(model) {
 								return model.label;
 							},
 							shouldUpdate: e => {
+								if (e.target.type !== 'text') {
+									return false;
+								}
 								return true;
 							}
 						}

@@ -196,6 +196,18 @@ class RegisterUtil extends BaseUtil {
 						});
 					}
 				}
+				if(cfg.hasOwnProperty('search') && cfg.search){
+					console.log('registerNode---->>%o',cfg);
+					group.addShape("rect", {
+						attrs: {
+							x: -w / 2 - this.selectGap,
+							y: -h / 2 - this.selectGap,
+							width: w + 2 * this.selectGap,
+							height: h + 2 * this.selectGap,
+							fill: "red"
+						}
+					});
+				}
 				if (parseInt(cfg.alarm) > 0) {
 				}
 				const image = group.addShape("image", {
@@ -351,18 +363,18 @@ class RegisterUtil extends BaseUtil {
 						img: this.baseUrl + cfg.imageName+"."+this.imageType
 					}
 				});
-				let levelFont = ["",40,35,25];
-				let levelFont1 = ["",70,60,50];
+				let levelFont = ["",40,35,30];
+				let levelFont1 = ["",40,35,30];
 				let f = this.collapsed?levelFont1:levelFont;
 				console.log('cfg.index?levelFont[cfg.index]:12---->>%o,%o,%o',cfg,f,this.collapsed);
-				let fontsize = cfg.index?levelFont[cfg.index]:12;
+				let fontsize = cfg.index?levelFont[cfg.index]:20;
 				if(!fontsize){
 					fontsize = f[3];
 				}
 				group.addShape("text", {
 					attrs: {
 						x: 0,
-						y: h,
+						y: cfg.index==3?h*1.1:h,
 						textAlign: "center",
 						text: cfg.label,
 						fill: "#00FFFF",

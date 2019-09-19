@@ -3,34 +3,71 @@
 	"msg": "成功",
 	"data": {
 		"imageName": "bb",
-		"w": 90,
-		"h": 100,
-		"index": 1,
+		"levelNum": { "level4": "0", "level1": "0", "level3": "0", "level2": "0" },
 		"children": [
 			{
 				"imageName": "bbgroup",
 				"children": [
+					{ "imageName": "bbnode", "groupId": "3", "name": "hw长安兴融", "alarm": "0", "id": "-4252887100644141172," },
 					{
-						"w": 30,
-						"h": 30,
-						"index":3,
 						"imageName": "bbnode",
-						"groupId": "1",
-						"name": "节点1",
-						"alarm": "1",
-						"id": "nodeid1"
+						"groupId": "3",
+						"name": "hw西城晶华苑",
+						"alarm": "0",
+						"id": "-7093933051019036534,197895298442590491"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw牛街危改新",
+						"alarm": "0",
+						"id": "-4728174966366253550,3577616063842605412"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "3",
+						"name": "hw国英园一号",
+						"alarm": "0",
+						"id": "8856969927191069024,5928351682190484486"
 					}
 				],
-				"name": "分组1",
-				"alarm": "1",
-				"id": "1",
-				"w": 30,
-				"h": 30,
-				"index": 2
+				"name": "西城区",
+				"alarm": "0",
+				"id": "3"
+			},
+			{
+				"imageName": "bbgroup",
+				"children": [
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw朝内危改-银河SOHO",
+						"alarm": "0",
+						"id": "-334259963492033221,1465439463081186985"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw银河SOHO-东四",
+						"alarm": "0",
+						"id": "2862486392696699329,-4416214263988184405"
+					},
+					{
+						"imageName": "bbnode",
+						"groupId": "2",
+						"name": "hw本家润园",
+						"alarm": "0",
+						"id": "-6293001105037106614,-4971884286141587438"
+					}
+				],
+				"name": "东城区",
+				"alarm": "0",
+				"id": "2"
 			}
 		],
-		"name": "hw国英园一号",
-		"alarm": "1",
-		"id": "8856969927191069024,5928351682190484486"
+		"stream": [],
+		"name": "北京",
+		"alarm": "0",
+		"id": "root"
 	}
 }

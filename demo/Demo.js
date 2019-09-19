@@ -17,7 +17,7 @@ export default class Demo extends React.Component {
 		super(props);
 	}
 	state = {
-		datas: topo1.data.data
+		datas: group.data
 	};
 
 	componentDidMount() {
@@ -28,12 +28,39 @@ export default class Demo extends React.Component {
 		// },5000);
 	}
 	render() {
-		console.log('---->>%o',this.state.datas);
+		console.log("---->>%o", this.state.datas);
+		let data = this.state.datas;
+		if (data) {
+			data.w = 90;
+			data.h = 100;
+			data.index = 1;
+			if (data.hasOwnProperty("children")) {
+				let groupChildrens = data["children"];
+				if (groupChildrens) {
+					groupChildrens.forEach(group => {
+						if (group && group.hasOwnProperty("children")) {
+							group.w = 90;
+							group.h = 90;
+							group.index = 2;
+							group.collapsed = false;
+							let nodes = group["children"];
+							if (nodes) {
+								nodes.forEach(node => {
+									node.w = 60;
+									node.h = 60;
+									node.index = 3;
+								});
+							}
+						}
+					});
+				}
+			}
+		}
 		return (
-			<TopoLib.TopoView
-				datas={this.state.datas}
+			<TopoLib.TreeTopoView
+				datas={data}
 				showToolBar={false}
-				model={'multiselect'}
+				model={"multiselect"}
 				ref={component => {
 					this.topo = component;
 				}}

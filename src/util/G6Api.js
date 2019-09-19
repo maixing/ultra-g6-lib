@@ -9,6 +9,7 @@ class G6Api extends BaseUtil {
 	constructor() {
 		super();
 	}
+	preSearch = null;
 	cacheMap = new Map();
 	/*-----------------全局api------------------*/
 	/**
@@ -21,9 +22,13 @@ class G6Api extends BaseUtil {
 		//获取所有连线
 		const edges = this.graph.getEdges();
 		let result = [];
+		console.log('getLines---->>%o',edges);
 		edges.forEach(element => {
-			const model = element.getModel();
-			result.push(model);
+			console.log('getLines element---->>%o',element);
+			if(element){
+				const model = element.getModel();
+				result.push(model);
+			}
 		});
 		return result;
 	};
@@ -133,6 +138,22 @@ class G6Api extends BaseUtil {
 			return item.getModel();
 		}
 	};
+	selectNodeById = (id)=>{
+		const item = this.graph.findById(id);
+		if(item){
+			if(this.preSearch){
+				let preModel = this.preSearch.getModel();
+				preModel.search = 0;
+				this.graph.updateItem(this.preSearch, preModel);
+			}
+			const model = item.getModel();
+			model.search = 1;
+			model.selected = 1;
+			console.log('selectNodeById---->>%o',model);
+			this.graph.updateItem(item, model);
+			this.preSearch = item;
+		}
+	}
 	/*-----------------连线api------------------*/
 	getSelectLine = () => {
 		const edges = this.graph.getEdges();
