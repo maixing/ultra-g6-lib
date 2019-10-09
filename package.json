@@ -15,7 +15,11 @@
 	"keywords": [],
 	"author": "maixing",
 	"license": "ISC",
-	"sideEffects": false,
+	"sideEffects": [
+		"**/*.css",
+		"**/*.less",
+		"**/*.svg"
+	],
 	"dependencies": {
 		"@antv/g6": "^3.0.6",
 		"D": "^1.0.0",

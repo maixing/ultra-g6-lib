@@ -9,7 +9,8 @@ import G6 from "@antv/g6";
 import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/appconsts/EventConsts";
 import G6Api from "@/util/G6Api";
 import RegisterUtil from "@/util/RegisterUtil";
-require("@/view/style.less");
+import "@/view/style.less";
+// require("@/view/style.less");
 
 export default class TreeTopoView extends React.Component {
 	constructor(props) {

@@ -13,7 +13,8 @@ import ToolbarUtil from "@/util/ToolbarUtil";
 import G6Api from "@/util/G6Api";
 import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/appconsts/EventConsts";
 import ToolbarView from "./ToolbarView";
-require("@/view/style.less");
+import "@/view/style.less";
+// require("@/view/style.less");
 
 export default class TopoView extends React.Component {
 	constructor(props) {
