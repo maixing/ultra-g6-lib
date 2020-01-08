@@ -4,6 +4,8 @@
  *
  */
 import BaseUtil from "@/util/BaseUtil";
+import CacheUtil from "@/util/CacheUtil";
+import G6 from "@antv/g6";
 
 class G6Api extends BaseUtil {
 	constructor() {
@@ -22,10 +24,10 @@ class G6Api extends BaseUtil {
 		//获取所有连线
 		const edges = this.graph.getEdges();
 		let result = [];
-		console.log('getLines---->>%o',edges);
+		console.log("getLines---->>%o", edges);
 		edges.forEach(element => {
-			console.log('getLines element---->>%o',element);
-			if(element){
+			console.log("getLines element---->>%o", element);
+			if (element) {
 				const model = element.getModel();
 				result.push(model);
 			}
@@ -56,15 +58,15 @@ class G6Api extends BaseUtil {
 	 * @param type node|edge 节点|连线
 	 */
 	addAlarm = (id, level, type) => {
-		console.log('---->>%o,%o',id,level);
+		console.log("---->>%o,%o", id, level);
 		const item = this.graph.findById(id);
 		if (item) {
 			const model = item.getModel();
 			model.alarm = level.toString();
-			console.log('addAlarm---->>%o',model);
+			console.log("addAlarm---->>%o", model);
 			this.graph.updateItem(item, model);
-		}else{
-			this.cacheMap.set(id,level);
+		} else {
+			this.cacheMap.set(id, level);
 		}
 	};
 	/**
@@ -138,10 +140,10 @@ class G6Api extends BaseUtil {
 			return item.getModel();
 		}
 	};
-	selectNodeById = (id)=>{
+	selectNodeById = id => {
 		const item = this.graph.findById(id);
-		if(item){
-			if(this.preSearch){
+		if (item) {
+			if (this.preSearch) {
 				let preModel = this.preSearch.getModel();
 				preModel.search = 0;
 				this.graph.updateItem(this.preSearch, preModel);
@@ -149,11 +151,11 @@ class G6Api extends BaseUtil {
 			const model = item.getModel();
 			model.search = 1;
 			model.selected = 1;
-			console.log('selectNodeById---->>%o',model);
+			console.log("selectNodeById---->>%o", model);
 			this.graph.updateItem(item, model);
 			this.preSearch = item;
 		}
-	}
+	};
 	/*-----------------连线api------------------*/
 	getSelectLine = () => {
 		const edges = this.graph.getEdges();
@@ -168,6 +170,98 @@ class G6Api extends BaseUtil {
 	};
 	updateLineStyle = (id, line) => {};
 	removeLineById = id => {};
+	controllPoint = showControll => {
+		//连线动态改变controlPoints属性以及界面上节点
+		if (showControll) {
+			const edges = this.graph.getEdges();
+			const addEdges = [];
+			const deleteEdges = [];
+			edges.forEach(edge => {
+				const edgeModel = edge.getModel();
+				if (edgeModel.hasOwnProperty("controlPoints") && edgeModel["controlPoints"].length > 0) {
+					const controlPoints = edgeModel["controlPoints"];
+					const sourceNode = edgeModel.source;
+					const targetNode = edgeModel.target;
+					let preNode = null;
+					let controlPointsMap = [];
+					controlPoints.forEach((point, index) => {
+						const nodeId = G6.Util.uniqueId();
+						const gdNode = {
+							w: 20,
+							h: 20,
+							shape: "nodeStyle",
+							neType: "gd",
+							label: nodeId,
+							x: point.x,
+							y: point.y,
+							id: nodeId
+						};
+						controlPointsMap.push(gdNode);
+						this.graph.addItem("node",gdNode);
+					});
+					controlPointsMap.forEach((node,index)=>{
+						const newEdge = {
+							source: preNode?preNode.id:sourceNode,
+							target: node.id,
+							shape: "runedge",
+							style: { stroke: "#08BD09", lineWidth: 4, radius: 20, offset: 0, lineDash: [] },
+							controlPoints: []
+						};
+						preNode = node;
+						addEdges.push(newEdge);
+					});
+					if(preNode){
+						const endEdge = {
+							source: preNode.id,
+							target: targetNode,
+							shape: "runedge",
+							style: { stroke: "#08BD09", lineWidth: 4, radius: 20, offset: 0, lineDash: [] },
+							controlPoints: []
+						};
+						preNode = null;
+						addEdges.push(endEdge);
+					}
+					CacheUtil.cacheMap.set(CacheUtil.CONTROLL + sourceNode + CacheUtil.CONTROLL_PRE + targetNode, controlPointsMap);
+					deleteEdges.push(edge);
+				}
+			});
+			deleteEdges.forEach((dEdge)=>{
+				this.graph.removeItem(dEdge);
+			});
+			addEdges.forEach((aEdge)=>{
+				this.graph.addItem("edge",aEdge);
+			});
+		} else {
+			const controlKeys = CacheUtil.cacheMap.keys();
+			for (let key of controlKeys) {
+				const controlNodes = CacheUtil.cacheMap.get(key);
+				const controlAc = [];
+				controlNodes.forEach((node, nindex) => {
+					let item = this.graph.findById(node.id);
+					if (item) {
+						this.graph.removeItem(item);
+						const point = {
+							x: node.x,
+							y: node.y
+						};
+						controlAc.push(point);
+					}
+				});
+				const bothId = key.replace(CacheUtil.CONTROLL, "");
+				const source = bothId.split(CacheUtil.CONTROLL_PRE)[0];
+				const target = bothId.split(CacheUtil.CONTROLL_PRE)[1];
+				const newEdge = {
+					source: source,
+					target: target,
+					shape: "runedge",
+					style: { stroke: "#08BD09", lineWidth: 4, radius: 20, offset: 0, lineDash: [] },
+					controlPoints: controlAc
+				};
+				CacheUtil.cacheMap.set(key, []);
+				this.graph.addItem("edge",newEdge);
+			}
+		}
+	};
 }
 
 export default G6Api;

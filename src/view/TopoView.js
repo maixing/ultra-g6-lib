@@ -14,7 +14,7 @@ import G6Api from "@/util/G6Api";
 import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_EVENTS } from "@/appconsts/EventConsts";
 import ToolbarView from "./ToolbarView";
 import "@/view/style.less";
-// require("@/view/style.less");
+import CacheUtil from '@/util/CacheUtil';
 
 export default class TopoView extends React.Component {
 	constructor(props) {
@@ -23,6 +23,7 @@ export default class TopoView extends React.Component {
 		this.registerUtil = new RegisterUtil();
 		this.graphEventUtil = new GraphEventUtil();
 		this.toolbarUtil = new ToolbarUtil();
+		this.cacheUtil = CacheUtil;
 		this.g6Api = new G6Api();
 		this.resizeTimer = 0;
 		this.ctrlKey = false;
@@ -41,14 +42,14 @@ export default class TopoView extends React.Component {
 		el: "topoEl",
 		datas: [],
 		baseUrl: "../demo/assets/",
-		model: "drag",
+		model: "addCPoint",
 		nodeMenu: [],
 		edgeMenu: [],
 		multiSelectFilter: [],
 		showToolBar: true,
 		fitView: true,
-		moveCenter:false,
-		userLayout:false,
+		moveCenter: false,
+		userLayout: false,
 		fitGap: 100
 	};
 	static propTypes = {
@@ -87,15 +88,15 @@ export default class TopoView extends React.Component {
 		if (clear) {
 			this.graph.clear();
 		}
-		if(this.state.userLayout){
+		if (this.state.userLayout) {
 			let num = datas.nodes.length;
 			const cGap = 100;
 			const rGap = 100;
-			let rNum = rect.width/(num+1);
-			datas.nodes.forEach((node,index)=>{
-				let odd = index%2==0?100:0;
-				node.x = rNum*(index+1);
-				node.y = rect.height/3+odd;
+			let rNum = rect.width / (num + 1);
+			datas.nodes.forEach((node, index) => {
+				let odd = index % 2 == 0 ? 100 : 0;
+				node.x = rNum * (index + 1);
+				node.y = rect.height / 3 + odd;
 			});
 		}
 		if (!this.state.fitView) {
@@ -104,8 +105,9 @@ export default class TopoView extends React.Component {
 				maxY > this.sourceRect.height ? maxY * 1.05 : this.sourceRect.height
 			);
 		}
-		this.graph.changeData(datas);
-		if(this.state.fitView){
+		this.graph.data(datas);
+		this.graph.render();
+		if (this.state.fitView) {
 			this.graph.fitView(this.state.fitGap);
 		}
 	};
@@ -115,10 +117,27 @@ export default class TopoView extends React.Component {
 			this.graph = new G6.Graph({
 				container: this.props.el,
 				width: rect.width,
-				renderer:'canvas',
+				renderer: "canvas",
 				height: rect.height - 4,
 				fitView: this.state.fitView,
-				pixeRatio:100,
+				pixeRatio: 100,
+				groupByTypes:false,
+				defaultEdge: {
+					shape:"runedge",
+					style: {
+						lineWidth: 4,
+						stroke: "#08BD09",
+						radius: 20,
+						offset: 0,
+					}
+				},
+				edgeStateStyles: {
+					selected: {
+						stroke: "#d3adf7",
+						lineWidth: 4,
+						lineDash: []
+					}
+				},
 				modes: {
 					default: [
 						"drag-canvas",
@@ -134,6 +153,7 @@ export default class TopoView extends React.Component {
 							}
 						}
 					],
+					addCPoint: ["addCPoint", "drag-node"],
 					addEdge: [
 						"addEdge",
 						"drag-node",
@@ -170,7 +190,7 @@ export default class TopoView extends React.Component {
 								return model.label;
 							},
 							shouldUpdate: e => {
-								if (e.target.type !== 'text') {
+								if (e.target.type !== "text") {
 									return false;
 								}
 								return true;
@@ -186,7 +206,7 @@ export default class TopoView extends React.Component {
 								return model.label;
 							},
 							shouldUpdate: e => {
-								if (e.target.type !== 'text') {
+								if (e.target.type !== "text") {
 									return false;
 								}
 								return true;
@@ -196,7 +216,7 @@ export default class TopoView extends React.Component {
 					multiselect: [
 						"drag-node",
 						"drag-canvas",
-						'click-select',
+						"click-select",
 						"zoom-canvas",
 						{
 							type: "tooltip",
@@ -207,9 +227,9 @@ export default class TopoView extends React.Component {
 								if (e.target.type !== "text") {
 									return false;
 								}
-								if(this.ctrlKey){
+								if (this.ctrlKey) {
 									return true;
-								}else{
+								} else {
 									return false;
 								}
 							}
@@ -235,7 +255,7 @@ export default class TopoView extends React.Component {
 								return model.label;
 							},
 							shouldUpdate: e => {
-								if (e.target.type !== 'text') {
+								if (e.target.type !== "text") {
 									return false;
 								}
 								return true;
@@ -257,13 +277,23 @@ export default class TopoView extends React.Component {
 			this.graph.setMode(this.state.model);
 			this.setData(this.state.datas);
 			this.graph.render();
+			/** 
+			 * 将连线置于所有节点之上
+			*/
+			setTimeout(() => {
+				const edges = this.graph.getEdges();
+				edges.forEach(element => {
+					element.toFront();
+					const model = element.getModel();
+				});
+			}, 500);
 		}
-		document.onkeydown = (evt)=>{
+		document.onkeydown = evt => {
 			this.ctrlKey = evt.ctrlKey;
-		}
-		document.onkeyup = (evt)=>{
+		};
+		document.onkeyup = evt => {
 			this.ctrlKey = evt.ctrlKey;
-		}
+		};
 	}
 	componentWillUnmount = () => {
 		window.removeEventListener("resize", this.resize);
@@ -295,6 +325,7 @@ export default class TopoView extends React.Component {
 	resize = () => {
 		clearTimeout(this.resizeTimer);
 		this.resizeTimer = setTimeout(() => {}, 500);
+		requestAnimationFrame(() => {});
 	};
 	addListener = (target, eventName, handler) => {
 		if (typeof handler === "function") target.on(eventName, handler);

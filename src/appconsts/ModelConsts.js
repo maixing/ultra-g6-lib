@@ -9,6 +9,7 @@ const modelConsts = {
 	MODEL_ADD_NODE: "addNode",
 	MODEL_EDITE: "edite",
 	MODEL_SHOW: "show",
+	MODEL_BREAK_POINT:"addCPoint",
 	MODEL_MULTI_SELECT: "multiselect",
 	MODEL_SELECT: "select"
 };

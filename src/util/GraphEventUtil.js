@@ -8,6 +8,7 @@ import G6 from "@antv/g6";
 import modelConsts from "@/appconsts/ModelConsts";
 import { addAppEventListener } from "@/util/EventBusUtil";
 import toolBarConsts from "@/appconsts/ToolBarConsts";
+import CacheUtil from "./CacheUtil";
 
 class GraphEventUtil extends BaseUtil {
 	constructor() {
@@ -20,6 +21,8 @@ class GraphEventUtil extends BaseUtil {
 	addingEdge = false;
 	canvasClickTime = 0;
 	nodeClickTime = 0;
+	ctrlKey = false;
+	edgeSelected = null;
 	init(graph) {
 		super.init(graph);
 		if (this.graph) {
@@ -47,6 +50,7 @@ class GraphEventUtil extends BaseUtil {
 	};
 	initNodeEvent = () => {
 		this.graph.on("node:click", ev => {
+			console.log("initNodeEvent---->>%o", ev);
 			const model = ev.item.getModel();
 			model.selected = !model.selected;
 			if (model.hasOwnProperty("search")) {
@@ -84,6 +88,7 @@ class GraphEventUtil extends BaseUtil {
 	};
 	initEdgeEvent = () => {
 		this.graph.on("edge:click", ev => {
+			console.log("initEdgeEvent---->>%o", ev);
 			const model = ev.item.getModel();
 			model.selected = model.selected ? 0 : 1;
 			const edge = ev.item;
@@ -111,7 +116,167 @@ class GraphEventUtil extends BaseUtil {
 		});
 	};
 	initBehavior = () => {
-		console.log("initBehavior---->>%o");
+		/**
+		 * 控制点添加
+		 */
+		G6.registerBehavior("addCPoint", {
+			getEvents() {
+				return {
+					"edge:click": "onEdgeClick",
+					"edge:mouseover": "onEdgeMouseOver",
+					"edge:mouseout": "onEdgeMouseOut",
+					keydown: "onKeyEventDown",
+					keyup: "onKeyEventUp",
+					"canvas:click": "onCanvasClick"
+				};
+			},
+			onEdgeMouseOver:(evt)=>{
+				const attr = evt.target._attrs;
+				attr.cursor = "pointer";
+			},
+			onEdgeMouseOut:(evt)=>{
+				const attr = evt.target._attrs;
+				attr.cursor = "pointer";
+			},
+			onCanvasClick:(ev)=>{
+				const graph = this.graph;
+				if (this.edgeSelected) {
+					graph.setItemState(this.edgeSelected, "selected", false);
+				}
+				if (this.ctrlKey && this.edgeSelected) {
+					let nodeId = G6.Util.uniqueId();
+					let gdNode = {
+						w: 20,
+						h: 20,
+						shape: "nodeStyle",
+						neType: "gd",
+						label: nodeId,
+						x: ev.x,
+						y: ev.y,
+						id: nodeId
+					};
+					this.graph.addItem("node", gdNode);
+					let edgeModel = this.edgeSelected.getModel();
+					let sourceItem = edgeModel.source;
+					let targetItem = edgeModel.target;
+					let realBothEnd = "";
+					if (sourceItem && targetItem) {
+						const sourceNode = this.graph.findById(sourceItem).getModel();
+						const targetNode = this.graph.findById(targetItem).getModel();
+						if (sourceNode && targetNode) {
+							if (sourceNode.neType != "gd" && targetNode.neType != "gd") {
+								realBothEnd = sourceNode.id +CacheUtil.CONTROLL_PRE+ targetNode.id;
+							} else {
+								if (edgeModel.hasOwnProperty("realNodeId")) {
+									realBothEnd = edgeModel["realNodeId"];
+								}
+							}
+						}
+						let cedgeSorce = {
+							source: sourceItem,
+							target: nodeId,
+							realNodeId: realBothEnd,
+							shape: "runedge"
+						};
+						let cedgeTarget = {
+							source: nodeId,
+							target: targetItem,
+							realNodeId: realBothEnd,
+							shape: "runedge"
+						};
+						let controlPoints = [];
+						if (realBothEnd != "") {
+							if (CacheUtil.cacheMap.has(CacheUtil.CONTROLL + realBothEnd)) {
+								controlPoints = CacheUtil.cacheMap.get(CacheUtil.CONTROLL + realBothEnd);
+							}
+							let index = -1;
+							controlPoints.forEach((element, i) => {
+								if (element.id == targetItem) {
+									index = i;
+								}
+							});
+							if (index == -1) {
+								controlPoints.push(gdNode);
+							} else {
+								controlPoints.splice(index, 0, gdNode);
+							}
+							CacheUtil.cacheMap.set(CacheUtil.CONTROLL + realBothEnd, controlPoints);
+						}
+						console.log("controlPoints---->>%o", controlPoints);
+						this.graph.addItem("edge", cedgeSorce);
+						this.graph.addItem("edge", cedgeTarget);
+						this.graph.removeItem(this.edgeSelected);
+					}
+					this.edgeSelected = null;
+				}
+			},
+			onKeyEventDown:(ev)=>{
+				this.ctrlKey = ev.ctrlKey;
+				const graph = this.graph;
+				if (ev.keyCode == 46 && this.preSelectNode) {
+					let node = this.preSelectNode;
+					let selectedNodeModel = node.getModel();
+					if(selectedNodeModel.neType!="gd"){
+						return;
+					}
+					const edges = node.getEdges();
+					let realBothEnd = "";
+					let sourceNodeId = "";
+					let targetNodeId = "";
+					edges.forEach(edge => {
+						const edgeModel = edge.getModel();
+						if (edgeModel.hasOwnProperty("realNodeId")) {
+							realBothEnd = edgeModel["realNodeId"];
+						}
+						if (selectedNodeModel.id == edgeModel.target) {
+							sourceNodeId = edgeModel.source;
+						}
+						if (selectedNodeModel.id == edgeModel.source) {
+							targetNodeId = edgeModel.target;
+						}
+					});
+					let controlPoints = [];
+					if (CacheUtil.cacheMap.has(CacheUtil.CONTROLL + realBothEnd)) {
+						controlPoints = CacheUtil.cacheMap.get(CacheUtil.CONTROLL + realBothEnd);
+						let index = -1;
+						controlPoints.forEach((node, i) => {
+							if (node.id == selectedNodeModel.id) {
+								index = i;
+							}
+						});
+						if (index != -1) {
+							controlPoints.splice(index, 1);
+						}
+						graph.removeItem(node);
+						console.log("delete controlPoints---->>%o", controlPoints);
+					}
+					let cedgeSorce = {
+						source: sourceNodeId,
+						target: targetNodeId,
+						realNodeId: realBothEnd,
+						shape: "runedge"
+					};
+					this.graph.addItem("edge", cedgeSorce);
+				}
+			},
+			onKeyEventUp:(ev)=>{
+				this.ctrlKey = ev.ctrlKey;
+			},
+			onEdgeClick:(ev)=>{
+				const graph = this.graph;
+				const edge = ev.item;
+				if (this.edgeSelected) {
+					graph.setItemState(this.edgeSelected, "selected", false);
+				}
+				if (edge._cfg.states.indexOf("selected") != -1) {
+					this.edgeSelected = null;
+					graph.setItemState(edge, "selected", false);
+				} else {
+					graph.setItemState(edge, "selected", true);
+					this.edgeSelected = edge;
+				}
+			}
+		});
 		G6.registerBehavior("addNode", {
 			getEvents() {
 				return {
@@ -209,19 +374,23 @@ class GraphEventUtil extends BaseUtil {
 	};
 	clearSelect = nodeModel => {
 		if (this.preSelectNode) {
-			const preModel = this.preSelectNode.getModel();
-			if (nodeModel && nodeModel.hasOwnProperty("id")) {
-				preModel.selected = preModel.id == nodeModel.id ? true : false;
-			} else {
-				preModel.selected = false;
-			}
-			this.graph.updateItem(this.preSelectNode, preModel);
+			try {
+				const preModel = this.preSelectNode.getModel();
+				if (nodeModel && nodeModel.hasOwnProperty("id")) {
+					preModel.selected = preModel.id == nodeModel.id ? true : false;
+				} else {
+					preModel.selected = false;
+				}
+				this.graph.updateItem(this.preSelectNode, preModel);
+			} catch (error) {}
 			this.preSelectNode = null;
 		}
 		if (this.preSelectEdge) {
-			const preModel = this.preSelectEdge.getModel();
-			preModel.selected = false;
-			this.graph.updateItem(this.preSelectEdge, preModel);
+			try {
+				const preModel = this.preSelectEdge.getModel();
+				preModel.selected = false;
+				this.graph.updateItem(this.preSelectEdge, preModel);
+			} catch (error) {}
 			this.preSelectEdge = null;
 		}
 	};

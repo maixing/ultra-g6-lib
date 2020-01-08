@@ -98,23 +98,6 @@ export default class TreeTopoView extends React.Component {
 					default: [
 						"drag-canvas",
 						"zoom-canvas",
-						// {
-						// 	type: "collapse-expand", // 定义收缩/展开行为
-						// 	onChange:(item, collapsed)=>{
-						// 		if(!collapsed){
-						// 			this.preZoom = this.graph.getZoom();
-						// 		}
-						// 		this.graph.refreshLayout(true);
-						// 		this.graph.paint();
-						// 		if(collapsed){
-						// 			const w = this.graph.get('width');
-						// 			const h = this.graph.get('height');
-						// 			this.graph.zoomTo(this.preZoom,{ x: w/2, y: h/2+h*0.01});
-						// 		}
-						// 		this.registerUtil.collapsed = collapsed;
-						// 		return collapsed;
-						// 	}
-						// },
 						{
 							type: "tooltip",
 							formatText(model) {
