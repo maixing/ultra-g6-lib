@@ -1,6 +1,6 @@
 {
   "name": "g6lib",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "g6lib",
   "main": "index.js",
   "scripts": {
