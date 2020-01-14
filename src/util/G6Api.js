@@ -6,7 +6,7 @@
 import BaseUtil from "@/util/BaseUtil";
 import CacheUtil from "@/util/CacheUtil";
 import G6 from "@antv/g6";
-
+const levelColos = ["#FF0000", "#FF0000", "#FFA500", "#FFFF00", "#0000FF"];
 class G6Api extends BaseUtil {
 	constructor() {
 		super();
@@ -69,6 +69,16 @@ class G6Api extends BaseUtil {
 			this.cacheMap.set(id, level);
 		}
 	};
+	addEdgeAlarm = (source, target, level) => {
+		const edges = this.graph.getEdges();
+		edges.forEach(edge => {
+			const edgeModel = edge.getModel();
+			if (edge.source == source && edge.target == target) {
+				edgeModel.style.stroke = levelColos[parseInt(level)];
+				this.graph.updateItem(edge, edgeModel);
+			}
+		});
+	};
 	/**
 	 * @description 添加多条告警
 	 * @param id 节点id
@@ -116,9 +126,9 @@ class G6Api extends BaseUtil {
 	 */
 	updateNodeById = (id, node) => {
 		const item = this.graph.findById(id);
-		if(item){
+		if (item) {
 			const nodeModel = item.getModel();
-			Object.assign(nodeModel,node);
+			Object.assign(nodeModel, node);
 			this.graph.updateItem(item, nodeModel);
 		}
 	};
@@ -204,49 +214,52 @@ class G6Api extends BaseUtil {
 							id: nodeId
 						};
 						controlPointsMap.push(gdNode);
-						this.graph.addItem("node",gdNode);
+						this.graph.addItem("node", gdNode);
 					});
-					controlPointsMap.forEach((node,index)=>{
+					controlPointsMap.forEach((node, index) => {
 						const newEdge = {
-							source: preNode?preNode.id:sourceNode,
+							source: preNode ? preNode.id : sourceNode,
 							target: node.id,
 							shape: "runedge",
-							realNodeId:sourceNode+CacheUtil.CONTROLL_PRE+targetNode,
+							realNodeId: sourceNode + CacheUtil.CONTROLL_PRE + targetNode,
 							style: { stroke: "#08BD09", lineWidth: 4, radius: 0.5, offset: 0, lineDash: [] },
 							controlPoints: []
 						};
 						preNode = node;
 						addEdges.push(newEdge);
 					});
-					if(preNode){
+					if (preNode) {
 						const endEdge = {
 							source: preNode.id,
 							target: targetNode,
 							shape: "runedge",
-							realNodeId:sourceNode+CacheUtil.CONTROLL_PRE+targetNode,
+							realNodeId: sourceNode + CacheUtil.CONTROLL_PRE + targetNode,
 							style: { stroke: "#08BD09", lineWidth: 4, radius: 0.5, offset: 0, lineDash: [] },
 							controlPoints: []
 						};
 						preNode = null;
 						addEdges.push(endEdge);
 					}
-					CacheUtil.cacheMap.set(CacheUtil.CONTROLL + sourceNode + CacheUtil.CONTROLL_PRE + targetNode, controlPointsMap);
+					CacheUtil.cacheMap.set(
+						CacheUtil.CONTROLL + sourceNode + CacheUtil.CONTROLL_PRE + targetNode,
+						controlPointsMap
+					);
 					deleteEdges.push(edge);
 				}
 			});
-			deleteEdges.forEach((dEdge)=>{
+			deleteEdges.forEach(dEdge => {
 				this.graph.removeItem(dEdge);
 			});
-			addEdges.forEach((aEdge)=>{
-				this.graph.addItem("edge",aEdge);
+			addEdges.forEach(aEdge => {
+				this.graph.addItem("edge", aEdge);
 			});
-			setTimeout(()=>{
+			setTimeout(() => {
 				const uedges = this.graph.getEdges();
 				uedges.forEach(element => {
 					element.toFront();
 				});
 				this.graph.paint();
-			},500);
+			}, 500);
 		} else {
 			const controlKeys = CacheUtil.cacheMap.keys();
 			for (let key of controlKeys) {
@@ -274,7 +287,7 @@ class G6Api extends BaseUtil {
 					controlPoints: controlAc
 				};
 				CacheUtil.cacheMap.delete(key);
-				this.graph.addItem("edge",newEdge);
+				this.graph.addItem("edge", newEdge);
 			}
 		}
 	};

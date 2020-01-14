@@ -143,9 +143,6 @@ export default class TopoView extends React.Component {
 				},
 				modes: {
 					default: [
-						"drag-canvas",
-						"zoom-canvas",
-						"click-select",
 						{
 							type: "tooltip",
 							formatText(model) {
