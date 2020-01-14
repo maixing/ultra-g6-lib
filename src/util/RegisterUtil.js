@@ -441,6 +441,7 @@ class RegisterUtil extends BaseUtil {
 				}
 				if (parseInt(cfg.alarm) > 0) {
 				}
+				let neType = ".svg";
 				const image = group.addShape("image", {
 					attrs: {
 						x: -w / 2,
@@ -448,20 +449,24 @@ class RegisterUtil extends BaseUtil {
 						width: w,
 						height: h,
 						cursor: "pointer",
-						img: this.baseUrl + cfg.neType + ".svg",
+						img: this.baseUrl + cfg.neType + neType,
 						shadowColor: levelColos[parseInt(cfg.alarm)],
 						shadowBlur: parseInt(cfg.alarm) > 0 ? 0 : 0,
 						shadowOffsetX: 0,
 						shadowOffsetY: 0
 					}
 				});
+				let fontSize = 14;
+				if(cfg.hasOwnProperty('style') && cfg.style.hasOwnProperty('fontSize')){
+					fontSize = parseInt(cfg.style.fontSize);
+				}
 				group.addShape("text", {
 					attrs: {
 						x: 0,
 						y: h * 1.1,
 						textAlign: "center",
 						text: cfg.label,
-						fontSize: 14,
+						fontSize: fontSize,
 						fill: "#00FFFF"
 					}
 				});

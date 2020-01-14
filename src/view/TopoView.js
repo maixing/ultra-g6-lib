@@ -74,6 +74,9 @@ export default class TopoView extends React.Component {
 				this.setData(nextProps.datas, true);
 			}
 		}
+		if(this.props.model != nextProps.model){
+			this.graph.setMode(nextProps.model);
+		}
 		return change;
 	};
 	setData = (datas, clear = false) => {
@@ -153,7 +156,7 @@ export default class TopoView extends React.Component {
 							}
 						}
 					],
-					addCPoint: ["addCPoint", "drag-node"],
+					addCPoint: ["addCPoint", "drag-node","zoom-canvas"],
 					addEdge: [
 						"addEdge",
 						"drag-node",
@@ -284,8 +287,8 @@ export default class TopoView extends React.Component {
 				const edges = this.graph.getEdges();
 				edges.forEach(element => {
 					element.toFront();
-					const model = element.getModel();
 				});
+				this.graph.paint();
 			}, 500);
 		}
 		document.onkeydown = evt => {
@@ -304,6 +307,7 @@ export default class TopoView extends React.Component {
 		this.graphEventUtil.init(this.graph);
 		this.registerUtil.init(this.graph);
 		this.registerUtil.baseUrl = this.state.baseUrl;
+		this.initResizeEvent();
 	};
 	initResizeEvent = () => {
 		window.addEventListener("resize", this.resize);
@@ -324,8 +328,8 @@ export default class TopoView extends React.Component {
 	}
 	resize = () => {
 		clearTimeout(this.resizeTimer);
-		this.resizeTimer = setTimeout(() => {}, 500);
-		requestAnimationFrame(() => {});
+		this.resizeTimer = setTimeout(() => {
+		}, 500);
 	};
 	addListener = (target, eventName, handler) => {
 		if (typeof handler === "function") target.on(eventName, handler);

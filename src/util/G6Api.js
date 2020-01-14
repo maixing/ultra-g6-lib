@@ -114,7 +114,14 @@ class G6Api extends BaseUtil {
 	 * @param id 节点id
 	 * @param type 节点Object
 	 */
-	updateNodeById = (id, node) => {};
+	updateNodeById = (id, node) => {
+		const item = this.graph.findById(id);
+		if(item){
+			const nodeModel = item.getModel();
+			Object.assign(nodeModel,node);
+			this.graph.updateItem(item, nodeModel);
+		}
+	};
 	/**
 	 * @description 根据id删除节点
 	 * @param id 节点id
@@ -204,7 +211,8 @@ class G6Api extends BaseUtil {
 							source: preNode?preNode.id:sourceNode,
 							target: node.id,
 							shape: "runedge",
-							style: { stroke: "#08BD09", lineWidth: 4, radius: 20, offset: 0, lineDash: [] },
+							realNodeId:sourceNode+CacheUtil.CONTROLL_PRE+targetNode,
+							style: { stroke: "#08BD09", lineWidth: 4, radius: 0.5, offset: 0, lineDash: [] },
 							controlPoints: []
 						};
 						preNode = node;
@@ -215,7 +223,8 @@ class G6Api extends BaseUtil {
 							source: preNode.id,
 							target: targetNode,
 							shape: "runedge",
-							style: { stroke: "#08BD09", lineWidth: 4, radius: 20, offset: 0, lineDash: [] },
+							realNodeId:sourceNode+CacheUtil.CONTROLL_PRE+targetNode,
+							style: { stroke: "#08BD09", lineWidth: 4, radius: 0.5, offset: 0, lineDash: [] },
 							controlPoints: []
 						};
 						preNode = null;
@@ -231,6 +240,13 @@ class G6Api extends BaseUtil {
 			addEdges.forEach((aEdge)=>{
 				this.graph.addItem("edge",aEdge);
 			});
+			setTimeout(()=>{
+				const uedges = this.graph.getEdges();
+				uedges.forEach(element => {
+					element.toFront();
+				});
+				this.graph.paint();
+			},500);
 		} else {
 			const controlKeys = CacheUtil.cacheMap.keys();
 			for (let key of controlKeys) {
@@ -254,10 +270,10 @@ class G6Api extends BaseUtil {
 					source: source,
 					target: target,
 					shape: "runedge",
-					style: { stroke: "#08BD09", lineWidth: 4, radius: 20, offset: 0, lineDash: [] },
+					style: { stroke: "#08BD09", lineWidth: 4, radius: 0.5, offset: 0, lineDash: [] },
 					controlPoints: controlAc
 				};
-				CacheUtil.cacheMap.set(key, []);
+				CacheUtil.cacheMap.delete(key);
 				this.graph.addItem("edge",newEdge);
 			}
 		}
