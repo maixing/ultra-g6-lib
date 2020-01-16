@@ -6,7 +6,7 @@
 import BaseUtil from "@/util/BaseUtil";
 import CacheUtil from "@/util/CacheUtil";
 import G6 from "@antv/g6";
-const levelColos = ["#FF0000", "#FF0000", "#FFA500", "#FFFF00", "#0000FF"];
+const levelColos = ["#08BD09", "#FF0000", "#FFA500", "#FFFF00", "#0000FF"];
 class G6Api extends BaseUtil {
 	constructor() {
 		super();
@@ -73,8 +73,9 @@ class G6Api extends BaseUtil {
 		const edges = this.graph.getEdges();
 		edges.forEach(edge => {
 			const edgeModel = edge.getModel();
-			if (edge.source == source && edge.target == target) {
+			if (edgeModel.source == source && edgeModel.target == target) {
 				edgeModel.style.stroke = levelColos[parseInt(level)];
+				console.log("addEdgeAlarm---->>%o", edgeModel);
 				this.graph.updateItem(edge, edgeModel);
 			}
 		});

@@ -15,6 +15,7 @@ import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_E
 import ToolbarView from "./ToolbarView";
 import "@/view/style.less";
 import CacheUtil from '@/util/CacheUtil';
+import Grid from "@antv/g6/build/grid";
 
 export default class TopoView extends React.Component {
 	constructor(props) {
@@ -116,6 +117,7 @@ export default class TopoView extends React.Component {
 	};
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
+		const grid = new Grid();
 		if (rect) {
 			this.graph = new G6.Graph({
 				container: this.props.el,
@@ -123,7 +125,7 @@ export default class TopoView extends React.Component {
 				renderer: "canvas",
 				height: rect.height - 4,
 				fitView: this.state.fitView,
-				pixeRatio: 100,
+				pixeRatio: 1,
 				groupByTypes:false,
 				defaultEdge: {
 					shape:"runedge",
@@ -296,7 +298,7 @@ export default class TopoView extends React.Component {
 		};
 	}
 	componentWillUnmount = () => {
-		window.removeEventListener("resize", this.resize);
+		// window.removeEventListener("resize", this.resize);
 	};
 	initUtil = () => {
 		this.g6Api.init(this.graph);
@@ -307,7 +309,7 @@ export default class TopoView extends React.Component {
 		this.initResizeEvent();
 	};
 	initResizeEvent = () => {
-		window.addEventListener("resize", this.resize);
+		// window.addEventListener("resize", this.resize);
 	};
 	initEvent() {
 		const { addListener } = this;
