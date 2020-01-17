@@ -153,8 +153,11 @@ class RegisterUtil extends BaseUtil {
 							r: 2
 						}
 					});
-					console.log('cfg---->>%o',this.computeLine(cfg));
-					let lg = this.computeLine(cfg);
+					let lg = this.computeLine(cfg)*this.compoutedRate*5;
+					if(lg<1500){
+						lg = lg*5;
+					}
+					console.log('cfg---->>%o',lg);
 					// 对红色圆点添加动画
 					circle.animate(
 						{
@@ -171,7 +174,7 @@ class RegisterUtil extends BaseUtil {
 								};
 							}
 						},
-						lg*this.compoutedRate*5
+						lg
 					); // 一次动画的时间长度
 				}
 			},
