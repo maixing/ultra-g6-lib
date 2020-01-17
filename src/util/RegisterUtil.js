@@ -37,6 +37,26 @@ class RegisterUtil extends BaseUtil {
 		this.selectGap = 5;
 	}
 	g6Api = null;
+	computeLine = (cfg)=>{
+		let startPoint = cfg.startPoint;
+		const endPoint = cfg.endPoint;
+		let controlPoints = cfg.controlPoints;
+		let lg = 0;
+		if(controlPoints){
+			controlPoints.forEach((item)=>{
+				lg = lg+this.lengthStartEnd(startPoint,item);
+				startPoint = item;
+			});
+		}
+		lg = lg+this.lengthStartEnd(startPoint,endPoint);
+		return lg;
+	}
+	lengthStartEnd = (start,end)=>{
+		const dx = Math.abs(start.x - end.x);
+		const dy = Math.abs(start.y - end.y);
+		const dis = Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
+		return dis;
+	}
 	init(graph) {
 		super.init(graph);
 		this.registerNode();
@@ -51,6 +71,7 @@ class RegisterUtil extends BaseUtil {
 	imageType = "png";
 	multiSelectFilter = [];
 	collapsed = false;
+	compoutedRate = 3;
 	registerEdge = () => {
 		G6.registerEdge(
 			"edgeStyle",
@@ -118,7 +139,7 @@ class RegisterUtil extends BaseUtil {
 		G6.registerEdge(
 			"runedge",
 			{
-				afterDraw(cfg, group) {
+				afterDraw:(cfg, group)=>{
 					// 获得当前边的第一个图形，这里是边本身的 path
 					const shape = group.get("children")[0];
 					// 边 path 的起点位置
@@ -132,7 +153,8 @@ class RegisterUtil extends BaseUtil {
 							r: 2
 						}
 					});
-
+					console.log('cfg---->>%o',this.computeLine(cfg));
+					let lg = this.computeLine(cfg);
 					// 对红色圆点添加动画
 					circle.animate(
 						{
@@ -149,7 +171,7 @@ class RegisterUtil extends BaseUtil {
 								};
 							}
 						},
-						3000
+						lg*this.compoutedRate*5
 					); // 一次动画的时间长度
 				}
 			},
