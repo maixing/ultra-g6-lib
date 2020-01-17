@@ -23,8 +23,10 @@ class GraphEventUtil extends BaseUtil {
 	nodeClickTime = 0;
 	ctrlKey = false;
 	edgeSelected = null;
-	init(graph) {
+	view = null;
+	init(graph, view = null) {
 		super.init(graph);
+		this.view = view;
 		if (this.graph) {
 			this.initNodeEvent();
 			this.initEdgeEvent();
@@ -130,17 +132,17 @@ class GraphEventUtil extends BaseUtil {
 					"canvas:click": "onCanvasClick"
 				};
 			},
-			onEdgeMouseOver:(evt)=>{
+			onEdgeMouseOver: evt => {
 				const attr = evt.target._attrs;
 				attr.cursor = "pointer";
 			},
-			onEdgeMouseOut:(evt)=>{
+			onEdgeMouseOut: evt => {
 				const attr = evt.target._attrs;
 				attr.cursor = "pointer";
 			},
-			onCanvasClick:(ev)=>{
+			onCanvasClick: ev => {
 				const graph = this.graph;
-				if (this.edgeSelected) {
+				if (this.edgeSelected && this.edgeSelected._cfg.states) {
 					graph.setItemState(this.edgeSelected, "selected", false);
 				}
 				if (this.ctrlKey && this.edgeSelected) {
@@ -165,7 +167,7 @@ class GraphEventUtil extends BaseUtil {
 						const targetNode = this.graph.findById(targetItem).getModel();
 						if (sourceNode && targetNode) {
 							if (sourceNode.neType != "gd" && targetNode.neType != "gd") {
-								realBothEnd = sourceNode.id +CacheUtil.CONTROLL_PRE+ targetNode.id;
+								realBothEnd = sourceNode.id + CacheUtil.CONTROLL_PRE + targetNode.id;
 							} else {
 								if (edgeModel.hasOwnProperty("realNodeId")) {
 									realBothEnd = edgeModel["realNodeId"];
@@ -210,13 +212,13 @@ class GraphEventUtil extends BaseUtil {
 					this.edgeSelected = null;
 				}
 			},
-			onKeyEventDown:(ev)=>{
+			onKeyEventDown: ev => {
 				this.ctrlKey = ev.ctrlKey;
 				const graph = this.graph;
 				if (ev.keyCode == 46 && this.preSelectNode) {
 					let node = this.preSelectNode;
 					let selectedNodeModel = node.getModel();
-					if(selectedNodeModel.neType!="gd"){
+					if (selectedNodeModel.neType != "gd") {
 						return;
 					}
 					const edges = node.getEdges();
@@ -259,13 +261,13 @@ class GraphEventUtil extends BaseUtil {
 					this.graph.addItem("edge", cedgeSorce);
 				}
 			},
-			onKeyEventUp:(ev)=>{
+			onKeyEventUp: ev => {
 				this.ctrlKey = ev.ctrlKey;
 			},
-			onEdgeClick:(ev)=>{
+			onEdgeClick: ev => {
 				const graph = this.graph;
 				const edge = ev.item;
-				if (this.edgeSelected) {
+				if (this.edgeSelected && this.edgeSelected._cfg) {
 					graph.setItemState(this.edgeSelected, "selected", false);
 				}
 				if (edge._cfg.states.indexOf("selected") != -1) {
@@ -274,6 +276,12 @@ class GraphEventUtil extends BaseUtil {
 				} else {
 					graph.setItemState(edge, "selected", true);
 					this.edgeSelected = edge;
+				}
+				if (this.view.g6Api.showControll) {
+					this.view.g6Api.controllPoint(false);
+					setTimeout(() => {
+						this.view.g6Api.controllPoint(true);
+					}, 500);
 				}
 			}
 		});

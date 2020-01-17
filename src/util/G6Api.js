@@ -13,6 +13,7 @@ class G6Api extends BaseUtil {
 	}
 	preSearch = null;
 	cacheMap = new Map();
+	showControll = false;
 	/*-----------------全局api------------------*/
 	/**
 	 * @description 添加单条告警
@@ -190,13 +191,19 @@ class G6Api extends BaseUtil {
 	removeLineById = id => {};
 	controllPoint = showControll => {
 		//连线动态改变controlPoints属性以及界面上节点
+		console.log("showControll---->>%o", showControll);
 		if (showControll) {
 			const edges = this.graph.getEdges();
 			const addEdges = [];
 			const deleteEdges = [];
 			edges.forEach(edge => {
 				const edgeModel = edge.getModel();
-				if (edgeModel.hasOwnProperty("controlPoints") && edgeModel["controlPoints"].length > 0) {
+				if (
+					edgeModel.hasOwnProperty("controlPoints") &&
+					edgeModel["controlPoints"].length > 0 &&
+					edgeModel.hasOwnProperty("selected") &&
+					edgeModel.selected
+				) {
 					const controlPoints = edgeModel["controlPoints"];
 					const sourceNode = edgeModel.source;
 					const targetNode = edgeModel.target;

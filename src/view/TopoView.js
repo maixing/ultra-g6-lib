@@ -126,6 +126,7 @@ export default class TopoView extends React.Component {
 				height: rect.height - 4,
 				fitView: this.state.fitView,
 				pixeRatio: 1,
+				autoPaint:false,
 				groupByTypes:false,
 				defaultEdge: {
 					shape:"runedge",
@@ -303,7 +304,7 @@ export default class TopoView extends React.Component {
 	initUtil = () => {
 		this.g6Api.init(this.graph);
 		this.toolbarUtil.init(this.graph);
-		this.graphEventUtil.init(this.graph);
+		this.graphEventUtil.init(this.graph,this);
 		this.registerUtil.init(this.graph);
 		this.registerUtil.baseUrl = this.state.baseUrl;
 		this.initResizeEvent();

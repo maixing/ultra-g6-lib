@@ -311,7 +311,7 @@ export default class Demo extends React.Component {
 				},
 				{
 					shape: "runedge",
-					style: { offset: 0, lineDash: [], radius: 0.5, stroke: "#08BD09", lineWidth: 4 },
+					style: { offset: 0, lineDash: [], radius: 0.5, stroke: "l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff", lineWidth: 4 },
 					source: "7783678799634628414",
 					controlPoints: [],
 					target: "6462173375031171282"
@@ -730,11 +730,17 @@ export default class Demo extends React.Component {
 		}
 	};
 
-	componentDidMount() {}
+	componentDidMount = ()=>{
+		setInterval(()=>{
+			this.topo.g6Api.addAlarm("-1983672940887260532",Math.floor(Math.random()*4),"");
+		},2000);
+	}
 	showControl = () => {
+		this.topo.g6Api.showControll = true;
 		this.topo.g6Api.controllPoint(true);
 	};
 	hideControl = () => {
+		this.topo.g6Api.showControll = false;
 		this.topo.g6Api.controllPoint(false);
 	};
 	onShowModal = () => {
