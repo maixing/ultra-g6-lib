@@ -37,26 +37,26 @@ class RegisterUtil extends BaseUtil {
 		this.selectGap = 5;
 	}
 	g6Api = null;
-	computeLine = (cfg)=>{
+	computeLine = cfg => {
 		let startPoint = cfg.startPoint;
 		const endPoint = cfg.endPoint;
 		let controlPoints = cfg.controlPoints;
 		let lg = 0;
-		if(controlPoints){
-			controlPoints.forEach((item)=>{
-				lg = lg+this.lengthStartEnd(startPoint,item);
+		if (controlPoints) {
+			controlPoints.forEach(item => {
+				lg = lg + this.lengthStartEnd(startPoint, item);
 				startPoint = item;
 			});
 		}
-		lg = lg+this.lengthStartEnd(startPoint,endPoint);
+		lg = lg + this.lengthStartEnd(startPoint, endPoint);
 		return lg;
-	}
-	lengthStartEnd = (start,end)=>{
+	};
+	lengthStartEnd = (start, end) => {
 		const dx = Math.abs(start.x - end.x);
 		const dy = Math.abs(start.y - end.y);
-		const dis = Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
+		const dis = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 		return dis;
-	}
+	};
 	init(graph) {
 		super.init(graph);
 		this.registerNode();
@@ -72,109 +72,110 @@ class RegisterUtil extends BaseUtil {
 	multiSelectFilter = [];
 	collapsed = false;
 	compoutedRate = 3;
+	lineAnimation = false;
 	registerEdge = () => {
-		G6.registerEdge(
-			"edgeStyle",
-			{
-				options: {
-					stateStyles: {
-						// 鼠标hover状态下的配置
-						hover: {
-							lineWidth: 3
-						},
-						// 选中边状态下的配置
-						selected: {
-							lineWidth: 5
-						}
-					}
-				},
-				draw: (cfg, group) => {
-					const startPoint = cfg.startPoint;
-					const endPoint = cfg.endPoint;
-					const model = this.graph.getCurrentMode();
-					let color = "#08BD09";
-					const shape = group.addShape("path", {
-						attrs: {
-							stroke: cfg.selected?'#d3adf7':color,
-							lineWidth: 4,
-							cursor: "pointer",
-							path: [
-								["M", startPoint.x, startPoint.y],
-								["L", endPoint.x, endPoint.y]
-							]
-						}
-					});
-					return shape;
-				},
-				afterDraw: (cfg, group) => {
-					const model = this.graph.getCurrentMode();
-					if (modelConsts.MODEL_MULTI_SELECT != model) {
-						const shape = group.get("children")[0];
-						const startPoint = shape.getPoint(0);
-						const circle = group.addShape("circle", {
-							attrs: {
-								x: startPoint.x,
-								y: startPoint.y,
-								fill: "#fff",
-								r: 2
-							}
-						});
-						circle.animate(
-							{
-								onFrame(ratio) {
-									const tmpPoint = shape.getPoint(ratio);
-									return {
-										x: tmpPoint.x,
-										y: tmpPoint.y
-									};
-								},
-								repeat: true
-							},
-							3000
-						);
+		G6.registerEdge("edgeStyle", {
+			options: {
+				stateStyles: {
+					// 鼠标hover状态下的配置
+					hover: {
+						lineWidth: 3
+					},
+					// 选中边状态下的配置
+					selected: {
+						lineWidth: 5
 					}
 				}
-			}
-		);
-		G6.registerEdge(
-			"runedge",
-			{
-				afterDraw:(cfg, group)=>{
-					// 获得当前边的第一个图形，这里是边本身的 path
+			},
+			draw: (cfg, group) => {
+				const startPoint = cfg.startPoint;
+				const endPoint = cfg.endPoint;
+				const model = this.graph.getCurrentMode();
+				let color = "#08BD09";
+				const shape = group.addShape("path", {
+					attrs: {
+						stroke: cfg.selected ? "#d3adf7" : color,
+						lineWidth: 4,
+						cursor: "pointer",
+						path: [
+							["M", startPoint.x, startPoint.y],
+							["L", endPoint.x, endPoint.y]
+						]
+					}
+				});
+				return shape;
+			},
+			afterDraw: (cfg, group) => {
+				const model = this.graph.getCurrentMode();
+				if (modelConsts.MODEL_MULTI_SELECT != model) {
 					const shape = group.get("children")[0];
-					// 边 path 的起点位置
 					const startPoint = shape.getPoint(0);
-					// 添加红色 circle 图形
 					const circle = group.addShape("circle", {
 						attrs: {
 							x: startPoint.x,
 							y: startPoint.y,
-							fill: "#ffffff",
-							r: 3
+							fill: "#fff",
+							r: 2
 						}
 					});
-					let lg = this.computeLine(cfg)*this.compoutedRate*5;
-					if(lg<1500){
-						lg = lg*5;
-					}
-					// 对红色圆点添加动画
 					circle.animate(
 						{
-							// 动画重复
-							repeat: true,
-							// 每一帧的操作，入参 ratio：这一帧的比例值（Number）。返回值：这一帧需要变化的参数集（Object）。
 							onFrame(ratio) {
-								// 根据比例值，获得在边 path 上对应比例的位置。
 								const tmpPoint = shape.getPoint(ratio);
-								// 返回需要变化的参数集，这里返回了位置 x 和 y
 								return {
 									x: tmpPoint.x,
 									y: tmpPoint.y
 								};
-							}
+							},
+							repeat: true
 						},
-						lg
-					); // 一次动画的时间长度
+						3000
+					);
+				}
+			}
+		});
+		G6.registerEdge(
+			"runedge",
+			{
+				afterDraw: (cfg, group) => {
+					if (this.lineAnimation) {
+						// 获得当前边的第一个图形，这里是边本身的 path
+						const shape = group.get("children")[0];
+						// 边 path 的起点位置
+						const startPoint = shape.getPoint(0);
+						// 添加红色 circle 图形
+						const circle = group.addShape("ellipse", {
+							attrs: {
+								x: startPoint.x,
+								y: startPoint.y,
+								fill: "#34FE62",
+								rx: 4,
+								ry: 2
+							}
+						});
+						let lg = this.computeLine(cfg) * this.compoutedRate * 5;
+						if (lg < 1500) {
+							lg = lg * 5;
+						}
+						// 对红色圆点添加动画
+						circle.animate(
+							{
+								// 动画重复
+								repeat: true,
+								// 每一帧的操作，入参 ratio：这一帧的比例值（Number）。返回值：这一帧需要变化的参数集（Object）。
+								onFrame(ratio) {
+									// 根据比例值，获得在边 path 上对应比例的位置。
+									const tmpPoint = shape.getPoint(ratio);
+									// 返回需要变化的参数集，这里返回了位置 x 和 y
+									return {
+										x: tmpPoint.x,
+										y: tmpPoint.y
+									};
+								}
+							},
+							lg
+						); // 一次动画的时间长度
+					}
 				}
 			},
 			"polyline"
@@ -481,7 +482,7 @@ class RegisterUtil extends BaseUtil {
 					}
 				});
 				let fontSize = 14;
-				if(cfg.hasOwnProperty('style') && cfg.style.hasOwnProperty('fontSize')){
+				if (cfg.hasOwnProperty("style") && cfg.style.hasOwnProperty("fontSize")) {
 					fontSize = parseInt(cfg.style.fontSize);
 				}
 				group.addShape("text", {

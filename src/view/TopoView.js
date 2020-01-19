@@ -51,7 +51,8 @@ export default class TopoView extends React.Component {
 		fitView: true,
 		moveCenter: false,
 		userLayout: false,
-		fitGap: 100
+		fitGap: 100,
+		lineAnimation:true
 	};
 	static propTypes = {
 		el: PropTypes.string.isRequired,
@@ -63,7 +64,8 @@ export default class TopoView extends React.Component {
 			this.graph.destroy();
 		}
 	};
-	shouldComponentUpdate = (nextProps, nextState) => {
+	shouldComponentUpdate = (nextProps,nextState) => {
+		console.log('topoview shouldComponentUpdate---->>%o');
 		let change = false;
 		Object.keys(nextProps).forEach(key => {
 			if (this.props.hasOwnProperty(key) && nextProps[key] != this.props[key]) {
@@ -72,13 +74,12 @@ export default class TopoView extends React.Component {
 		});
 		if (this.props.datas != nextProps.datas) {
 			if (this.graph) {
-				console.log('lib shouldComponentUpdate---->>%o',shouldComponentUpdate);
 				this.setData(nextProps.datas, true);
 			}
 		}
-		// if(this.props.model != nextProps.model){
-		// 	this.graph.setMode(nextProps.model);
-		// }
+		if(this.props.model != nextProps.model){
+			this.graph.setMode(nextProps.model);
+		}
 		return change;
 	};
 	setData = (datas, clear = false) => {
@@ -126,7 +127,6 @@ export default class TopoView extends React.Component {
 				renderer: "canvas",
 				height: rect.height - 4,
 				fitView: this.state.fitView,
-				pixeRatio: 1,
 				autoPaint:true,
 				groupByTypes:false,
 				defaultEdge: {
@@ -308,6 +308,7 @@ export default class TopoView extends React.Component {
 		this.graphEventUtil.init(this.graph,this);
 		this.registerUtil.init(this.graph);
 		this.registerUtil.baseUrl = this.state.baseUrl;
+		this.registerUtil.lineAnimation = this.props.lineAnimation;
 		this.initResizeEvent();
 	};
 	initResizeEvent = () => {

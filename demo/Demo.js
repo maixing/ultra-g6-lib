@@ -787,6 +787,7 @@ export default class Demo extends React.Component {
 					datas={data}
 					showToolBar={false}
 					model={"addCPoint"}
+					lineAnimation = {false}
 					ref={component => {
 						this.topo = component;
 					}}

@@ -267,6 +267,9 @@ class GraphEventUtil extends BaseUtil {
 			onEdgeClick: ev => {
 				const graph = this.graph;
 				const edge = ev.item;
+				const edgeModel = edge.getModel();
+				const startNode = this.graph.findById(edgeModel.source).getModel();
+				const endNode = this.graph.findById(edgeModel.target).getModel();
 				if (this.edgeSelected && this.edgeSelected._cfg) {
 					graph.setItemState(this.edgeSelected, "selected", false);
 				}
@@ -277,7 +280,9 @@ class GraphEventUtil extends BaseUtil {
 					graph.setItemState(edge, "selected", true);
 					this.edgeSelected = edge;
 				}
-				if (this.view.g6Api.showControll) {
+				console.log('startNode---->>%o',startNode);
+				console.log('endNode---->>%o',endNode);
+				if (this.view.g6Api.showControll && startNode.neType!='gd' && endNode.neType!='gd') {
 					this.view.g6Api.controllPoint(false);
 					setTimeout(() => {
 						this.view.g6Api.controllPoint(true);
