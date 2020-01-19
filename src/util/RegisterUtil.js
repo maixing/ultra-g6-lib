@@ -150,14 +150,13 @@ class RegisterUtil extends BaseUtil {
 							x: startPoint.x,
 							y: startPoint.y,
 							fill: "#ffffff",
-							r: 2
+							r: 3
 						}
 					});
 					let lg = this.computeLine(cfg)*this.compoutedRate*5;
 					if(lg<1500){
 						lg = lg*5;
 					}
-					console.log('cfg---->>%o',lg);
 					// 对红色圆点添加动画
 					circle.animate(
 						{

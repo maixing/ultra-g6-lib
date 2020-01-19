@@ -731,9 +731,9 @@ export default class Demo extends React.Component {
 	};
 
 	componentDidMount = ()=>{
-		setInterval(()=>{
-			this.topo.g6Api.addAlarm("-1983672940887260532",Math.floor(Math.random()*4),"");
-		},2000);
+		// setInterval(()=>{
+		// 	this.topo.g6Api.addAlarm("-1983672940887260532",Math.floor(Math.random()*4),"");
+		// },2000);
 	}
 	showControl = () => {
 		this.topo.g6Api.showControll = true;

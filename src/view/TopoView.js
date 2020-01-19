@@ -72,15 +72,17 @@ export default class TopoView extends React.Component {
 		});
 		if (this.props.datas != nextProps.datas) {
 			if (this.graph) {
+				console.log('lib shouldComponentUpdate---->>%o',shouldComponentUpdate);
 				this.setData(nextProps.datas, true);
 			}
 		}
-		if(this.props.model != nextProps.model){
-			this.graph.setMode(nextProps.model);
-		}
+		// if(this.props.model != nextProps.model){
+		// 	this.graph.setMode(nextProps.model);
+		// }
 		return change;
 	};
 	setData = (datas, clear = false) => {
+		console.log('topoview---->>setData');
 		const rect = this.topoWrap.getBoundingClientRect();
 		let maxY = 0;
 		datas.nodes.forEach(item => {
@@ -104,10 +106,10 @@ export default class TopoView extends React.Component {
 			});
 		}
 		if (!this.state.fitView) {
-			this.graph.changeSize(
-				this.sourceRect.width,
-				maxY > this.sourceRect.height ? maxY * 1.05 : this.sourceRect.height
-			);
+			// this.graph.changeSize(
+			// 	this.sourceRect.width,
+			// 	maxY > this.sourceRect.height ? maxY * 1.05 : this.sourceRect.height
+			// );
 		}
 		this.graph.data(datas);
 		this.graph.render();
@@ -117,7 +119,6 @@ export default class TopoView extends React.Component {
 	};
 	componentDidMount() {
 		const rect = this.topoWrap.getBoundingClientRect();
-		const grid = new Grid();
 		if (rect) {
 			this.graph = new G6.Graph({
 				container: this.props.el,
@@ -126,7 +127,7 @@ export default class TopoView extends React.Component {
 				height: rect.height - 4,
 				fitView: this.state.fitView,
 				pixeRatio: 1,
-				autoPaint:false,
+				autoPaint:true,
 				groupByTypes:false,
 				defaultEdge: {
 					shape:"runedge",
@@ -335,6 +336,7 @@ export default class TopoView extends React.Component {
 		if (typeof handler === "function") target.on(eventName, handler);
 	};
 	render() {
+		console.log('topoview---->>render');
 		return (
 			<div
 				className="topowrap"
