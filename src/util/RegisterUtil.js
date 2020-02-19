@@ -72,7 +72,7 @@ class RegisterUtil extends BaseUtil {
 	multiSelectFilter = [];
 	collapsed = false;
 	compoutedRate = 3;
-	lineAnimation = false;
+	lineAnimation = true;
 	registerEdge = () => {
 		G6.registerEdge("edgeStyle", {
 			options: {
@@ -157,6 +157,17 @@ class RegisterUtil extends BaseUtil {
 						if (lg < 1500) {
 							lg = lg * 5;
 						}
+						// circle.animate(ratio => {
+						// 	const tmpPoint = shape.getPoint(ratio);
+						// 	// 返回需要变化的参数集，这里返回了位置 x 和 y
+						// 	return {
+						// 		x: tmpPoint.x,
+						// 		y: tmpPoint.y
+						// 	};
+						// },{
+						// 	repeat: true,
+						// 	duration: lg
+						//   });
 						// 对红色圆点添加动画
 						circle.animate(
 							{
