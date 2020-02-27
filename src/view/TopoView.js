@@ -15,7 +15,6 @@ import { GRAPH_MOUSE_EVENTS, ITEM_EVENTS, GRAPH_MOUSE_REACT_EVENTS, ITEM_REACT_E
 import ToolbarView from "./ToolbarView";
 import "@/view/style.less";
 import CacheUtil from '@/util/CacheUtil';
-import Grid from "@antv/g6/build/grid";
 
 export default class TopoView extends React.Component {
 	constructor(props) {
@@ -291,6 +290,7 @@ export default class TopoView extends React.Component {
 				});
 				this.graph.paint();
 			}, 500);
+			this.graph.get('canvas').set('localRefresh',false); 
 		}
 		document.onkeydown = evt => {
 			this.ctrlKey = evt.ctrlKey;

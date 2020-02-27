@@ -77,28 +77,6 @@ export default class Demo extends React.Component {
 				},
 				{
 					shape: "nodeStyle",
-					w: 325,
-					h: 175,
-					x: -45.08879976698233,
-					y: -71.24985389315626,
-					id: "bd1",
-					label: "",
-					neType: "bd",
-					selected: false
-				},
-				{
-					shape: "nodeStyle",
-					w: 325,
-					h: 175,
-					x: 1263.8461515258123,
-					y: 729.0301636134657,
-					id: "bd2",
-					label: "",
-					neType: "bd",
-					selected: false
-				},
-				{
-					shape: "nodeStyle",
 					x: 899.3738963921883,
 					y: 361.67522051785744,
 					id: "-1983672940887260532",
@@ -311,7 +289,7 @@ export default class Demo extends React.Component {
 				},
 				{
 					shape: "runedge",
-					style: { offset: 0, lineDash: [], radius: 0.5, stroke: "l(0) 0:#ffffff 0.5:#7ec2f3 1:#1890ff", lineWidth: 4 },
+					style: { offset: 0, lineDash: [], radius: 0.5, stroke: "#08BD09", lineWidth: 4 },
 					source: "7783678799634628414",
 					controlPoints: [],
 					target: "6462173375031171282"
@@ -787,7 +765,7 @@ export default class Demo extends React.Component {
 					datas={data}
 					showToolBar={false}
 					model={"addCPoint"}
-					lineAnimation = {false}
+					lineAnimation = {true}
 					ref={component => {
 						this.topo = component;
 					}}
