@@ -73,11 +73,12 @@ class G6Api extends BaseUtil {
 	addEdgeAlarm = (source, target, level) => {
 		const edges = this.graph.getEdges();
 		edges.forEach(edge => {
-			const edgeModel = edge.getModel();
-			if (edgeModel.source == source && edgeModel.target == target) {
-				edgeModel.style.stroke = levelColos[parseInt(level)];
-				console.log("addEdgeAlarm---->>%o", edgeModel);
-				this.graph.updateItem(edge, edgeModel);
+			if(edge){
+				const edgeModel = edge.getModel();
+				if ((edgeModel.source == source && edgeModel.target == target)||(edgeModel.source == target && edgeModel.target == source)) {
+					edgeModel.style.stroke = this.levelColos[parseInt(level)];
+					this.graph.updateItem(edge, edgeModel);
+				}
 			}
 		});
 	};

@@ -709,9 +709,12 @@ export default class Demo extends React.Component {
 	};
 
 	componentDidMount = ()=>{
-		// setInterval(()=>{
-		// 	this.topo.g6Api.addAlarm("-1983672940887260532",Math.floor(Math.random()*4),"");
-		// },2000);
+		setTimeout(this.setLineAlarm,5000);
+	}
+	setLineAlarm = ()=>{
+		if(this.topo){
+			this.topo.g6Api.addEdgeAlarm("6006376856756510153","-8137881224353739309","1");
+		}
 	}
 	showControl = () => {
 		this.topo.g6Api.showControll = true;
