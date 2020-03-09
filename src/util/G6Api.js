@@ -76,7 +76,8 @@ class G6Api extends BaseUtil {
 			if(edge){
 				const edgeModel = edge.getModel();
 				if ((edgeModel.source == source && edgeModel.target == target)||(edgeModel.source == target && edgeModel.target == source)) {
-					edgeModel.style.stroke = this.levelColos[parseInt(level)];
+					edgeModel.style.stroke = levelColos[parseInt(level)];
+					debugger;
 					this.graph.updateItem(edge, edgeModel);
 				}
 			}
