@@ -5,6 +5,7 @@
  */
 import BaseUtil from "@/util/BaseUtil";
 import G6 from "@antv/g6";
+import {uniqueId} from "@antv/util";
 import modelConsts from "@/appconsts/ModelConsts";
 import { addAppEventListener } from "@/util/EventBusUtil";
 import toolBarConsts from "@/appconsts/ToolBarConsts";
@@ -138,7 +139,7 @@ class GraphEventUtil extends BaseUtil {
 			},
 			onEdgeMouseOut: evt => {
 				const attr = evt.target._attrs;
-				attr.cursor = "pointer";
+				// attr.cursor = "pointer";
 			},
 			onCanvasClick: ev => {
 				const graph = this.graph;
@@ -146,7 +147,7 @@ class GraphEventUtil extends BaseUtil {
 					graph.setItemState(this.edgeSelected, "selected", false);
 				}
 				if (this.ctrlKey && this.edgeSelected) {
-					let nodeId = G6.Util.uniqueId();
+					let nodeId = uniqueId();
 					let gdNode = {
 						w: 20,
 						h: 20,
@@ -308,7 +309,7 @@ class GraphEventUtil extends BaseUtil {
 					selected: false,
 					x: ev.x,
 					y: ev.y,
-					id: G6.Util.uniqueId()
+					id: uniqueId()
 				});
 			}
 		});

@@ -5,6 +5,7 @@
  */
 import BaseUtil from "@/util/BaseUtil";
 import CacheUtil from "@/util/CacheUtil";
+import {uniqueId} from "@antv/util";
 import G6 from "@antv/g6";
 const levelColos = ["#08BD09", "#FF0000", "#FFA500", "#FFFF00", "#0000FF"];
 class G6Api extends BaseUtil {
@@ -212,7 +213,7 @@ class G6Api extends BaseUtil {
 					let preNode = null;
 					let controlPointsMap = [];
 					controlPoints.forEach((point, index) => {
-						const nodeId = G6.Util.uniqueId();
+						const nodeId = uniqueId();
 						const gdNode = {
 							w: 20,
 							h: 20,
