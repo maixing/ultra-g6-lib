@@ -1,131 +1,132 @@
 # 通用
-click
+## click
 单击鼠标左键或者按下回车键时触发
-dblclick
+
+## dblclick
 双击鼠标左键时触发
-mouseenter
+## mouseenter
 鼠标移入元素范围内触发，该事件不冒泡，即鼠标移到其后代元素上时不会触发
-mousemove
+## mousemove
 鼠标在元素内部移到时不断触发，不能通过键盘触发
-mouseout
+## mouseout
 鼠标移出目标元素后触发
-mouseover
+## mouseover
 鼠标移入目标元素上方，鼠标移到其后代元素上时会触发
-mouseleave
+## mouseleave
 鼠标移出元素范围时触发，该事件不冒泡，即鼠标移到其后代元素时不会触发
-mousedown
+## mousedown
 鼠标按钮被按下（左键或者右键）时触发，不能通过键盘触发
-mouseup
+## mouseup
 鼠标按钮被释放弹起时触发，不能通过键盘触发
-contextmenu
+## contextmenu
 用户右击鼠标时触发并打开上下文菜单
-dragstart
+## dragstart
 当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上
-drag
+## drag
 当拖拽元素在拖动过程中时触发的事件，此事件作用于被拖拽元素上
-dragend
+## dragend
 当拖拽完成后触发的事件，此事件作用在被拖曳元素上
-dragenter
+## dragenter
 当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上
-dragleave
+## dragleave
 当拖曳元素离开目标元素的时候触发的事件，此事件作用在目标元素上
-drop
+## drop
 被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上
-keydown
+## keydown
 按下键盘键触发该事件
-keyup
+## keyup
 释放键盘键触发该事件
-touchstart
+## touchstart
 当手指触摸屏幕时候触发，即使已经有一个手指放在屏幕上也会触发
-touchmove
+## touchmove
 当手指在屏幕上滑动的时候连续地触发。在这个事件发生期间，调用preventDefault()事件可以阻止滚动。
-touchend
+## touchend
 当手指从屏幕上离开的时候触发
 
 # 节点
-node:click
+## node:click
 鼠标左键单击节点时触发
-node:dblclick
+## node:dblclick
 鼠标双击左键节点时触发
-node:mouseenter
+## node:mouseenter
 鼠标移入节点时触发
-node:mousemove
+## node:mousemove
 鼠标在节点内部移到时不断触发，不能通过键盘触发
-node:mouseout
+## node:mouseout
 鼠标移出节点后触发
-node:mouseover
+## node:mouseover
 鼠标移入节点上方时触发
-node:mouseleave
+## node:mouseleave
 鼠标移出节点时触发
-node:mousedown
+## node:mousedown
 鼠标按钮在节点上按下（左键或者右键）时触发，不能通过键盘触发
-node:mouseup
+## node:mouseup
 节点上按下的鼠标按钮被释放弹起时触发，不能通过键盘触发
-node:contextmenu
+## node:contextmenu
 用户在节点上右击鼠标时触发并打开右键菜单
-node:dragstart
+## node:dragstart
 当节点开始被拖拽的时候触发的事件，此事件作用在被拖曳节点上
-node:drag
+## node:drag
 当节点在拖动过程中时触发的事件，此事件作用于被拖拽节点上
-node:dragend
+## node:dragend
 当拖拽完成后触发的事件，此事件作用在被拖曳节点上
-node:dragenter
+## node:dragenter
 当拖曳节点进入目标元素的时候触发的事件，此事件作用在目标元素上
-node:dragleave
+## node:dragleave
 当拖曳节点离开目标元素的时候触发的事件，此事件作用在目标元素上
-node:drop
+## node:drop
 被拖拽的节点在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上
 
 # 连线
-edge:click
+## edge:click
 鼠标左键单击边时触发
-edge:dblclick
+## edge:dblclick
 鼠标双击左键边时触发
-edge:mouseenter
+## edge:mouseenter
 鼠标移入边时触发
-edge:mousemove
+## edge:mousemove
 鼠标在边上移到时不断触发，不能通过键盘触发
-edge:mouseout
+## edge:mouseout
 鼠标移出边后触发
-edge:mouseover
+## edge:mouseover
 鼠标移入边上方时触发
-edge:mouseleave
+## edge:mouseleave
 鼠标移出边时触发
-edge:mousedown
+## edge:mousedown
 鼠标按钮在边上按下（左键或者右键）时触发，不能通过键盘触发
-edge:mouseup
+## edge:mouseup
 边上按下的鼠标按钮被释放弹起时触发，不能通过键盘触发
-edge:contextmenu
+## edge:contextmenu
 用户在边上右击鼠标时触发并打开右键菜单
 
 # canvas
-canvas:click
+## canvas:click
 鼠标左键单击画布时触发
-canvas:dblclick
+## canvas:dblclick
 鼠标双击左键画布时触发
-canvas:mouseenter
+## canvas:mouseenter
 鼠标移入画布时触发
-canvas:mousemove
+## canvas:mousemove
 鼠标在画布内部移到时不断触发，不能通过键盘触发
-canvas:mouseout
+## canvas:mouseout
 鼠标移出画布后触发
-canvas:mouseover
+## canvas:mouseover
 鼠标移入画布上方时触发
-canvas:mouseleave
+## canvas:mouseleave
 鼠标移出画布时触发
-canvas:mousedown
+## canvas:mousedown
 鼠标按钮在画布上按下（左键或者右键）时触发，不能通过键盘触发
-canvas:mouseup
+## canvas:mouseup
 画布上按下的鼠标按钮被释放弹起时触发，不能通过键盘触发
-canvas:contextmenu
+## canvas:contextmenu
 用户在画布上右击鼠标时触发并打开右键菜单
-canvas:dragstart
+## canvas:dragstart
 当画布开始被拖拽的时候触发的事件，此事件作用在被拖曳画布上
-canvas:drag
+## canvas:drag
 当画布在拖动过程中时触发的事件，此事件作用于被拖拽画布上
-canvas:dragend
+## canvas:dragend
 当拖拽完成后触发的事件，此事件作用在被拖曳画布上
-canvas:dragenter
+## canvas:dragenter
 当拖曳画布进入目标元素的时候触发的事件，此事件作用在目标元素上
-canvas:dragleave
+## canvas:dragleave
 当拖曳画布离开目标元素的时候触发的事件，此事件作用在目标元素上
